@@ -24,10 +24,9 @@ class User(db.Model, UserMixin):
         back_populates="author"
     )
 
-    user_comments = db.relationship(
-        "Photo",
-        secondary=comments,
-        back_populates="photo_comments"
+    comments = db.relationship(
+        "Comment",
+        back_populates="author"
     )
 
     @property

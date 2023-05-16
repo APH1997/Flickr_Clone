@@ -18,10 +18,9 @@ class Photo(db.Model):
         back_populates="photos"
     )
 
-    photo_comments = db.relationship(
-        "User",
-        secondary=comments,
-        back_populates="user_comments"
+    comments = db.relationship(
+        "Comment",
+        back_populates="photo"
     )
 
     def to_dict(self):
