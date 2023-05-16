@@ -23,3 +23,13 @@ class Album(db.Model):
         secondary=album_photos,
         back_populates="photo_albums"
     )
+
+    def to_dict(self):
+        return {
+        'id': self.id,
+        'title': self.title,
+        'description': self.description,
+        'cover_photo': self.cover_photo_url,
+        'author': self.author.to_dict(),
+        'pics': [photo.to_dict_no_author for photo in self.album_photos]
+        }
