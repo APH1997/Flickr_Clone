@@ -18,6 +18,10 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    photos = db.relationship(
+        "Photo",
+        back_populates="author"
+    )
 
     @property
     def password(self):
