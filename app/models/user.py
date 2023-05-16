@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(50), nullable=False)
     bio = db.Column(db.String, nullable=True)
     profile_image_url = db.Column(db.String, nullable=True)
+    cover_photo_url = db.Column(db.String, nullable=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -40,5 +41,21 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'first_name': self.first_name,
-            'last_name': self.last_name
+            'last_name': self.last_name,
+            'bio': self.bio,
+            'profile_picture_url': self.profile_image_url,
+            'cover_photo_url': self.cover_photo_url
+        }
+
+    def to_dict_with_pics(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'bio': self.bio,
+            'profile_picture_url': self.profile_image_url,
+            'cover_photo_url': self.cover_photo_url,
+            'photos': [photo.to_dict_no_author() for photo in self.photos]
         }

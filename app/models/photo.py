@@ -16,3 +16,20 @@ class Photo(db.Model):
         "User",
         back_populates="photos"
     )
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'author': self.author.to_dict(),
+            'url': self.aws_url,
+            'caption': self.caption,
+            'description': self.description
+        }
+
+    def to_dict_no_author(self):
+        return {
+            'id': self.id,
+            'url': self.aws_url,
+            'caption': self.caption,
+            'description': self.description
+        }
