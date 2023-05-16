@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .comment import comments
+
 
 class Photo(db.Model):
     __tablename__ = 'photos'
