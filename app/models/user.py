@@ -24,6 +24,11 @@ class User(db.Model, UserMixin):
         back_populates="author"
     )
 
+    albums = db.relationship(
+        "Album",
+        back_populates="author"
+    )
+
     comments = db.relationship(
         "Comment",
         back_populates="author"
