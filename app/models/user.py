@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from .comment import comments
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -22,6 +22,12 @@ class User(db.Model, UserMixin):
     photos = db.relationship(
         "Photo",
         back_populates="author"
+    )
+
+    user_comments = db.relationship(
+        "Photo",
+        secondary=comments,
+        back_populates="photo_comments"
     )
 
     @property

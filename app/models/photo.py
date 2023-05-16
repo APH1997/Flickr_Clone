@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .comment import comments
 
 class Photo(db.Model):
     __tablename__ = 'photos'
@@ -7,7 +8,7 @@ class Photo(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    author_id =db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    author_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     aws_url = db.Column(db.String, nullable=False)
     caption = db.Column(db.String(100))
     description = db.Column(db.String)
@@ -15,6 +16,12 @@ class Photo(db.Model):
     author = db.relationship(
         "User",
         back_populates="photos"
+    )
+
+    photo_comments = db.relationship(
+        "User",
+        secondary=comments,
+        back_populates="user_comments"
     )
 
     def to_dict(self):
