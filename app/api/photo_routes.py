@@ -16,7 +16,7 @@ def all_photos():
     This route populates the home feed.
     """
     photos = Photo.query.all()
-    return {'photos': [photo.to_dict() for photo in photos]}
+    return [photo.to_dict() for photo in photos]
 
 
 # Get All Photos by User Id
@@ -32,7 +32,7 @@ def all_user_photos(userId):
         return {'error':'User could not be found'}
 
     photos = Photo.query.filter(Photo.author_id == userId).all()
-    return {'photos': [photo.to_dict() for photo in photos]}
+    return [photo.to_dict() for photo in photos]
 
 
 
