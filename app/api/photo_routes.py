@@ -128,7 +128,7 @@ def delete_photo(photoId):
 
     db.session.delete(target)
     remove_file_from_s3(aws_url)
-    
+
     db.session.commit()
 
     return jsonify({
