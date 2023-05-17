@@ -45,6 +45,8 @@ def seed_photos():
     added = [db.session.add(pic) for pic in all_pics]
     db.session.commit()
 
+    return all_pics
+
 def undo_photos():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.photos RESTART IDENTITY CASCADE;")
