@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Photo
+from app.models import db, Photo, User
 from forms import PhotoForm, EditPhotoForm
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
@@ -27,8 +27,13 @@ def all_user_photos(userId):
     Query for all photos where author_id == userId
     This route populates a user page's photo stream tab
     """
+    user = User.query.get(userId)
+    if not user:
+        return {'error':'User could not be found'}
+    
     photos = Photo.query.filter(Photo.author_id == userId).all()
     return {'photos': [photo.to_dict() for photo in photos]}
+
 
 
 # Get Photo by Photo Id
