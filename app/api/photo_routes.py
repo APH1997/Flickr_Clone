@@ -30,7 +30,7 @@ def all_user_photos(userId):
     user = User.query.get(userId)
     if not user:
         return {'error':'User could not be found'}
-    
+
     photos = Photo.query.filter(Photo.author_id == userId).all()
     return {'photos': [photo.to_dict() for photo in photos]}
 
@@ -48,7 +48,7 @@ def get_photo_by_id(photoId):
     if photo:
         return photo.to_dict()
     else:
-        return {"error": "Requested photo id could not be found"}, 404
+        return {"error": "Requested photo could not be found"}, 404
 
 # Post Photo
 @photo_routes.route('/new', methods=['POST'])
@@ -82,7 +82,7 @@ def post_photo():
         db.session.commit()
         return jsonify(new_photo.to_dict())
     else:
-        return jsonify({"errors": form.errors})
+        return {"errors": form.errors}, 400
 
 # Edit Photo by Id
 @photo_routes.route('/<int:photoId>/edit', methods=['PUT'])
@@ -120,7 +120,7 @@ def edit_photo(photoId):
 
         return jsonify(target_photo.to_dict())
     else:
-        return jsonify({"errors": form.errors})
+        return {"errors": form.errors}, 400
 
 
 # Delete Photo by Id
@@ -128,7 +128,7 @@ def edit_photo(photoId):
 @login_required
 def delete_photo(photoId):
     """
-    Queries for photo by id and deletes it
+    Queries for photo by id and deletes it,
     Removes file from bucket
     """
     target = Photo.query.get(photoId)
