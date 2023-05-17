@@ -39,3 +39,16 @@ def seed_photos():
         caption='Wolf-Rayet 124',
         description="The luminous, hot star Wolf-Rayet 124 (WR 124) is prominent at the centre of the NASA/ESA/CSA James Webb Space Telescope's composite image combining near-infrared and mid-infrared wavelengths of light."
     )
+
+    all_pics = [sunset1, sunset2, sunset3, space1, space2, space3]
+
+    added = [db.session.add(pic) for pic in all_pics]
+    db.session.commit()
+
+def undo_photos():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.photos RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM photos"))
+
+    db.session.commit()
