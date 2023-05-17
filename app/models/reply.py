@@ -13,7 +13,7 @@ class Reply(db.Model):
 
     author = db.relationship(
         "User",
-        back_populates=""
+        back_populates="replies"
     )
 
     parent = db.relationship(

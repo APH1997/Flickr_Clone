@@ -34,6 +34,11 @@ class User(db.Model, UserMixin):
         back_populates="author"
     )
 
+    replies = db.relationship(
+        "Reply",
+        back_populates="author"
+    )
+
     @property
     def password(self):
         return self.hashed_password
