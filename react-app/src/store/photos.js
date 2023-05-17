@@ -107,6 +107,28 @@ export const updatePhotoThunk = (photoId, photoData) => async (dispatch) => {
     }
 }
 
+//DELETE PHOTO
+const deletePhotoAction = (photoId) => {
+    return {
+        type: DELETE_PHOTO,
+        payload: photoId
+    }
+}
+
+export const deletePhotoThunk = (photoId) => async (dispatch) => {
+    const response = await fetch(`/photos/${photoId}/delete`, {
+        method: 'DELETE',
+    })
+    if (response.ok){
+        const data = await response.json();
+        await dispatch(deletePhotoAction(photoId))
+        return data
+    } else {
+        const data = await response.json()
+        return data
+    }
+}
+
 const initialState = {allPhotos: null, userPhotos: null, singlePhoto: null}
 
 export default function reducer(state = initialState, action) {
@@ -154,7 +176,6 @@ export default function reducer(state = initialState, action) {
                 singlePhoto: {...state.singlePhoto}
             }
             newState.allPhotos[action.payload.id] = action.payload
-
             return newState
         }
 
@@ -171,6 +192,18 @@ export default function reducer(state = initialState, action) {
             if (newState.userPhotos[action.payload.id]){
                 newState.userPhotos[action.payload.id] = action.payload
             }
+            return newState
+        }
+        case DELETE_PHOTO: {
+            const newState = {
+                ...state,
+                allPhotos: {...state.allPhotos},
+                userPhotos: {...state.userPhotos},
+                singlePhoto: {...state.singlePhoto}
+            }
+            delete newState.allPhotos[action.payload]
+            delete newState.userPhotos[action.payload]
+            newState.singlePhoto = null
 
             return newState
         }

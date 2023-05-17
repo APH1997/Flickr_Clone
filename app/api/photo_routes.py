@@ -132,6 +132,9 @@ def delete_photo(photoId):
     Removes file from bucket
     """
     target = Photo.query.get(photoId)
+    if not target:
+        return {"error":"Photo could not be found"}, 404
+
     aws_url = target.aws_url
 
     db.session.delete(target)
@@ -139,6 +142,6 @@ def delete_photo(photoId):
 
     db.session.commit()
 
-    return jsonify({
+    return {
         "message":"Photo Deleted"
-    })
+    }
