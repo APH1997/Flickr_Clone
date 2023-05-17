@@ -6,7 +6,6 @@ from app.api.aws_helpers import ALLOWED_EXTENSIONS
 
 class PhotoForm(FlaskForm):
     author_id = IntegerField("Author Id", validators=[DataRequired()])
-    artist = StringField('Artist', validators=[DataRequired()])
-    aws_url = FileField("Song File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
-
-    uploader_id = IntegerField('Uploader Id', validators=[DataRequired()])
+    photo = FileField("Photo File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    caption = StringField('Caption')
+    description = StringField('Description')
