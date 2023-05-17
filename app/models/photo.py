@@ -20,7 +20,8 @@ class Photo(db.Model):
 
     comments = db.relationship(
         "Comment",
-        back_populates="photo"
+        back_populates="photo",
+        cascade='delete-orphan, all'
     )
 
     photo_albums = db.relationship(

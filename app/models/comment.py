@@ -24,7 +24,8 @@ class Comment(db.Model):
 
     replies = db.relationship(
         "Reply",
-        back_populates="parent"
+        back_populates="parent",
+        cascade='delete-orphan, all'
     )
 
     def to_dict(self):
