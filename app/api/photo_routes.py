@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, Photo
-from forms import PhotoForm
+from forms import PhotoForm, EditPhotoForm
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 photo_routes = Blueprint('photos', __name__)
@@ -77,5 +77,41 @@ def post_photo():
         return jsonify({"errors": form.errors})
 
 # Edit Photo by Id
+@photo_routes.route('/<int:photoId>/edit', methods=['PUT'])
+@login_required
+def edit_photo(photoId):
+    """
+    Takes form data, validates against Flask Form
+    Queries for photo and updates attributes
+    If there is a photo submitted with edit form,
+    removes current photo from bucket and uploads given photo
+    """
+    form = EditPhotoForm()
+    if form.validate_on_submit():
+        target_photo = Photo.query.get(photoId)
+
+        if form.data["photo"] is not None:
+            photo = form.data["photo"]
+            photo.filename = get_unique_filename(photo.filename)
+            upload = upload_file_to_s3(photo)
+
+            if "url" not in upload:
+                return upload["errors"]
+
+            new_photo_url = upload["url"]
+
+            #Upload succeeded, we can remove old photo
+            remove_file_from_s3(target_photo.aws_url)
+
+            target_photo.aws_url = new_photo_url
+
+        target_photo.caption = form.data["caption"]
+        target_photo.description = form.data["description"]
+
+        db.session.commit()
+
+        return jsonify(target_photo.to_dict())
+    else:
+        return jsonify({"errors": form.errors})
 
 # Delete Photo by Id
