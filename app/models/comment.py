@@ -36,3 +36,11 @@ class Comment(db.Model):
             'content': self.content,
             'replies': [reply.to_dict() for reply in self.replies]
         }
+
+    def to_dict_no_photo(self):
+        return {
+            'id': self.id,
+            'author': self.author.to_dict(),
+            'content': self.content,
+            'replies': [reply.to_dict() for reply in self.replies]
+        }

@@ -33,3 +33,11 @@ class Album(db.Model):
         'author': self.author.to_dict(),
         'pics': [photo.to_dict_no_author for photo in self.album_photos]
         }
+
+    def to_dict_no_pics_no_author(self):
+        return {
+        'id': self.id,
+        'title': self.title,
+        'description': self.description,
+        'cover_photo': self.cover_photo_url
+        }

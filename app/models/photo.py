@@ -36,7 +36,9 @@ class Photo(db.Model):
             'author': self.author.to_dict(),
             'url': self.aws_url,
             'caption': self.caption,
-            'description': self.description
+            'description': self.description,
+            'comments': [comment.to_dict_no_photo() for comment in self.comments],
+            'albums' : [album.to_dict_no_pics_no_author() for album in self.photo_albums]
         }
 
     def to_dict_no_author(self):
