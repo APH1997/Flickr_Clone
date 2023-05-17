@@ -10,12 +10,32 @@ const getAllPhotosAction = (photos) => {
     }
 }
 
-const getAllPhotosThunk = () => async (dispatch) => {
+export const getAllPhotosThunk = () => async (dispatch) => {
     const response = await fetch("/photos/all")
     if (response.ok){
         const data = await response.json();
         await dispatch(getAllPhotosAction(data));
         return data;
+    }
+}
+
+//GET ONE PHOTO
+const getOnePhotoAction = (photo) => {
+    return {
+        type: GET_ONE_PHOTO,
+        payload: photo
+    }
+}
+
+export const getOnePhotoThunk = (photoId) => async (dispatch) => {
+    const response = await fetch(`/photos/${photoId}`)
+    if (response.ok){
+        const data = await response.json();
+        await dispatch(getOnePhotoAction(data));
+        return data
+    } else {
+        const data = response.json()
+        return data
     }
 }
 
@@ -33,6 +53,15 @@ export default function reducer(state = initialState, action) {
             })
             return newState
         }
+        case GET_ONE_PHOTO: {
+            const newState = {
+                ...state,
+                allPhotos: {...state.allPhotos},
+                singlePhoto: action.payload
+            }
+            return newState
+        }
+
         default:
             return state
     }

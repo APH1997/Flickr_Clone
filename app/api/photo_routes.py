@@ -40,7 +40,10 @@ def get_photo_by_id(photoId):
     Return in a dictionary with comments, albums, author
     """
     photo = Photo.query.get(photoId)
-    return photo.to_dict()
+    if photo:
+        return photo.to_dict()
+    else:
+        return {"error": "Requested photo id could not be found"}, 404
 
 # Post Photo
 @photo_routes.route('/new', methods=['POST'])
