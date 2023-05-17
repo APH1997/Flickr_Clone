@@ -14,7 +14,7 @@ class Comment(db.Model):
 
     photo = db.relationship(
         "Photo",
-        back_populates="comments"
+        back_populates="comments",
     )
 
     author = db.relationship(
