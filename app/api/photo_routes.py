@@ -114,4 +114,23 @@ def edit_photo(photoId):
     else:
         return jsonify({"errors": form.errors})
 
+
 # Delete Photo by Id
+@photo_routes.route('/<int:photoId>/delete', methods=['DELETE'])
+@login_required
+def delete_photo(photoId):
+    """
+    Queries for photo by id and deletes it
+    Removes file from bucket
+    """
+    target = Photo.query.get(photoId)
+    aws_url = target.aws_url
+
+    db.session.delete(target)
+    remove_file_from_s3(aws_url)
+    
+    db.session.commit()
+
+    return jsonify({
+        "message":"Photo Deleted"
+    })
