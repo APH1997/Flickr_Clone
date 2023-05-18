@@ -14,4 +14,10 @@
     align-content: center;
     gap: 10px;
     border: red 1px solid;
+    padding-top: 150px;
+ }
+
+ .caption-label-input{
+    display: flex;
+    flex-flow: column;
  }

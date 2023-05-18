@@ -93,7 +93,7 @@ function PostForm({type}) {
 
     return (
         <form className="post-form" encType="multipart/form-data" onSubmit={handleSubmit} method={type ? "PUT" : "POST"}>
-            <div>
+            <div className="caption-label-input">
                 <label>Caption</label>
                 <input
                 type="text"
