@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
+import OpenModalButton from "../OpenModalButton"
+import { useModal } from "../../context/Modal"
 
 function ContentCard({photo}){
     const user = useSelector(state => state.session.user)
@@ -12,6 +14,7 @@ function ContentCard({photo}){
                     <p>{photo.author.username}</p>
                 </div>
                 {user.id === photo.author.id &&
+
                         <NavLink to={`/photos/${photo.id}/edit`}>Edit</NavLink>
                 }
             </div>
