@@ -1,0 +1,38 @@
+.feed-main-container{
+    border: blue solid 1px;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+}
+.content-card{
+    border: red solid 1px;
+    display: flex;
+    flex-flow: column;
+    width: 65%;
+}
+
+.content-card p {
+    margin:2px;
+}
+#photo-caption {
+    font-weight: bold;
+}
+.cc-poster-info{
+    display: flex;
+
+}
+
+#photo{
+    align-self: center;
+    max-width: 500px;
+}
+
+.description-and-comments{
+    display: flex;
+    justify-content: space-between;
+}
+
+#comments-button{
+    align-self:flex-end;
+    border: 1px solid green;
+}
