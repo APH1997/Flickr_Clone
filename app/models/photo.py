@@ -11,7 +11,7 @@ class Photo(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     aws_url = db.Column(db.String, nullable=False)
     caption = db.Column(db.String(100))
-    description = db.Column(db.String)
+    description = db.Column(db.String(500))
 
     author = db.relationship(
         "User",
