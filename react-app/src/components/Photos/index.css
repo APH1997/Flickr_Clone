@@ -1,0 +1,17 @@
+.photo-description{
+    display: flex;
+    flex-flow: column;
+}
+
+.photo-form-image-section{
+    display: flex;
+    flex-flow: column;
+    padding-bottom: 20px;
+}
+ .post-form{
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    gap: 10px;
+    border: red 1px solid;
+ }

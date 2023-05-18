@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { createPhotoThunk, updatePhotoThunk } from "../../../store/photos"
-
+import "../index.css"
 
 function PostForm({type}) {
 
@@ -44,7 +44,7 @@ function PostForm({type}) {
             errObj.description = "Description must not exceed 500 characters."
         }
         if (type !== "update" && !photo){
-            errObj.photo = "Please select a photo to upload"
+            errObj.photo = "Please select a photo to upload."
         }
 
         if (Object.keys(errObj).length){
@@ -92,38 +92,38 @@ function PostForm({type}) {
     }
 
     return (
-        <form encType="multipart/form-data" onSubmit={handleSubmit} method={type ? "PUT" : "POST"}>
+        <form className="post-form" encType="multipart/form-data" onSubmit={handleSubmit} method={type ? "PUT" : "POST"}>
             <div>
                 <label>Caption</label>
-                {errors.caption &&
-                <p className="errors">{errors.caption}</p>
-                }
                 <input
                 type="text"
                 value={caption}
                 onChange={(e) => setCaption(e.target.value)}
                 />
-            </div>
-            <div>
-                <label>Description</label>
-                {errors.description &&
-                <p className="errors">{errors.description}</p>
+                {errors.caption &&
+                <p className="errors">{errors.caption}</p>
                 }
+            </div>
+            <div className="photo-description">
+                <label>Description</label>
                 <textarea
                 type="text"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 />
-            </div>
-            <div>
-                {/* <label>Upload Photo</label> */}
-                {errors.photo &&
-                <p className="errors">{errors.photo}</p>
+                {errors.description &&
+                <p className="errors">{errors.description}</p>
                 }
+            </div>
+            <div className="photo-form-image-section">
+                <label>Upload Photo</label>
                 <input
                 type="file"
                 accept="image/*"
                 onChange={handlePhotoChange}/>
+                {errors.photo &&
+                <p className="errors">{errors.photo}</p>
+                }
                 <img src={photoPreview} style={{width:"100px", height:"100px"}}/>
             </div>
 
