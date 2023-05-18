@@ -20,8 +20,31 @@
 
 #home{
   color: white;
+  transition: color 1s
+}
+#logo-container{
+  display: flex;
+}
+
+#logo-container:hover #cloud{
+  transition: margin-top 1s;
+  margin-top: 29px
+}
+
+#home:hover{
+  cursor: pointer;
+  color: rgb(208, 207, 207);
+  transition: color 1s
 }
 
 #home-r{
   color: red;
+}
+
+#cloud{
+  transition: margin-top 1s;
+  margin-top: 32px;
+  color: white;
+  padding-left:10px;
+  padding-right: 5px;
 }
