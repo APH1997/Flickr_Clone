@@ -1,17 +1,23 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { createPhotoThunk } from "../../../store/photos"
+import { createPhotoThunk, updatePhotoThunk } from "../../../store/photos"
 
 
-function CreatePostForm() {
+function PostForm({type}) {
+
+    //If we are on the edit page, these will be defined
+    const {photoId} = useParams()
+    const post = useSelector(state => state.photos.allPhotos[photoId])
+
+
     const user = useSelector(state => state.session.user)
     const history = useHistory()
     const dispatch = useDispatch()
-    const [caption, setCaption] = useState("")
-    const [description, setDescription] = useState("")
+    const [caption, setCaption] = useState(post ? post.caption : "")
+    const [description, setDescription] = useState(post ? post.description : "")
     const [photo, setPhoto] = useState(null)
-    const [photoPreview, setPhotoPreview] = useState(null)
+    const [photoPreview, setPhotoPreview] = useState(post ? post.url : null)
     const [isUploading, setIsUploading] = useState(false)
 
     const [errors, setErrors] = useState({})
@@ -32,7 +38,7 @@ function CreatePostForm() {
         if (description && description.length > 500){
             errObj.description = "Description must not exceed 500 characters."
         }
-        if (!photo){
+        if (type !== "update" && !photo){
             errObj.photo = "Please select a photo to upload"
         }
 
@@ -48,23 +54,41 @@ function CreatePostForm() {
 
         if (Object.keys(errors).length) return;
 
-        const formData = new FormData();
-        formData.append("author_id", user.id);
-        formData.append("photo", photo);
-        formData.append("caption", caption);
-        formData.append("description", description)
+        if (type === "update"){
+            const formData = new FormData();
+            formData.append("author_id", user.id);
+            photo && formData.append("photo", photo);
+            formData.append("caption", caption);
+            formData.append("description", description)
 
-        setIsUploading(true);
-        dispatch(createPhotoThunk(formData));
+            setIsUploading(true);
+            dispatch(updatePhotoThunk(photoId, formData));
 
-        setTimeout(() => setIsUploading(false), 3000);
+            setTimeout(() => setIsUploading(false), 3000);
 
-        history.push('/')
+            history.push('/')
+
+        } else {
+
+
+            const formData = new FormData();
+            formData.append("author_id", user.id);
+            formData.append("photo", photo);
+            formData.append("caption", caption);
+            formData.append("description", description)
+
+            setIsUploading(true);
+            dispatch(createPhotoThunk(formData));
+
+            setTimeout(() => setIsUploading(false), 3000);
+
+            history.push('/')
+        }
 
     }
 
     return (
-        <form encType="multipart/form-data" onSubmit={handleSubmit}>
+        <form encType="multipart/form-data" onSubmit={handleSubmit} method={type ? "PUT" : "POST"}>
             <div>
                 <label>Caption</label>
                 {errors.caption &&
@@ -105,4 +129,4 @@ function CreatePostForm() {
     )
 }
 
-export default CreatePostForm
+export default PostForm

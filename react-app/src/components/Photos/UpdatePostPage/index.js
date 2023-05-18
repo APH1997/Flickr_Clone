@@ -1,6 +1,8 @@
+import PostForm from "../CreatePostPage"
+
 function UpdatePostForm(){
     return (
-        <h1>Update Post page</h1>
+        <PostForm type={'update'}/>
     )
 }
 

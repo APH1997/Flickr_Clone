@@ -6,7 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Feed from "./components/Dashboard";
-import CreatePostForm from "./components/Photos/CreatePostPage";
+import PostForm from "./components/Photos/CreatePostPage";
 import UpdatePostForm from "./components/Photos/UpdatePostPage";
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
             <Feed />
           </Route>
           <Route exact path="/photos/new">
-            <CreatePostForm />
+            <PostForm />
           </Route>
           <Route exact path="/photos/:photoId/edit">
             <UpdatePostForm />
