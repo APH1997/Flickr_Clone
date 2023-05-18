@@ -49,7 +49,7 @@ function PostForm({type}) {
     }, [caption, description, photo])
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         if (Object.keys(errors).length) return;
@@ -64,8 +64,7 @@ function PostForm({type}) {
             setIsUploading(true);
             dispatch(updatePhotoThunk(photoId, formData));
 
-            setTimeout(() => setIsUploading(false), 3000);
-
+            setTimeout(() => setIsUploading(false), 5000)
             history.push('/')
 
         } else {
