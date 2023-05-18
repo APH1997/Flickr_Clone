@@ -12,6 +12,8 @@ function CreatePostForm() {
     const [description, setDescription] = useState("")
     const [photo, setPhoto] = useState(null)
     const [photoPreview, setPhotoPreview] = useState(null)
+    const [isUploading, setIsUploading] = useState(false)
+
     const [errors, setErrors] = useState({})
 
     const handlePhotoChange = (e) => {
@@ -45,8 +47,20 @@ function CreatePostForm() {
         e.preventDefault()
 
         if (Object.keys(errors).length) return;
-        alert("success!")
 
+
+        const formData = new FormData();
+        formData.append("author_id", user.id);
+        formData.append("photo", photo);
+        formData.append("caption", caption);
+        formData.append("description", description)
+
+        setIsUploading(true);
+        dispatch(createPhotoThunk(formData));
+
+        setTimeout(() => setIsUploading(false), 3000);
+
+        history.push('/')
 
     }
 
@@ -86,7 +100,7 @@ function CreatePostForm() {
                 <img src={photoPreview} style={{width:"100px", height:"100px"}}/>
             </div>
 
-            <button>Submit</button>
+            <button disabled={isUploading}>{isUploading ? "Uploading..." : "Submit"}</button>
 
         </form>
     )
