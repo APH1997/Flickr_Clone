@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { createPhotoThunk } from "../../store/photos"
+import { createPhotoThunk } from "../../../store/photos"
 
 
 function CreatePostForm() {
@@ -47,7 +47,6 @@ function CreatePostForm() {
         e.preventDefault()
 
         if (Object.keys(errors).length) return;
-
 
         const formData = new FormData();
         formData.append("author_id", user.id);

@@ -6,7 +6,8 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Feed from "./components/Dashboard";
-import CreatePostForm from "./components/CreatePostPage";
+import CreatePostForm from "./components/Photos/CreatePostPage";
+import UpdatePostForm from "./components/Photos/UpdatePostPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route exact path="/photos/new">
             <CreatePostForm />
+          </Route>
+          <Route exact path="/photos/:photoId/edit">
+            <UpdatePostForm />
           </Route>
           <Route exact path="/photos/:photoId">
             <h1>View 1 photo</h1>
