@@ -6,9 +6,14 @@ import { createPhotoThunk, updatePhotoThunk } from "../../../store/photos"
 
 function PostForm({type}) {
 
-    //If we are on the edit page, these will be defined
+
     const {photoId} = useParams()
-    const post = useSelector(state => state.photos.allPhotos[photoId])
+    const allPhotos = useSelector(state => state.photos.allPhotos)
+
+    let post;
+    if (type === "update"){
+        post = allPhotos[photoId]
+    }
 
 
     const user = useSelector(state => state.session.user)
@@ -111,7 +116,7 @@ function PostForm({type}) {
                 />
             </div>
             <div>
-                <label>Upload Photo</label>
+                {/* <label>Upload Photo</label> */}
                 {errors.photo &&
                 <p className="errors">{errors.photo}</p>
                 }
