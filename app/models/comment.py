@@ -10,7 +10,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     photo_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('photos.id')))
-    content = db.Column(db.String(200), nullable=False)
+    content = db.Column(db.String, nullable=False)
 
     photo = db.relationship(
         "Photo",

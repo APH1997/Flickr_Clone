@@ -11,7 +11,7 @@ class Album(db.Model):
     cover_photo_url = db.Column(db.String)
     author_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     title = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(200))
+    description = db.Column(db.String(500))
 
     author = db.relationship(
         "User",

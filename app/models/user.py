@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
-    bio = db.Column(db.String, nullable=True)
+    bio = db.Column(db.String(1000), nullable=True)
     profile_image_url = db.Column(db.String, nullable=True)
     cover_photo_url = db.Column(db.String, nullable=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
