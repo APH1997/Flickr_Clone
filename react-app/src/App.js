@@ -21,6 +21,9 @@ function App() {
           <Route exact path="/">
             <Feed />
           </Route>
+          <Route exact path="/photos/:photoId">
+            <h1></h1>
+          </Route>
           <Route exact path="/login" >
             <LoginFormPage />
           </Route>
