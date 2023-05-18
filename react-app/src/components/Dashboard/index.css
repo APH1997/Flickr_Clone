@@ -3,6 +3,7 @@
     display: flex;
     flex-flow: column wrap;
     align-content: center;
+    padding-top: 50px;
 }
 .content-card{
     border: red solid 1px;
@@ -21,6 +22,7 @@
 }
 .cc-poster-info{
     display: flex;
+    justify-content: space-between;
     height: 50px;
 
 }

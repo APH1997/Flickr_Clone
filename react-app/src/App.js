@@ -6,6 +6,9 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Feed from "./components/Dashboard";
+import PostForm from "./components/Photos/CreatePostPage";
+import UpdatePostForm from "./components/Photos/UpdatePostPage";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,8 +24,14 @@ function App() {
           <Route exact path="/">
             <Feed />
           </Route>
+          <Route exact path="/photos/new">
+            <PostForm />
+          </Route>
+          <Route exact path="/photos/:photoId/edit">
+            <UpdatePostForm />
+          </Route>
           <Route exact path="/photos/:photoId">
-            <h1></h1>
+            <h1>View 1 photo</h1>
           </Route>
           <Route exact path="/login" >
             <LoginFormPage />
