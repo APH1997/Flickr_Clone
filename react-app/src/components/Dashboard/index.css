@@ -3,6 +3,7 @@
     display: flex;
     flex-flow: column wrap;
     align-content: center;
+    padding-top: 50px;
 }
 .content-card{
     border: red solid 1px;

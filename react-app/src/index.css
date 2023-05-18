@@ -2,3 +2,6 @@
 p.errors{
     color: red;
 }
+body{
+    margin: 0;
+}
