@@ -1,4 +1,4 @@
-import ProfileNav from "./ProfileNav"
+import ProfileNav from "./ProfileNav/index.js"
 import UserPageBanner from "./UserPageBanner"
 import "./index.css"
 

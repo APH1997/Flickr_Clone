@@ -47,6 +47,7 @@
 .profile-nav-bar > div:hover{
     border-bottom: 4px solid black;
     cursor: pointer;
+    transition: border-bottom .2s;
 }
 
 .active-tab{
