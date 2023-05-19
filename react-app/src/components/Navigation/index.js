@@ -19,9 +19,9 @@ function Navigation({ isLoaded }){
 				<h1 id="home">high<span id="home-r">r</span>Me</h1>
 			</div>
 			{isLoaded && (
-				<div>
+				<div className='profile-and-upload'>
 
-						<NavLink exact to="/photos/new">Create a Post</NavLink>
+						<NavLink id="upload-cloud-link" exact to="/photos/new"><i className="fas fa-cloud-upload-alt"></i></NavLink>
 
 
 						<ProfileButton user={sessionUser} />

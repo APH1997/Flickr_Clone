@@ -8,9 +8,9 @@
 
 .nav-container{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  gap: 225px;
   align-items: center;
-  border: lime solid 1px;
   background-color: rgba(21,21,23,.95);
   position: fixed;
   width: 100%;
@@ -47,4 +47,17 @@
   color: white;
   padding-left:10px;
   padding-right: 5px;
+}
+
+.profile-and-upload{
+  display: flex;
+  gap: 10px;
+}
+
+.fas.fa-cloud-upload-alt{
+  color: white;
+  scale: 1.1;
+}
+.fas.fa-cloud-upload-alt:hover{
+  color: gray;
 }

@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from .album_photo import album_photos
+from datetime import datetime
 
 class Photo(db.Model):
     __tablename__ = 'photos'
@@ -12,6 +13,7 @@ class Photo(db.Model):
     aws_url = db.Column(db.String, nullable=False)
     caption = db.Column(db.String(100))
     description = db.Column(db.String(500))
+    created_at = db.Column(db.Date, default=datetime.today)
 
     author = db.relationship(
         "User",
@@ -38,7 +40,8 @@ class Photo(db.Model):
             'caption': self.caption,
             'description': self.description,
             'comments': [comment.to_dict_no_photo() for comment in self.comments],
-            'albums' : [album.to_dict_no_pics_no_author() for album in self.photo_albums]
+            'albums' : [album.to_dict_no_pics_no_author() for album in self.photo_albums],
+            'created_at': self.created_at
         }
 
     def to_dict_no_author(self):
@@ -46,5 +49,6 @@ class Photo(db.Model):
             'id': self.id,
             'url': self.aws_url,
             'caption': self.caption,
-            'description': self.description
+            'description': self.description,
+            'created_at': self.created_at
         }

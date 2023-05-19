@@ -24,10 +24,13 @@ function Feed(){
 
     if (!allPhotos) return null
 
+    const sortedPhotos = Object.values(allPhotos)
+    .sort((a,b) =>  new Date(b.created_at) - new Date(a.created_at))
+    
     return (
             <div className="feed-main-container">The Feed
 
-            {Object.values(allPhotos).map(photo => {
+            {sortedPhotos.map(photo => {
                 console.log(photo)
                 return <ContentCard photo={photo}/>
             })}

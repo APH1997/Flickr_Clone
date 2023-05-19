@@ -4,5 +4,6 @@ p.errors{
 }
 body{
     margin: 0;
-    font-family: 'Quicksand', sans-serif;;
+    font-family: 'Quicksand', sans-serif;
+    background-color: rgb(228, 228, 228);
 }

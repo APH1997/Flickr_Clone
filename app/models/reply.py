@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from datetime import datetime
 
 class Reply(db.Model):
     __tablename__ = 'replies'
@@ -10,6 +11,7 @@ class Reply(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     parent_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('comments.id')))
     content = db.Column(db.String, nullable=False)
+    created_at = db.Column(db.Date, default=datetime.today)
 
     author = db.relationship(
         "User",
@@ -25,5 +27,6 @@ class Reply(db.Model):
         return {
             'id': self.id,
             'author': self.author.to_dict(),
-            'content': self.content
+            'content': self.content,
+            'created_at': self.created_at
         }
