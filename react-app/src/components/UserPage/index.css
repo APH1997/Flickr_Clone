@@ -76,6 +76,40 @@
     align-self: center;
 }
 
+/* Album Card */
+.main-album-card-container{
+    display:flex;
+    justify-content: center;
+}
+
+.album-card-container{
+    width: fit-content;
+    height: fit-content;
+}
+#album-cover-photo{
+    height: 200px;
+    width: 200px;
+}
+.album-card-details{
+    position: relative;
+    translate: 0px -40px;
+    background: linear-gradient(0deg, black 0%, transparent 100%);
+    width: 100%;
+    height: 0%;
+}
+.album-card-details:hover{
+    position: relative;
+    translate: 0px -40px;
+    background: linear-gradient(0deg, black 0%, transparent 100%);
+    width: 100%;
+}
+
+
+.album-card-details > p{
+    color: white;
+    margin: 0;
+
+}
 /* Photo Tab */
 .user-page-photo-container{
 display: flex;

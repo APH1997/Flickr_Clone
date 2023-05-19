@@ -43,5 +43,6 @@ class Album(db.Model):
         'title': self.title,
         'description': self.description,
         'cover_photo': self.cover_photo_url,
-        'created_at': self.created_at
+        'created_at': self.created_at,
+        'length': len(self.album_photos)
         }
