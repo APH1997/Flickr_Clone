@@ -72,5 +72,6 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'profile_picture_url': self.profile_image_url,
             'cover_photo_url': self.cover_photo_url,
-            'photos': [photo.to_dict_no_author() for photo in self.photos]
+            'photos': [photo.to_dict_no_author() for photo in self.photos],
+            'albums': [album.to_dict_no_pics_no_author() for album in self.albums]
         }

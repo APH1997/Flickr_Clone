@@ -1,3 +1,27 @@
 .user-page-main-container{
     padding-top: 50px;
 }
+#cover-photo{
+    max-width: 100%;
+    object-fit: cover;
+}
+.user-page-banner-container{
+    display: flex;
+    align-items: flex-end;
+}
+
+.banner-left-user-info{
+    position: absolute;
+    display: flex;
+
+}
+
+#user-names{
+    line-height: 5px;
+}
+
+#names-bottom{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}

@@ -16,7 +16,18 @@ function UserPageBanner(){
 
     return (
         <div className="user-page-banner-container">
-            <img src={pageOwner.cover_photo_url}></img>
+            <div className="banner-left-user-info">
+                <div>bubble</div>
+                <div id="user-names">
+                    <h3>{pageOwner.first_name} {pageOwner.last_name}</h3>
+                    <div id="names-bottom">
+                        <p>{pageOwner.username}</p>
+                        <span>{pageOwner.photos.length} photos • {pageOwner.albums.length} albums</span>
+                    </div>
+                </div>
+
+            </div>
+            <img id="cover-photo" src={pageOwner.cover_photo_url}></img>
         </div>
     )
 }
