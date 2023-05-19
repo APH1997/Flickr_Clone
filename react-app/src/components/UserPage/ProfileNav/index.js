@@ -13,7 +13,9 @@ function ProfileNav(){
                 <div onClick={() => setSelected('albums')} className={selected === "albums" ? "active-tab" : ""}>Albums</div>
             </div>
             {(selected === "about" &&
+            <div className="about-tab-main-container">
                 <AboutTab />
+            </div>
             )}
             {(selected === "photos" &&
                 <PhotosTab />
