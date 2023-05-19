@@ -67,10 +67,14 @@ function PostForm({type}) {
             formData.append("description", description)
 
             setIsUploading(true);
-            dispatch(updatePhotoThunk(photoId, formData));
+            await dispatch(updatePhotoThunk(photoId, formData))
+            .then(setTimeout(() => setIsUploading(false), 5000))
 
-            setTimeout(() => setIsUploading(false), 5000)
-            history.push('/')
+            setTimeout(() => {
+                setIsUploading(false);
+                history.push('/');
+            }, 3000)
+
 
         } else {
 
@@ -84,9 +88,11 @@ function PostForm({type}) {
             setIsUploading(true);
             dispatch(createPhotoThunk(formData));
 
-            setTimeout(() => setIsUploading(false), 3000);
+            setTimeout(() => {
+                setIsUploading(false);
+                history.push('/')
+            }, 3000);
 
-            history.push('/')
         }
 
     }
