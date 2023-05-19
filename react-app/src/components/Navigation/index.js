@@ -10,25 +10,27 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
+		isLoaded &&
+
 		<div className='nav-container'>
 			<div id="logo-container" onClick={() => history.push('/')}>
 
 				<NavLink id="cloud" to={'/'}>
-				<i className="fas fa-cloud"></i>
+					<i className="fas fa-cloud"></i>
 				</NavLink>
 				<h1 id="home">high<span id="home-r">r</span>Me</h1>
+		
 			</div>
 			{isLoaded && (
 				<div className='profile-and-upload'>
 
 						<NavLink id="upload-cloud-link" exact to="/photos/new"><i className="fas fa-cloud-upload-alt"></i></NavLink>
-
-
 						<ProfileButton user={sessionUser} />
 
 				</div>
 			)}
 		</div>
+
 	);
 }
 
