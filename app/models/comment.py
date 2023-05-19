@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-
+from datetime import datetime
 
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -11,6 +11,7 @@ class Comment(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     photo_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('photos.id')))
     content = db.Column(db.String, nullable=False)
+    created_at = db.Column(db.Date, default=datetime.today)
 
     photo = db.relationship(
         "Photo",
@@ -34,7 +35,8 @@ class Comment(db.Model):
             'author': self.author.to_dict(),
             'photo': self.photo.to_dict_no_author(),
             'content': self.content,
-            'replies': [reply.to_dict() for reply in self.replies]
+            'replies': [reply.to_dict() for reply in self.replies],
+            'created_at': self.created_at
         }
 
     def to_dict_no_photo(self):
@@ -42,5 +44,6 @@ class Comment(db.Model):
             'id': self.id,
             'author': self.author.to_dict(),
             'content': self.content,
-            'replies': [reply.to_dict() for reply in self.replies]
+            'replies': [reply.to_dict() for reply in self.replies],
+            'created_at': self.created_at
         }

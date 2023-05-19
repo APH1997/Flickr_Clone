@@ -16,7 +16,9 @@ def all_photos():
     This route populates the home feed.
     """
     photos = Photo.query.all()
+
     return [photo.to_dict() for photo in photos]
+
 
 
 # Get All Photos by User Id
