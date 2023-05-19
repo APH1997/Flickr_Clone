@@ -16,7 +16,7 @@ function UserPageBanner(){
 
     return (
         <div className="user-page-banner-container">
-
+            <img src={pageOwner.cover_photo_url}></img>
         </div>
     )
 }
