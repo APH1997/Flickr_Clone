@@ -4,7 +4,7 @@ import PhotosTab from "./PhotosTab";
 import AlbumsTab from "./AlbumsTab";
 
 function ProfileNav(){
-    const [selected, setSelected] = useState('')
+    const [selected, setSelected] = useState('photos')
     return (
         <>
             <div className="profile-nav-bar">
