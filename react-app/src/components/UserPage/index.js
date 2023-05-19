@@ -1,7 +1,11 @@
+import UserPageBanner from "./UserPageBanner"
+import "./index.css"
+
+
 function UserPage() {
     return (
         <div className="user-page-main-container">
-            <h1>User Page</h1>
+            <UserPageBanner />
         </div>
     )
 }
