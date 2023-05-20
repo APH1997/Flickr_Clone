@@ -39,12 +39,17 @@ function AlbumFormModal(){
         return photos.includes(id.toString())
     }
 
+    function handleSubmit(e){
+        e.preventDefault()
+        
+    }
+
     return(
         <div className="album-form-container">
             {(user.photos.length &&
             <div>
                 <h1>Create an album out of uploaded photos</h1>
-                    <form>
+                    <form onSubmit={handleSubmit} method="POST">
                         <h1>Create an album</h1>
                         <div>
                             <label>Title</label>
@@ -69,7 +74,7 @@ function AlbumFormModal(){
                                 <div className="image-select-card">
                                     <label>
                                         <div className={isThisSelected(photo.id) ? "selected-photo" : "unselected-photo"} style={{height: "100px", width: "100px"}}>
-                                        <i class="fas fa-check"></i>
+                                            <i class="fas fa-check"></i>
                                         </div>
                                         <img className="image-card-image" style={{height: "100px", width: "100px"}} src={photo.url}></img>
                                         <input
@@ -83,6 +88,7 @@ function AlbumFormModal(){
                                 )}
                             </div>
                         </div>
+                        <button>Submit</button>
                     </form>
             </div>)
             //If no photos, redirect to upload photos
