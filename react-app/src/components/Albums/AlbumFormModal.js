@@ -3,27 +3,86 @@ import { useModal } from "../../context/Modal"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 
 function AlbumFormModal(){
-    const history = useHistory()
-    const dispatch = useDispatch()
+    const history = useHistory();
+    const dispatch = useDispatch();
     const {closeModal} = useModal();
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [photos, setPhotos] = useState([])
+
+    const [coverPhoto, setCoverPhoto] = useState('')
 
     const user = useSelector(state => state.session.user)
-
 
     function handleNoPhotoClick() {
         closeModal()
         history.push('/photos/new')
     }
+
+    function handleCheckBox(e){
+        if (e.target.checked) {
+            setPhotos([
+                ...photos, e.target.value
+            ])
+        } else {
+            setPhotos(
+                photos.filter((photo) => photo !== e.target.value)
+            )
+        }
+    }
+
+    function isThisSelected(id){
+        return photos.includes(id.toString())
+    }
+
     return(
         <div className="album-form-container">
             {(user.photos.length &&
             <div>
                 <h1>Create an album out of uploaded photos</h1>
                     <form>
-                        <h1>Form</h1>
+                        <h1>Create an album</h1>
+                        <div>
+                            <label>Title</label>
+                            <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>Description</label>
+                            <textarea
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>Choose photos</label>
+                            <div className="image-select-card-container">
+                            {user.photos.map(photo =>
+                                <div className="image-select-card">
+                                    <label>
+                                        <div className={isThisSelected(photo.id) ? "selected-photo" : "unselected-photo"} style={{height: "100px", width: "100px"}}>
+                                        <i class="fas fa-check"></i>
+                                        </div>
+                                        <img className="image-card-image" style={{height: "100px", width: "100px"}} src={photo.url}></img>
+                                        <input
+                                        type="checkbox"
+                                        name='photo'
+                                        value={photo.id}
+                                        onChange={handleCheckBox}
+                                        />
+                                    </label>
+                                </div>
+                                )}
+                            </div>
+                        </div>
                     </form>
             </div>)
             //If no photos, redirect to upload photos

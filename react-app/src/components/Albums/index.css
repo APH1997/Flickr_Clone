@@ -1,3 +1,38 @@
 .album-form-container{
     padding-top: 100px;
 }
+
+input[type="checkbox"]{
+    display: none;
+}
+
+.selected-photo{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.622);
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.unselected-photo{
+    position: absolute;
+    display: none;
+    cursor: pointer;
+}
+
+.image-card-image:hover{
+    cursor: pointer;
+}
+
+.image-card-image{
+    border-radius: 3px;
+}
+
+
+.image-select-card-container{
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}

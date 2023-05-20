@@ -83,7 +83,6 @@ function PostForm({type}) {
 
         } else {
 
-
             const formData = new FormData();
             formData.append("author_id", user.id);
             formData.append("photo", photo);
