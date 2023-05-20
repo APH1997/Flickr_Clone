@@ -65,7 +65,7 @@
     width: 70%;
     margin-top: 50px;
     padding: 10px;
-    border-radius: 7px;
+    /* border-radius: 7px; */
 }
 #about-me-h3{
     padding-left: 40px;
@@ -84,7 +84,15 @@
 
 .album-card-container{
     width: fit-content;
-    height: fit-content;
+    height: 225px;
+    cursor: pointer;
+
+}
+
+.album-card-container:hover p {
+    text-decoration: underline;
+    
+
 }
 #album-cover-photo{
     height: 200px;
@@ -92,25 +100,21 @@
 }
 .album-card-details{
     position: relative;
-    translate: 0px -40px;
-    background: linear-gradient(0deg, black 40%, transparent 110%);
+    translate: 0px -60px;
+    background: linear-gradient(0deg, black 0%, transparent 100%);
     padding-left: 15px;
     width: 185px;
     padding-bottom: 10px;
     padding-top: 10px;
 
 }
-.album-card-details:hover{
-    position: relative;
-    translate: 0px -40px;
-    background: linear-gradient(0deg, black 0%, transparent 100%);
-    width: 100%;
-}
+
 
 
 .album-card-details > p{
     color: white;
     margin: 0;
+    transition: translate .3s;
 
 }
 /* Photo Tab */
