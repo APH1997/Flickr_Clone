@@ -73,12 +73,12 @@ function PostForm({type}) {
             //reload user with updated photos
             setTimeout(() => {
                 dispatch(authenticate())
-            }, 2000)
+            }, 1000)
 
             setTimeout(() => {
                 setIsUploading(false);
                 history.push('/');
-            }, 2000)
+            }, 1000)
 
 
         } else {
@@ -95,7 +95,7 @@ function PostForm({type}) {
             //reload user with updated photos
             setTimeout(() => {
                 dispatch(authenticate())
-            }, 2000)
+            }, 1000)
 
             setTimeout(() => {
                 setIsUploading(false);
