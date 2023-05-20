@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Photo, User
-from app.forms import PhotoForm, EditPhotoForm
+from app.models import db, Photo, User, Album
+from app.forms import PhotoForm, EditPhotoForm, CreateAlbumForm
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 photo_routes = Blueprint('photos', __name__)
@@ -148,3 +148,39 @@ def delete_photo(photoId):
     return {
         "message":"Photo Deleted"
     }
+
+# Create Album and Add Photos
+@photo_routes.route('/album/new', methods=['POST'])
+@login_required
+def create_album():
+    """
+    Creates album from author_id, title;
+    queries for all photo id's from form field,
+    sets album.album_photos to list of photos
+    If cover photo not chosen, defaults to first
+    """
+    form = CreateAlbumForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_album = Album(
+            author_id = form.data["author_id"],
+            title = form.data["title"]
+        )
+        if form.data["description"]:
+            new_album.description = form.data["description"]
+
+        photoIdList = form.data["photos"].split(',')
+        new_album.album_photos = [Photo.query.get(photoId) for photoId in photoIdList]
+
+        if form.data["cover_photo"]:
+            cover_photo = [photo.aws_url for photo in new_album.album_photos if photo.id == form.data["cover_photo"]][0]
+            new_album.cover_photo_url = cover_photo
+        else:
+            new_album.cover_photo_url = new_album.album_photos[0].aws_url
+
+        db.session.add(new_album)
+        db.session.commit()
+
+        return jsonify(new_album.to_dict())
+    else:
+        return {"errors": form.errors}, 400
