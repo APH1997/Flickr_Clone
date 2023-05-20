@@ -1,7 +1,9 @@
 import { useSelector } from "react-redux"
 import AlbumCard from "../AlbumCard";
+import { useHistory } from "react-router-dom";
 
 function AlbumsTab(){
+    const history = useHistory()
     const pageOwner = useSelector(state => state.session.profilePageUser)
     const sessionUser = useSelector(state => state.session.user)
 
@@ -9,7 +11,7 @@ function AlbumsTab(){
     return (
         <div>
             {pageOwner.id === sessionUser.id &&
-            <div>
+            <div id="create-album-button" onClick={() => history.push('/albums/new')}>
                 Create an album
             </div>
             }

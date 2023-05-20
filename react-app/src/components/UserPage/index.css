@@ -91,7 +91,7 @@
 
 .album-card-container:hover p {
     text-decoration: underline;
-    
+
 
 }
 #album-cover-photo{
@@ -110,12 +110,16 @@
 }
 
 
-
 .album-card-details > p{
     color: white;
     margin: 0;
     transition: translate .3s;
 
+}
+
+#create-album-button:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
 /* Photo Tab */
 .user-page-photo-container{

@@ -9,6 +9,7 @@ import Feed from "./components/Dashboard";
 import PostForm from "./components/Photos/CreatePostPage";
 import UpdatePostForm from "./components/Photos/UpdatePostPage";
 import UserPage from "./components/UserPage";
+import AlbumForm from "./components/Albums/AlbumForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,12 @@ function App() {
           </Route>
           <Route exact path="/photos/:photoId">
             <h1>View 1 photo</h1>
+          </Route>
+          <Route exact path = "/albums/new">
+            <AlbumForm />
+          </Route>
+          <Route exact path="/albums/:albumId">
+            <h1>Display page for an album</h1>
           </Route>
           <Route exact path="/users/:userId">
             <UserPage />
