@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { createAlbumThunk } from "../../store/photos";
 
 
 function AlbumFormModal(){
@@ -15,6 +16,7 @@ function AlbumFormModal(){
     const [description, setDescription] = useState('')
     const [photos, setPhotos] = useState([])
 
+    const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState({})
 
     const user = useSelector(state => state.session.user)
@@ -58,11 +60,27 @@ function AlbumFormModal(){
 
     }, [title, description, photos.length])
 
-    function handleSubmit(e){
+
+    async function handleSubmit(e){
         e.preventDefault()
 
         if (Object.keys(errors).length) return;
 
+        setIsLoading(true);
+        
+        const photoArr = photos.join(',')
+        const albumData = {
+            author_id: user.id,
+            photos: photoArr,
+            title,
+            description
+        }
+
+        await dispatch(createAlbumThunk(albumData))
+
+        setTimeout(() => setIsLoading(false), 3000)
+        closeModal();
+        history.push(`/`)
     }
 
     return(
@@ -112,7 +130,7 @@ function AlbumFormModal(){
                                 {errors.photos && <p className="errors">{errors.photos}</p>}
                             </div>
                         </div>
-                        <button>Submit</button>
+                        <button disabled={isLoading}>{isLoading ? "loading..." : "Submit"}</button>
                     </form>
             </div>)
             //If no photos, redirect to upload photos

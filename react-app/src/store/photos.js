@@ -133,7 +133,8 @@ export const deletePhotoThunk = (photoId) => async (dispatch) => {
 export const createAlbumThunk = (albumData) => async (dispatch) => {
     const response = await fetch('/photos/album/new', {
         method: 'POST',
-        body: albumData,
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(albumData),
     });
     if (response.ok){
         const data = await response.json();

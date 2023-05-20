@@ -171,16 +171,11 @@ def create_album():
 
         photoIdList = form.data["photos"].split(',')
         new_album.album_photos = [Photo.query.get(photoId) for photoId in photoIdList]
-
-        if form.data["cover_photo"]:
-            cover_photo = [photo.aws_url for photo in new_album.album_photos if photo.id == form.data["cover_photo"]][0]
-            new_album.cover_photo_url = cover_photo
-        else:
-            new_album.cover_photo_url = new_album.album_photos[0].aws_url
+        new_album.cover_photo_url = new_album.album_photos[0].aws_url
 
         db.session.add(new_album)
         db.session.commit()
 
-        return jsonify(new_album.to_dict())
+        return {"message": "success!"}
     else:
-        return {"errors": form.errors}, 400
+        return form.errors, 400
