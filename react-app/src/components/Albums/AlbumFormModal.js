@@ -67,7 +67,7 @@ function AlbumFormModal(){
         if (Object.keys(errors).length) return;
 
         setIsLoading(true);
-        
+
         const photoArr = photos.join(',')
         const albumData = {
             author_id: user.id,
@@ -76,11 +76,12 @@ function AlbumFormModal(){
             description
         }
 
-        await dispatch(createAlbumThunk(albumData))
+        const data = await dispatch(createAlbumThunk(albumData))
+        //{newAlbumId: #}
 
         setTimeout(() => setIsLoading(false), 3000)
         closeModal();
-        history.push(`/`)
+        history.push(`/albums/${data.newAlbumId}`)
     }
 
     return(

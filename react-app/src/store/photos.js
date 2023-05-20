@@ -138,7 +138,7 @@ export const createAlbumThunk = (albumData) => async (dispatch) => {
     });
     if (response.ok){
         const data = await response.json();
-        return {"Success": data}
+        return data
     } else {
         const data = await response.json()
         return {"Failure": data}

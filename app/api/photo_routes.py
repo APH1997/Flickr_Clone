@@ -186,6 +186,6 @@ def create_album():
         db.session.add(new_album)
         db.session.commit()
 
-        return {"message": "success!"}
+        return {"newAlbumId": new_album.id}
     else:
         return form.errors, 400

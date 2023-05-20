@@ -9,6 +9,7 @@ import Feed from "./components/Dashboard";
 import PostForm from "./components/Photos/CreatePostPage";
 import UpdatePostForm from "./components/Photos/UpdatePostPage";
 import UserPage from "./components/UserPage";
+import AlbumShow from "./components/Albums";
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
             <h1>View 1 photo</h1>
           </Route>
           <Route exact path="/albums/:albumId">
-            <h1>Display page for an album</h1>
+            <AlbumShow />
           </Route>
           <Route exact path="/users/:userId">
             <UserPage />
