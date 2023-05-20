@@ -131,17 +131,27 @@ def edit_photo(photoId):
 @login_required
 def delete_photo(photoId):
     """
-    Queries for photo by id and deletes it,
+    Queries for photo by id and deletes it;
+    If last photo in an album, deletes it;
     Removes file from bucket
     """
     target = Photo.query.get(photoId)
     if not target:
         return {"error":"Photo could not be found"}, 404
 
-    aws_url = target.aws_url
 
+    # Check each album if target is last photo
+    albums = target.photo_albums
+    for album in albums:
+        if len(album.album_photos) == 1:
+            db.session.delete(album)
+
+    #delete the target from db and bucket
+    aws_url = target.aws_url
     db.session.delete(target)
     remove_file_from_s3(aws_url)
+
+
 
     db.session.commit()
 
