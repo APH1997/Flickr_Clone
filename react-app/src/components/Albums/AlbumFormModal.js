@@ -3,18 +3,19 @@ import { useModal } from "../../context/Modal"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 function AlbumFormModal(){
     const history = useHistory();
     const dispatch = useDispatch();
+
     const {closeModal} = useModal();
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [photos, setPhotos] = useState([])
 
-    const [coverPhoto, setCoverPhoto] = useState('')
+    const [errors, setErrors] = useState({})
 
     const user = useSelector(state => state.session.user)
 
@@ -39,9 +40,29 @@ function AlbumFormModal(){
         return photos.includes(id.toString())
     }
 
+    useEffect(() => {
+        const errObj = {}
+        if (!title){
+            errObj.title = "Albums must have a title"
+        }
+        if (description && description.length > 500){
+            errObj.description = "Description cannot exceed 500 characters."
+        }
+        if (!photos.length){
+            errObj.photos = "Please select at least one photo"
+        }
+
+        if (Object.keys(errObj).length){
+            setErrors(errObj)
+        } else setErrors({})
+
+    }, [title, description, photos.length])
+
     function handleSubmit(e){
         e.preventDefault()
-        
+
+        if (Object.keys(errors).length) return;
+
     }
 
     return(
@@ -58,6 +79,7 @@ function AlbumFormModal(){
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             />
+                            {errors.title && <p className="errors">{errors.title}</p>}
                         </div>
                         <div>
                             <label>Description</label>
@@ -66,6 +88,7 @@ function AlbumFormModal(){
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             />
+                            {errors.description && <p className="errors">{errors.description}</p>}
                         </div>
                         <div>
                             <label>Choose photos</label>
@@ -86,6 +109,7 @@ function AlbumFormModal(){
                                     </label>
                                 </div>
                                 )}
+                                {errors.photos && <p className="errors">{errors.photos}</p>}
                             </div>
                         </div>
                         <button>Submit</button>
