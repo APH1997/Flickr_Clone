@@ -189,3 +189,10 @@ def create_album():
         return {"newAlbumId": new_album.id}
     else:
         return form.errors, 400
+
+# GET ALL ALBUMS
+@photo_routes.route('/albums/all')
+@login_required
+def get_all_albums():
+    albums = Album.query.all()
+    return [album.to_dict() for album in albums]
