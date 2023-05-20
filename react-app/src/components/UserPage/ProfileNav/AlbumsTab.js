@@ -3,12 +3,22 @@ import AlbumCard from "../AlbumCard";
 
 function AlbumsTab(){
     const pageOwner = useSelector(state => state.session.profilePageUser)
+    const sessionUser = useSelector(state => state.session.user)
 
     if (!pageOwner) return null;
     return (
         <div>
-            <h1>Albums Tab</h1>
-            <h2>{!pageOwner.albums.length ? `It looks like ${pageOwner.first_name} hasn't put together any albums... yet.` : ''}</h2>
+            {pageOwner.id === sessionUser.id &&
+            <div>
+                Create an album
+            </div>
+            }
+
+            {pageOwner.id !== sessionUser.id &&
+                <h2>
+                    {!pageOwner.albums.length ? `It looks like ${pageOwner.first_name} hasn't put together any albums... yet.` : ''}
+                </h2>
+            }
 
             <div className="main-album-card-container">
                 {pageOwner.albums.map(album => {

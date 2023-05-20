@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 
 function AlbumCard({album}){
     const pageOwner = useSelector(state => state.session.profilePageUser)
-    console.log(album.photos)
+    
     if (!album) return null;
     return (
 
