@@ -224,12 +224,12 @@ def edit_album(albumId):
 def delete_album(albumId):
     """
     Queries for album by id
-    Deletes it
+    Deletes it - Photos are not deleted
     """
     target = Album.query.get(albumId)
     db.session.delete(target)
     db.session.commit()
 
     return {
-        "message":"Photo Deleted"
+        "message":"Album Deleted"
     }
