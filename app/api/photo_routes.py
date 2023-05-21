@@ -151,8 +151,6 @@ def delete_photo(photoId):
     db.session.delete(target)
     remove_file_from_s3(aws_url)
 
-
-
     db.session.commit()
 
     return {
@@ -196,3 +194,29 @@ def create_album():
 def get_all_albums():
     albums = Album.query.all()
     return [album.to_dict() for album in albums]
+
+@photo_routes.route('/albums/<int:albumId>/edit')
+@login_required
+def edit_album(albumId):
+    """
+    Queries for album by id
+    Instantiates EditAlbum flask form
+    Updates title, description, and/or photos
+    """
+    album = Album.query.get(albumId)
+    # gotta make the form
+
+@photo_routes.route('/albums/<int:albumId>/delete')
+@login_required
+def delete_album(albumId):
+    """
+    Queries for album by id
+    Deletes it
+    """
+    target = Album.query.get(albumId)
+    db.session.delete(target)
+    db.session.commit()
+
+    return {
+        "message":"Photo Deleted"
+    }
