@@ -23,10 +23,10 @@ export const getAllAlbumsThunk = () => async (dispatch) => {
 }
 
 //EDIT AN ALBUM BY ID
-const editAlbumAction = (albumId) => {
+const updateAlbumAction = (album) => {
     return{
         type: EDIT_ALBUM,
-        payload: albumId
+        payload: album
     }
 }
 
@@ -38,6 +38,7 @@ export const updateAlbumThunk = (albumId, albumData) => async (dispatch) => {
     });
     if (response.ok){
         const data = await response.json();
+        await dispatch(updateAlbumAction(data))
         return data
     } else {
         const data = await response.json()
@@ -58,6 +59,16 @@ export default function reducer(state = initialState, action) {
             action.payload.forEach(album => {
                 newState.allAlbums[album.id] = album
             })
+            return newState;
+        }
+        case EDIT_ALBUM: {
+            const newState = {
+                ...state,
+                allAlbums: {...state.allAlbums},
+                singleAlbum: {...state.singleAlbum}
+            }
+            newState.allAlbums[action.payload.id] = action.payload;
+
             return newState;
         }
 
