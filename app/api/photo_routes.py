@@ -177,9 +177,8 @@ def create_album():
         if form.data["description"]:
             new_album.description = form.data["description"]
 
-        photoIdList = form.data["photos"].split(',')
-        new_album.album_photos = Photo.query.filter(Photo.id in photoIdList).all()
-
+        photoIdList = [int(id) for id in form.data["photos"].split(',')]
+        new_album.album_photos = Photo.query.filter(Photo.id.in_(photoIdList)).all()
         new_album.cover_photo_url = new_album.album_photos[0].aws_url
 
         db.session.add(new_album)
@@ -213,7 +212,7 @@ def edit_album(albumId):
             album.description = form.data["title"]
 
         photoIdList = form.data["photos"].split(',')
-        album.album_photos = Photo.query.filter(Photo.id in photoIdList).all()
+        album.album_photos = Photo.query.filter(Photo.id.in_(photoIdList)).all()
 
         db.session.commit()
         return jsonify(album.to_dict())
