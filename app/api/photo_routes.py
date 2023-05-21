@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Photo, User
-from app.forms import PhotoForm, EditPhotoForm
+from app.models import db, Photo, User, Album
+from app.forms import PhotoForm, EditPhotoForm, CreateAlbumForm, EditAlbumForm
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 photo_routes = Blueprint('photos', __name__)
@@ -131,15 +131,23 @@ def edit_photo(photoId):
 @login_required
 def delete_photo(photoId):
     """
-    Queries for photo by id and deletes it,
+    Queries for photo by id and deletes it;
+    If last photo in an album, deletes it;
     Removes file from bucket
     """
     target = Photo.query.get(photoId)
     if not target:
         return {"error":"Photo could not be found"}, 404
 
-    aws_url = target.aws_url
 
+    # Check each album if target is last photo
+    albums = target.photo_albums
+    for album in albums:
+        if len(album.album_photos) == 1:
+            db.session.delete(album)
+
+    #delete the target from db and bucket
+    aws_url = target.aws_url
     db.session.delete(target)
     remove_file_from_s3(aws_url)
 
@@ -147,4 +155,81 @@ def delete_photo(photoId):
 
     return {
         "message":"Photo Deleted"
+    }
+
+# Create Album and Add Photos
+@photo_routes.route('/album/new', methods=['POST'])
+@login_required
+def create_album():
+    """
+    Creates album from author_id, title;
+    queries for all photo id's from form field,
+    sets album.album_photos to list of photos
+    If cover photo not chosen, defaults to first
+    """
+    form = CreateAlbumForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_album = Album(
+            author_id = form.data["author_id"],
+            title = form.data["title"]
+        )
+        if form.data["description"]:
+            new_album.description = form.data["description"]
+
+        photoIdList = [int(id) for id in form.data["photos"].split(',')]
+        new_album.album_photos = Photo.query.filter(Photo.id.in_(photoIdList)).all()
+        new_album.cover_photo_url = new_album.album_photos[0].aws_url
+
+        db.session.add(new_album)
+        db.session.commit()
+
+        return {"newAlbumId": new_album.id}
+    else:
+        return form.errors, 400
+
+# GET ALL ALBUMS
+@photo_routes.route('/albums/all')
+@login_required
+def get_all_albums():
+    albums = Album.query.all()
+    return [album.to_dict() for album in albums]
+
+@photo_routes.route('/albums/<int:albumId>/edit', methods=['PUT'])
+@login_required
+def edit_album(albumId):
+    """
+    Instantiates EditAlbum flask form
+    Queries for album by id
+    Updates title, description, and/or photos
+    """
+    form = EditAlbumForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        album = Album.query.get(albumId)
+        album.title = form.data["title"]
+        if form.data["description"]:
+            album.description = form.data["description"]
+
+        photoIdList = form.data["photos"].split(',')
+        album.album_photos = Photo.query.filter(Photo.id.in_(photoIdList)).all()
+
+        db.session.commit()
+        return jsonify(album.to_dict())
+    else:
+        return form.errors, 400
+
+@photo_routes.route('/albums/<int:albumId>/delete', methods=['DELETE'])
+@login_required
+def delete_album(albumId):
+    """
+    Queries for album by id
+    Deletes it - Photos are not deleted
+    """
+    target = Album.query.get(albumId)
+    db.session.delete(target)
+    db.session.commit()
+
+    return {
+        "message":"Album Deleted"
     }

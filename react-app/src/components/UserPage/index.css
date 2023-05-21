@@ -1,0 +1,165 @@
+/* User Page Banner */
+.user-page-main-container{
+    padding-top: 50px;
+}
+#cover-photo{
+    max-width: 100%;
+    object-fit: cover;
+}
+.user-page-banner-container{
+    display: flex;
+    align-items: flex-end;
+}
+
+.banner-left-user-info{
+    position: absolute;
+    display: flex;
+
+}
+
+#user-names{
+    line-height: 5px;
+}
+
+#names-bottom{
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+/* Profile Nav Bar */
+.profile-nav-bar{
+    display: flex;
+    background-color: white;
+    margin-top: 0;
+    height: 50px;
+    box-shadow: 1px 1px 2px 1px lightgrey;
+}
+
+.profile-nav-bar > div{
+    display: flex;
+    flex-flow: wrap;
+    height: 92%;
+    align-content: center;
+    padding: 0px 20px;
+}
+.profile-nav-bar > div:hover{
+    border-bottom: 4px solid black;
+    cursor: pointer;
+    transition: border-bottom .2s;
+}
+
+.active-tab{
+    border-bottom: 4px solid black;
+}
+
+/* About Tab */
+.about-tab-main-container{
+    display: flex;
+    justify-content: center;
+}
+#userpage-bio-box{
+    display: flex;
+    flex-flow: column;
+    background-color: white;
+    width: 70%;
+    margin-top: 50px;
+    padding: 10px;
+    /* border-radius: 7px; */
+}
+#about-me-h3{
+    padding-left: 40px;
+    padding-top: 20px;
+}
+#bio-text{
+    width: 60%;
+    align-self: center;
+}
+
+/* Album Card */
+.main-album-card-container{
+    display:flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.album-card-container{
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+
+}
+
+#album-cover-photo{
+    height: 200px;
+    width: 200px;
+}
+
+.album-card-details{
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(0deg, black 10%, transparent 50%);
+}
+
+.album-card-details p{
+    color: white;
+    margin: 5px;
+}
+
+.album-card-details:hover p{
+    text-decoration: underline;
+}
+
+
+create-album-button:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Album card author controls */
+#edit-album-button{
+    width: fit-content;
+    height: fit-content;
+}
+#edit-album-button button:hover{
+    cursor: pointer;
+    color: red;
+
+}
+
+#edit-album-button button{
+    color: white;
+    border: none;
+    background-color: transparent;
+}
+
+.album-cover-author{
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-album-icon-container{
+    display: flex;
+    justify-content: end;
+}
+
+.delete-album-icon-container button{
+/* TODO: styling */
+}
+
+/* Photo Tab */
+.user-page-photo-container{
+display: flex;
+flex-flow: row wrap;
+gap: 5px;
+padding: 50px 80px;
+}
+.user-page-photo-container img{
+ height: 300px;
+ width: fit-content;
+ z-index: 0;
+}

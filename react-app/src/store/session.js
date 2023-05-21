@@ -1,6 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const GET_USER_PAGE = "session/USER_PAGE";
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -11,7 +12,6 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
-const initialState = { user: null };
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
@@ -96,12 +96,34 @@ export const signUp = (username, email, password, first_name, last_name) => asyn
 	}
 };
 
+//VISITNG A USER PAGE
+const getProfileAction = (user) => ({
+	type: GET_USER_PAGE,
+	payload: user,
+})
+
+export const getProfileThunk = (userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}`)
+
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(getProfileAction(data));
+		return
+	}
+}
+
+const initialState = { user: null, profilePageUser: null };
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case GET_USER_PAGE: {
+			const newState = {user: {...state.user}, profilePageUser: {...state.profilePageUser}}
+			newState.profilePageUser = action.payload
+			return newState
+		}
 		default:
 			return state;
 	}

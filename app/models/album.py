@@ -31,9 +31,9 @@ class Album(db.Model):
         'id': self.id,
         'title': self.title,
         'description': self.description,
-        'cover_photo': self.cover_photo_url,
+        'cover_photo': self.album_photos[0].aws_url,
         'author': self.author.to_dict(),
-        'pics': [photo.to_dict_no_author for photo in self.album_photos],
+        'pics': [photo.to_dict_no_author() for photo in self.album_photos],
         'created_at': self.created_at
         }
 
@@ -42,6 +42,7 @@ class Album(db.Model):
         'id': self.id,
         'title': self.title,
         'description': self.description,
-        'cover_photo': self.cover_photo_url,
-        'created_at': self.created_at
+        'cover_photo': self.album_photos[0].aws_url,
+        'created_at': self.created_at,
+        'length': len(self.album_photos)
         }

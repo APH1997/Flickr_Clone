@@ -129,6 +129,22 @@ export const deletePhotoThunk = (photoId) => async (dispatch) => {
     }
 }
 
+//CREATE ALBUM - NO ACTION/REDUCER NEEDED
+export const createAlbumThunk = (albumData) => async (dispatch) => {
+    const response = await fetch('/photos/album/new', {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(albumData),
+    });
+    if (response.ok){
+        const data = await response.json();
+        return data
+    } else {
+        const data = await response.json()
+        return {"Failure": data}
+    }
+}
+
 const initialState = {allPhotos: null, userPhotos: null, singlePhoto: null}
 
 export default function reducer(state = initialState, action) {
@@ -208,6 +224,7 @@ export default function reducer(state = initialState, action) {
             return newState
         }
 
+        
         default:
             return state
     }

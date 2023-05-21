@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { createPhotoThunk, updatePhotoThunk } from "../../../store/photos"
 import "../index.css"
+import { authenticate } from "../../../store/session"
 
 function PostForm({type}) {
 
@@ -68,16 +69,19 @@ function PostForm({type}) {
 
             setIsUploading(true);
             await dispatch(updatePhotoThunk(photoId, formData))
-            .then(setTimeout(() => setIsUploading(false), 5000))
+
+            //reload user with updated photos
+            setTimeout(() => {
+                dispatch(authenticate())
+            }, 1000)
 
             setTimeout(() => {
                 setIsUploading(false);
                 history.push('/');
-            }, 3000)
+            }, 1000)
 
 
         } else {
-
 
             const formData = new FormData();
             formData.append("author_id", user.id);
@@ -88,10 +92,15 @@ function PostForm({type}) {
             setIsUploading(true);
             dispatch(createPhotoThunk(formData));
 
+            //reload user with updated photos
+            setTimeout(() => {
+                dispatch(authenticate())
+            }, 1000)
+
             setTimeout(() => {
                 setIsUploading(false);
                 history.push('/')
-            }, 3000);
+            }, 2000);
 
         }
 

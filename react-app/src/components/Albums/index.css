@@ -1,0 +1,102 @@
+.album-form-container{
+    padding-top: 100px;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+.selected-photo{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.622);
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.unselected-photo{
+    position: absolute;
+    display: none;
+    cursor: pointer;
+}
+
+.image-card-image:hover{
+    cursor: pointer;
+}
+
+.image-card-image{
+    border-radius: 3px;
+}
+
+
+.image-select-card-container{
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}
+
+/* ALBUM SHOW */
+.album-photos-container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    padding-top: 100px;
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    gap: 5px;
+}
+#album-show-cover-photo{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+#cover-photo-mask{
+    display: flex;
+    flex-flow: column;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+#title-and-photo-count{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+#cover-photo-mask-details{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 50px;
+}
+
+#cover-photo-mask-details h4{
+    font-size: 30px;
+    margin-bottom: 0px;
+}
+
+#album-show-nav-link-to-author{
+    color: white;
+    text-decoration: none;
+}
+#album-show-nav-link-to-author:hover{
+    color: white;
+    text-decoration: underline;
+
+}
+.non-cover-photos{
+    display: flex;
+    gap: 5px;
+}
+.album-photo-card{
+    width: fit-content;
+    height: fit-content;
+}
+.album-photo-card img{
+    height: 200px;
+    z-index: -1;
+}

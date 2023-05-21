@@ -12,7 +12,7 @@ def seed_albums(all_pics):
     )
 
     sunsets = Album(
-        cover_photo_url = "https://highrme-pics.s3.us-east-2.amazonaws.com/hubble_tarantula_nebula.jpg",
+        cover_photo_url = "https://highrme-pics.s3.us-east-2.amazonaws.com/sunset_seed_2.png",
         author_id = 2,
         title = "Sunset Boulevard",
         description = "The VERY best sunsets my iPhone camera roll has to offer",

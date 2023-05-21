@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(50), nullable=False)
     bio = db.Column(db.String(1000), nullable=True)
     profile_image_url = db.Column(db.String, nullable=True)
-    cover_photo_url = db.Column(db.String, nullable=True)
+    cover_photo_url = db.Column(db.String, nullable=True, default='https://highrme-pics.s3.us-east-2.amazonaws.com/new-profile-banner.png')
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -72,5 +72,6 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'profile_picture_url': self.profile_image_url,
             'cover_photo_url': self.cover_photo_url,
-            'photos': [photo.to_dict_no_author() for photo in self.photos]
+            'photos': [photo.to_dict_no_author() for photo in self.photos],
+            'albums': [album.to_dict() for album in self.albums]
         }
