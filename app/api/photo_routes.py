@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, Photo, User, Album
-from app.forms import PhotoForm, EditPhotoForm, CreateAlbumForm
+from app.forms import PhotoForm, EditPhotoForm, CreateAlbumForm, EditAlbumForm
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 photo_routes = Blueprint('photos', __name__)
@@ -178,7 +178,8 @@ def create_album():
             new_album.description = form.data["description"]
 
         photoIdList = form.data["photos"].split(',')
-        new_album.album_photos = [Photo.query.get(photoId) for photoId in photoIdList]
+        new_album.album_photos = Photo.query.filter(Photo.id in photoIdList).all()
+
         new_album.cover_photo_url = new_album.album_photos[0].aws_url
 
         db.session.add(new_album)
@@ -199,12 +200,25 @@ def get_all_albums():
 @login_required
 def edit_album(albumId):
     """
-    Queries for album by id
     Instantiates EditAlbum flask form
+    Queries for album by id
     Updates title, description, and/or photos
     """
-    album = Album.query.get(albumId)
-    # gotta make the form
+    form = EditAlbumForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        album = Album.query.get(albumId)
+        album.title = form.data["title"]
+        if form.data["title"]:
+            album.description = form.data["title"]
+
+        photoIdList = form.data["photos"].split(',')
+        album.album_photos = Photo.query.filter(Photo.id in photoIdList).all()
+
+        db.session.commit()
+        return jsonify(album.to_dict())
+    else:
+        return form.errors, 400
 
 @photo_routes.route('/albums/<int:albumId>/delete')
 @login_required
