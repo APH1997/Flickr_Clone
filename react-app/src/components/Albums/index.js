@@ -18,7 +18,8 @@ function AlbumShow(){
 
 
     const singleAlbum = allAlbums[albumId]
-
+    if (!singleAlbum) return null;
+    
     return (
         <>
             <div className="album-photos-container">
