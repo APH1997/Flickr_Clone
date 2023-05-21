@@ -1,6 +1,7 @@
 //constants
 const GET_ALL_ALBUMS = "albums/GET_ALL"
 const EDIT_ALBUM = "albums/EDIT"
+const DELETE_ALBUM = "albums/DELETE"
 
 //GET ALL ALBUMS
 const getAllAlbumsAction = (albums) => {
@@ -46,6 +47,28 @@ export const updateAlbumThunk = (albumId, albumData) => async (dispatch) => {
     }
 }
 
+//DELETE ALBUM
+const deleteAlbumAction = (albumId) => {
+    return {
+        type: DELETE_ALBUM,
+        payload: albumId
+    }
+}
+
+export const deleteAlbumThunk = (albumId) => async (dispatch) => {
+    const response = await fetch(`/photos/albums/${albumId}/delete`, {
+        method: 'DELETE',
+    })
+    if (response.ok){
+        await dispatch(deleteAlbumAction(albumId))
+        return null
+    } else {
+        const data = await response.json()
+        return data;
+    }
+}
+
+
 const initialState = {allAlbums: null, singleAlbum: null}
 
 export default function reducer(state = initialState, action) {
@@ -69,6 +92,16 @@ export default function reducer(state = initialState, action) {
             }
             newState.allAlbums[action.payload.id] = action.payload;
 
+            return newState;
+        }
+        case DELETE_ALBUM: {
+            const newState = {
+                ...state,
+                allAlbums: {...state.allAlbums},
+                singleAlbum: {...state.singleAlbum}
+            }
+            
+            delete newState.allAlbums[action.payload]
             return newState;
         }
 

@@ -99,18 +99,18 @@
     position: absolute;
     display: flex;
     flex-flow: column;
-    justify-content: end;
+    justify-content: space-between;
     width: 200px;
     height: 200px;
     background: linear-gradient(0deg, black 10%, transparent 50%);
 }
 
-.album-card-details > p{
+.album-card-details p{
     color: white;
     margin: 5px;
 }
 
-.album-card-details:hover > p{
+.album-card-details:hover p{
     text-decoration: underline;
 }
 
@@ -142,7 +142,14 @@ create-album-button:hover{
     justify-content: space-between;
 }
 
+.delete-album-icon-container{
+    display: flex;
+    justify-content: end;
+}
 
+.delete-album-icon-container button{
+/* TODO: styling */
+}
 
 /* Photo Tab */
 .user-page-photo-container{

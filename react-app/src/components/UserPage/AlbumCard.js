@@ -1,6 +1,8 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
 import EditAlbum from "../Albums/EditAlbumModalButton";
+import DeleteAlbum from "../Albums/DeleteAlbumModalButton";
+
 
 function AlbumCard({album}){
     const pageOwner = useSelector(state => state.session.profilePageUser)
@@ -14,12 +16,19 @@ function AlbumCard({album}){
             <div className="album-card-container"
                 onClick={() => history.push(`/albums/${album.id}`)}>
                 <div className="album-card-details">
-                    <p className="album-cover-album-title">{album.title}</p>
-                    <p className="album-cover-author">{album.pics.length} photos
+                    <div className="delete-album-icon-container">
                         {user.id === pageOwner.id &&
-                            <EditAlbum album={album}/>
+                            <DeleteAlbum album={album}/>
                         }
-                    </p>
+                    </div>
+                    <div>
+                        <p className="album-cover-album-title">{album.title}</p>
+                        <p className="album-cover-author">{album.pics.length} photos
+                            {user.id === pageOwner.id &&
+                                <EditAlbum album={album}/>
+                            }
+                        </p>
+                    </div>
                 </div>
                 <img id="album-cover-photo"src={album.cover_photo}></img>
             </div>

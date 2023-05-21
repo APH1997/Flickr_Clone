@@ -219,7 +219,7 @@ def edit_album(albumId):
     else:
         return form.errors, 400
 
-@photo_routes.route('/albums/<int:albumId>/delete')
+@photo_routes.route('/albums/<int:albumId>/delete', methods=['DELETE'])
 @login_required
 def delete_album(albumId):
     """
