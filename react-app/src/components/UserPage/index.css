@@ -80,47 +80,51 @@
 .main-album-card-container{
     display:flex;
     justify-content: center;
+    gap: 10px;
 }
 
 .album-card-container{
     width: fit-content;
-    height: 225px;
+    height: fit-content;
     cursor: pointer;
 
 }
 
-.album-card-container:hover p {
+/* .album-card-container:hover p {
     text-decoration: underline;
 
 
-}
+} */
 #album-cover-photo{
     height: 200px;
     width: 200px;
 }
+
 .album-card-details{
-    position: relative;
-    translate: 0px -60px;
-    background: linear-gradient(0deg, black 0%, transparent 100%);
-    padding-left: 15px;
-    width: 185px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    justify-content: end;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(0deg, black 10%, transparent 50%);
 }
-
 
 .album-card-details > p{
     color: white;
-    margin: 0;
-    transition: translate .3s;
-
+    margin: 5px;
 }
 
-#create-album-button:hover{
+.album-card-details:hover > p{
+    text-decoration: underline;
+}
+
+
+create-album-button:hover{
     cursor: pointer;
     text-decoration: underline;
 }
+
 /* Photo Tab */
 .user-page-photo-container{
 display: flex;
