@@ -10,8 +10,8 @@ const getAllAlbumsAction = (albums) => {
     }
 }
 
-export const getAllPhotosThunk = () => async (dispatch) => {
-    const response = await fetch("/photos")
+export const getAllAlbumsThunk = () => async (dispatch) => {
+    const response = await fetch("/photos/albums/all")
     if (response.ok){
         const data = await response.json()
         await dispatch(getAllAlbumsAction(data))
@@ -38,7 +38,7 @@ export default function reducer(state = initialState, action) {
             return newState;
         }
 
-        
+
         default:
             return state
     }

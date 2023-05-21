@@ -36,3 +36,18 @@ input[type="checkbox"]{
     gap: 20px;
     padding: 10px;
 }
+
+/* ALBUM SHOW */
+.album-photos-container{
+    display: flex;
+    flex-flow: wrap;
+    padding-top: 50px;
+}
+.album-photo-card{
+    width: fit-content;
+    height: fit-content;
+}
+.album-photo-card img{
+    scale: 60%;
+    z-index: -1;
+}

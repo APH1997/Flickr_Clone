@@ -33,7 +33,7 @@ class Album(db.Model):
         'description': self.description,
         'cover_photo': self.album_photos[0].aws_url,
         'author': self.author.to_dict(),
-        'pics': [photo.to_dict_no_author for photo in self.album_photos],
+        'pics': [photo.to_dict_no_author() for photo in self.album_photos],
         'created_at': self.created_at
         }
 
