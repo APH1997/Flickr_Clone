@@ -40,14 +40,29 @@ input[type="checkbox"]{
 /* ALBUM SHOW */
 .album-photos-container{
     display: flex;
-    flex-flow: wrap;
-    padding-top: 50px;
+    flex-flow: column wrap;
+    justify-content: center;
+    padding-top: 100px;
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    gap: 5px;
+}
+#album-show-cover-photo{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.non-cover-photos{
+    display: flex;
+    gap: 5px;
 }
 .album-photo-card{
     width: fit-content;
     height: fit-content;
 }
 .album-photo-card img{
-    scale: 60%;
+    height: 200px;
     z-index: -1;
 }

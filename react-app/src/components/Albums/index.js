@@ -21,12 +21,14 @@ function AlbumShow(){
     return (
         <>
             <div className="album-photos-container">
-                <img>Cover photo</img>
-                {singleAlbum.pics.map((photo) =>
-                    <div className="album-photo-card">
-                        <img src={photo.url}/>
-                    </div>
-                )}
+                <img id="album-show-cover-photo" src={singleAlbum.cover_photo}></img>
+                <div className="non-cover-photos">
+                    {singleAlbum.pics.map((photo) =>
+                        <div className="album-photo-card">
+                            <img src={photo.url}/>
+                        </div>
+                    )}
+                </div>
             </div>
         </>
     )
