@@ -7,13 +7,14 @@ import { useEffect, useState } from "react";
 import { createAlbumThunk } from "../../store/photos";
 
 
-function AlbumFormModal(){
+function AlbumFormModal({album}){
+    console.log(album)
     const history = useHistory();
     const dispatch = useDispatch();
 
     const {closeModal} = useModal();
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
+    const [title, setTitle] = useState(album ? album.title : '')
+    const [description, setDescription] = useState(album ? album.description : '')
     const [photos, setPhotos] = useState([])
 
     const [isLoading, setIsLoading] = useState(false)
@@ -83,6 +84,7 @@ function AlbumFormModal(){
         closeModal();
         history.push(`/albums/${data.newAlbumId}`)
     }
+
 
     return(
         <div className="album-form-container">

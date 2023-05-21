@@ -3,12 +3,13 @@ import AlbumFormModal from "./AlbumFormModal";
 import OpenModalButton from "../OpenModalButton";
 
 
-function EditAlbum(){
+function EditAlbum({album}){
     return (
-    <span id="edit-album-button" onClick={(e) => e.stopPropagation()}>
+    <span id="edit-album-button"
+        onClick={(e) => e.stopPropagation()}>
         <OpenModalButton
         buttonText={<i class="fas fa-edit"></i>}
-        modalComponent={<AlbumFormModal type={"edit"}/>}/>
+        modalComponent={<AlbumFormModal album={album}/>}/>
     </span>
     )
 }

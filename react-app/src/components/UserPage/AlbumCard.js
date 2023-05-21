@@ -17,7 +17,7 @@ function AlbumCard({album}){
                     <p className="album-cover-album-title">{album.title}</p>
                     <p className="album-cover-author">{album.length} photos
                         {user.id === pageOwner.id &&
-                            <EditAlbum />
+                            <EditAlbum album={album}/>
                         }
                     </p>
                 </div>

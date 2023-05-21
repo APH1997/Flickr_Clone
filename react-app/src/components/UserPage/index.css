@@ -114,6 +114,7 @@
     text-decoration: underline;
 }
 
+
 create-album-button:hover{
     cursor: pointer;
     text-decoration: underline;
@@ -129,6 +130,7 @@ create-album-button:hover{
     color: red;
 
 }
+
 #edit-album-button button{
     color: white;
     border: none;
@@ -139,6 +141,8 @@ create-album-button:hover{
     display: flex;
     justify-content: space-between;
 }
+
+
 
 /* Photo Tab */
 .user-page-photo-container{
