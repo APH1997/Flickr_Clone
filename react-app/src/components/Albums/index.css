@@ -53,7 +53,41 @@ input[type="checkbox"]{
     height: 250px;
     object-fit: cover;
 }
+#cover-photo-mask{
+    display: flex;
+    flex-flow: column;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+#title-and-photo-count{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+#cover-photo-mask-details{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 50px;
+}
 
+#cover-photo-mask-details h4{
+    font-size: 30px;
+    margin-bottom: 0px;
+}
+
+#album-show-nav-link-to-author{
+    color: white;
+    text-decoration: none;
+}
+#album-show-nav-link-to-author:hover{
+    color: white;
+    text-decoration: underline;
+
+}
 .non-cover-photos{
     display: flex;
     gap: 5px;
