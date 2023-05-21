@@ -195,7 +195,7 @@ def get_all_albums():
     albums = Album.query.all()
     return [album.to_dict() for album in albums]
 
-@photo_routes.route('/albums/<int:albumId>/edit')
+@photo_routes.route('/albums/<int:albumId>/edit', methods=['PUT'])
 @login_required
 def edit_album(albumId):
     """

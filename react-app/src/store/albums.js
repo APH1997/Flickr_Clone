@@ -1,6 +1,6 @@
 //constants
-
 const GET_ALL_ALBUMS = "albums/GET_ALL"
+const EDIT_ALBUM = "albums/EDIT"
 
 //GET ALL ALBUMS
 const getAllAlbumsAction = (albums) => {
@@ -19,6 +19,29 @@ export const getAllAlbumsThunk = () => async (dispatch) => {
     } else {
         const data = await response.json()
         return data
+    }
+}
+
+//EDIT AN ALBUM BY ID
+const editAlbumAction = (albumId) => {
+    return{
+        type: EDIT_ALBUM,
+        payload: albumId
+    }
+}
+
+export const updateAlbumThunk = (albumId, albumData) => async (dispatch) => {
+    const response = await fetch(`/photos/albums/${albumId}/edit`, {
+        method: 'PUT',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(albumData),
+    });
+    if (response.ok){
+        const data = await response.json();
+        return data
+    } else {
+        const data = await response.json()
+        return {"Failure": data}
     }
 }
 
