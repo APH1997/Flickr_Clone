@@ -15,7 +15,7 @@ function AlbumCard({album}){
                 onClick={() => history.push(`/albums/${album.id}`)}>
                 <div className="album-card-details">
                     <p className="album-cover-album-title">{album.title}</p>
-                    <p className="album-cover-author">{album.length} photos
+                    <p className="album-cover-author">{album.pics.length} photos
                         {user.id === pageOwner.id &&
                             <EditAlbum album={album}/>
                         }

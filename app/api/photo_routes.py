@@ -208,8 +208,8 @@ def edit_album(albumId):
     if form.validate_on_submit():
         album = Album.query.get(albumId)
         album.title = form.data["title"]
-        if form.data["title"]:
-            album.description = form.data["title"]
+        if form.data["description"]:
+            album.description = form.data["description"]
 
         photoIdList = form.data["photos"].split(',')
         album.album_photos = Photo.query.filter(Photo.id.in_(photoIdList)).all()

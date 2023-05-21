@@ -5,17 +5,27 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { createAlbumThunk } from "../../store/photos";
+import { updateAlbumThunk } from "../../store/albums";
 
 
 function AlbumFormModal({album}){
-    console.log(album)
+    // if album is defined, then it is an edit form
     const history = useHistory();
     const dispatch = useDispatch();
 
     const {closeModal} = useModal();
     const [title, setTitle] = useState(album ? album.title : '')
     const [description, setDescription] = useState(album ? album.description : '')
-    const [photos, setPhotos] = useState([])
+    /*
+    If editing an album, need to convert album.pics to an array of ids
+    */
+    const editIds = []
+    if (album){
+        for (let pic of album.pics){
+            editIds.push(pic.id.toString())
+        }
+   }
+    const [photos, setPhotos] = useState(album ? editIds : [])
 
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState({})
@@ -40,6 +50,7 @@ function AlbumFormModal({album}){
     }
 
     function isThisSelected(id){
+        // This function is used to conditionally render check graphic
         return photos.includes(id.toString())
     }
 
@@ -77,12 +88,22 @@ function AlbumFormModal({album}){
             description
         }
 
-        const data = await dispatch(createAlbumThunk(albumData))
-        //{newAlbumId: #}
+        //If album is defined, this should be an edit
+        if (album){
+            await dispatch(updateAlbumThunk(album.id, albumData))
 
-        setTimeout(() => setIsLoading(false), 3000)
-        closeModal();
-        history.push(`/albums/${data.newAlbumId}`)
+            setTimeout(() => setIsLoading(false), 3000)
+            closeModal();
+            history.push(`/albums/${album.id}`)
+
+        } else {
+            const data = await dispatch(createAlbumThunk(albumData))
+            //{newAlbumId: #}
+
+            setTimeout(() => setIsLoading(false), 3000)
+            closeModal();
+            history.push(`/albums/${data.newAlbumId}`)
+        }
     }
 
 
@@ -90,9 +111,8 @@ function AlbumFormModal({album}){
         <div className="album-form-container">
             {(user.photos.length &&
             <div>
-                <h1>Create an album out of uploaded photos</h1>
-                    <form onSubmit={handleSubmit} method="POST">
-                        <h1>Create an album</h1>
+                <h1>{album ? "Update Album":"Create an album out of uploaded photos"}</h1>
+                    <form onSubmit={handleSubmit} method={album ? "PUT" : "POST"}>
                         <div>
                             <label>Title</label>
                             <input
@@ -124,6 +144,7 @@ function AlbumFormModal({album}){
                                         <input
                                         type="checkbox"
                                         name='photo'
+                                        checked={isThisSelected(photo.id)}
                                         value={photo.id}
                                         onChange={handleCheckBox}
                                         />
