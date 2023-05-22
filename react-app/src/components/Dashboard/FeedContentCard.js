@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import OpenModalButton from "../OpenModalButton"
-import { useModal } from "../../context/Modal"
 import DeletePostModal from "../Photos/DeletePostModal"
+import AuthorControls from "./AuthorControls"
 
 function ContentCard({photo}){
     const user = useSelector(state => state.session.user)
@@ -14,13 +14,11 @@ function ContentCard({photo}){
                     <img alt="" src="awslink"></img>
                     <p>{photo.author.username}</p>
                 </div>
+
                 {user.id === photo.author.id &&
-                        <OpenModalButton
-                        buttonText="Delete"
-                        modalComponent={<DeletePostModal photoId={photo.id}/>} />}
-                {user.id === photo.author.id  &&
-                        <NavLink to={`/photos/${photo.id}/edit`}>Edit</NavLink>
+                    <AuthorControls photo={photo}/>
                 }
+
             </div>
             <img alt="" id="photo" src={photo.url}></img>
             <p id="photo-caption">{photo.caption}</p>
