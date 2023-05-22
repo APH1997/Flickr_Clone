@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
+import { login } from "../../store/session";
+
 import './SignupForm.css';
 
 function SignupFormPage() {
@@ -14,6 +16,7 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const history = useHistory()
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -29,10 +32,26 @@ function SignupFormPage() {
     }
   };
 
+  const loginRedirect = () => {
+    history.push('/login')
+  }
+
+  const handleDemo = async(e) => {
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data)
+    }
+  }
+
+
   return (
-    <>
+    <div className="signup-form-page-container">
+      <form id="signup-form-fields" onSubmit={handleSubmit}>
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <p>Already have an account?
+        <span> <span onClick={() => loginRedirect()} className="no-account-options">Log in here</span> </span>
+        or take the <span className="no-account-options" onClick={() => handleDemo()}>Demo User</span> for a spin!
+      </p>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
@@ -92,7 +111,7 @@ function SignupFormPage() {
         </label>
         <button type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 
