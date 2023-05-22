@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
 import { login } from "../../store/session";
+import { useContext } from "react";
+import { ThunkHubContext } from "../../context/ThunkHub";
 
 import './SignupForm.css';
 
 function SignupFormPage() {
+  const {setDestination} = useContext(ThunkHubContext)
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -18,7 +21,10 @@ function SignupFormPage() {
   const [errors, setErrors] = useState([]);
   const history = useHistory()
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) {
+    setDestination('/')
+    history.push('/thunk/hub')
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
