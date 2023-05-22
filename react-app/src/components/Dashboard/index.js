@@ -15,12 +15,12 @@ function Feed(){
     const history = useHistory()
     const user = useSelector(state => state.session.user)
     const allPhotos = useSelector(state => state.photos.allPhotos)
-    
 
 
-    useEffect(() => {
-        dispatch(getAllPhotosThunk())
-    }, [dispatch])
+
+    // useEffect(() => {
+    //     dispatch(getAllPhotosThunk())
+    // }, [dispatch])
 
     if (!allPhotos) return null
 

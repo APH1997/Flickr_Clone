@@ -7,7 +7,7 @@ import { authenticate } from "../../../store/session"
 import { ThunkHubContext } from "../../../context/ThunkHub"
 
 function PostForm({type}) {
-    const [setDestination] = useContext(ThunkHubContext)
+    const {setDestination} = useContext(ThunkHubContext)
 
     const {photoId} = useParams()
     const allPhotos = useSelector(state => state.photos.allPhotos)

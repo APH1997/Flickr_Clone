@@ -152,13 +152,14 @@ export default function reducer(state = initialState, action) {
         case GET_ALL_PHOTOS: {
             const newState = {
                 ...state,
-                allPhotos: {...state.allPhotos},
+                allPhotos: {},
                 userPhotos: {...state.userPhotos},
                 singlePhoto: {...state.singlePhoto}
             }
             action.payload.forEach(photo => {
                 newState.allPhotos[photo.id] = photo
             })
+
             return newState
         }
 
@@ -224,7 +225,7 @@ export default function reducer(state = initialState, action) {
             return newState
         }
 
-        
+
         default:
             return state
     }
