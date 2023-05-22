@@ -1,8 +1,8 @@
 import PostForm from "../CreatePostPage"
 
-function UpdatePostForm(){
+function UpdatePostForm({post}){
     return (
-        <PostForm type={'update'}/>
+        <PostForm post={post}/>
     )
 }
 

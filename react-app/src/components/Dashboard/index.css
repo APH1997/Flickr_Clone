@@ -42,3 +42,8 @@
     align-self:flex-end;
     border: 1px solid green;
 }
+
+/* AUTHOR CONTROLS */
+.hidden{
+    display: none;
+}
