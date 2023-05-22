@@ -10,6 +10,7 @@ import PostForm from "./components/Photos/CreatePostPage";
 import UpdatePostForm from "./components/Photos/UpdatePostPage";
 import UserPage from "./components/UserPage";
 import AlbumShow from "./components/Albums";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 
 function App() {
@@ -25,28 +26,43 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <Feed />
+            <ProtectedRoute>
+              <Feed />
+            </ProtectedRoute>
           </Route>
           <Route exact path="/photos/new">
-            <PostForm />
+            <ProtectedRoute>
+              <PostForm />
+            </ProtectedRoute>
           </Route>
           <Route exact path="/photos/:photoId/edit">
-            <UpdatePostForm />
+            <ProtectedRoute>
+              <UpdatePostForm />
+            </ProtectedRoute>
           </Route>
           <Route exact path="/photos/:photoId">
             <h1>View 1 photo</h1>
           </Route>
           <Route exact path="/albums/:albumId">
-            <AlbumShow />
+            <ProtectedRoute>
+              <AlbumShow />
+            </ProtectedRoute>
           </Route>
           <Route exact path="/users/:userId">
-            <UserPage />
+            <ProtectedRoute>
+              <UserPage />
+            </ProtectedRoute>
           </Route>
           <Route exact path="/login" >
-            <LoginFormPage />
+              <LoginFormPage />
           </Route>
           <Route exact path="/signup">
-            <SignupFormPage />
+              <SignupFormPage />
+          </Route>
+          <Route exact path="/thunk/hub">
+            <ProtectedRoute>
+              <h1>Thunk hub component here</h1>
+            </ProtectedRoute>
           </Route>
           <Route>
             <h1>404: Page not found</h1>

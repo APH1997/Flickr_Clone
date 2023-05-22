@@ -15,7 +15,7 @@ function Feed(){
     const history = useHistory()
     const user = useSelector(state => state.session.user)
     const allPhotos = useSelector(state => state.photos.allPhotos)
-    if (!user) history.push('/login')
+    
 
 
     useEffect(() => {
@@ -26,7 +26,7 @@ function Feed(){
 
     const sortedPhotos = Object.values(allPhotos)
     .sort((a,b) =>  new Date(b.created_at) - new Date(a.created_at))
-    
+
     return (
             <div className="feed-main-container">The Feed
 
