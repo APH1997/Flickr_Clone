@@ -1,22 +1,15 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { useState, useEffect, useContext } from "react"
 import { createPhotoThunk, updatePhotoThunk } from "../../../store/photos"
 import "../index.css"
 import { authenticate } from "../../../store/session"
 import { ThunkHubContext } from "../../../context/ThunkHub"
+import { useModal } from "../../../context/Modal"
 
 function PostForm({post}) {
+    const {closeModal} = useModal()
     const {setDestination} = useContext(ThunkHubContext)
-
-    // const {photoId} = useParams()
-    // const allPhotos = useSelector(state => state.photos.allPhotos)
-
-    // let post;
-    // if (type === "update"){
-    //     post = allPhotos[photoId]
-    // }
-
 
     const user = useSelector(state => state.session.user)
     const history = useHistory()
@@ -80,6 +73,7 @@ function PostForm({post}) {
                 setIsUploading(false);
             }, 1000)
 
+            closeModal()
             setDestination('/')
             history.push('/thunk/hub');
 
@@ -103,6 +97,7 @@ function PostForm({post}) {
                 setIsUploading(false);
             }, 1000);
 
+            closeModal()
             setDestination('/')
             history.push('/thunk/hub')
         }

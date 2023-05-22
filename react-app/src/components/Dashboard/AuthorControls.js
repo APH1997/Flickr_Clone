@@ -55,7 +55,6 @@ function AuthorControls({photo}){
                     onItemClick={closeMenu}
                     modalComponent={<UpdatePostForm post={photo}/>}
                     />
-                    {/* <span onClick={() => editRedirect()}>Edit</span> */}
                 </li>
             </ul>
         </div>

@@ -36,11 +36,6 @@ function App() {
               <PostForm />
             </ProtectedRoute>
           </Route>
-          <Route exact path="/photos/:photoId/edit">
-            <ProtectedRoute>
-              <UpdatePostForm />
-            </ProtectedRoute>
-          </Route>
           <Route exact path="/photos/:photoId">
             <h1>View 1 photo</h1>
           </Route>
