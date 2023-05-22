@@ -44,6 +44,42 @@
 }
 
 /* AUTHOR CONTROLS */
+.author-controls-dropdown{
+    border: 1px red solid;
+    position: absolute;
+    list-style-type: none;
+    padding: 0;
+    background-color: aliceblue;
+    translate: 25px -38px;
+}
+
+.author-controls-dropdown>li{
+    width: 100%;
+    height: 100%;
+}
+.author-controls-dropdown>li:hover{
+    background-color: red;
+}
+
+.author-controls-dropdown>li>button{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+}
+.author-controls-dropdown>li>button:hover{
+    cursor: pointer;
+}
+
 .hidden{
     display: none;
+}
+
+#open-author-controls-btn{
+    background-color: transparent;
+    border: none;
+}
+
+#open-author-controls-btn:hover{
+    color: red;
+    cursor: pointer;
 }

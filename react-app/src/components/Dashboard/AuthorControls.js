@@ -38,8 +38,8 @@ function AuthorControls({photo}){
 
     return(
         <div>
-            <button onClick={openMenu}>
-            <i className="fas fa-ellipsis-h"></i>
+            <button id="open-author-controls-btn"onClick={openMenu}>
+                <i className="fas fa-ellipsis-h"></i>
             </button>
             <ul className={ulClassName} ref={ulRef}>
                 <li>
