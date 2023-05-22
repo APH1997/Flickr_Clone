@@ -68,6 +68,16 @@
 
 
 /* AUTHOR CONTROLS */
+#open-author-controls-btn{
+    background-color: transparent;
+    border: none;
+    padding: 20px;
+}
+
+#open-author-controls-btn:hover{
+    color: red;
+    cursor: pointer;
+}
 .author-controls-dropdown{
     border: 1px red solid;
     position: absolute;
@@ -96,14 +106,4 @@
 
 .hidden{
     display: none;
-}
-
-#open-author-controls-btn{
-    background-color: transparent;
-    border: none;
-}
-
-#open-author-controls-btn:hover{
-    color: red;
-    cursor: pointer;
 }
