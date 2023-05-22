@@ -94,6 +94,7 @@ function AlbumFormModal({album}){
 
             setTimeout(() => setIsLoading(false), 3000)
             closeModal();
+            
             history.push(`/albums/${album.id}`)
 
         } else {
