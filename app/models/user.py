@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     bio = db.Column(db.String(1000), nullable=True)
-    profile_image_url = db.Column(db.String, nullable=True)
+    profile_image_url = db.Column(db.String, nullable=True, default='https://highrme-pics.s3.us-east-2.amazonaws.com/default-user-profile-pic.jpeg')
     cover_photo_url = db.Column(db.String, nullable=True, default='https://highrme-pics.s3.us-east-2.amazonaws.com/new-profile-banner.png')
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)

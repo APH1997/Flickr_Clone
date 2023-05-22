@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom"
 
 function DeletePostModal({photoId}){
     const {setDestination} = useContext(ThunkHubContext)
+    
     const history = useHistory()
     const { closeModal } = useModal()
 

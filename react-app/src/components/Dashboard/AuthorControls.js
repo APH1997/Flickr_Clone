@@ -44,16 +44,16 @@ function AuthorControls({photo}){
             <ul className={ulClassName} ref={ulRef}>
                 <li>
                     <OpenModalButton
-                    buttonText="Delete"
+                    buttonText="Edit"
                     onItemClick={closeMenu}
-                    modalComponent={<DeletePostModal photoId={photo.id}/>}
+                    modalComponent={<UpdatePostForm post={photo}/>}
                     />
                 </li>
                 <li>
                     <OpenModalButton
-                    buttonText="Edit"
+                    buttonText="Delete"
                     onItemClick={closeMenu}
-                    modalComponent={<UpdatePostForm post={photo}/>}
+                    modalComponent={<DeletePostModal photoId={photo.id}/>}
                     />
                 </li>
             </ul>

@@ -11,7 +11,7 @@ function ContentCard({photo}){
         <div className="content-card">
             <div className="cc-poster-info">
                 <div>
-                    <img alt="" src="awslink"></img>
+                    <img id="" alt="" src={photo.author.profile_picture_url}></img>
                     <p>{photo.author.username}</p>
                 </div>
 
