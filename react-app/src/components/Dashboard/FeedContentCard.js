@@ -1,18 +1,26 @@
 import { useSelector } from "react-redux"
-import { NavLink } from "react-router-dom"
-import OpenModalButton from "../OpenModalButton"
-import DeletePostModal from "../Photos/DeletePostModal"
+import { useHistory } from "react-router-dom"
 import AuthorControls from "./AuthorControls"
 
+
 function ContentCard({photo}){
+    const history = useHistory()
     const user = useSelector(state => state.session.user)
 
+    function handleUserPageRedirect(){
+        history.push(`/users/${photo.author.id}`)
+    }
     return (
         <div className="content-card">
             <div className="cc-poster-info">
                 <div className="username-and-pro-pic">
-                    <img id="" alt="" src={photo.author.profile_picture_url}></img>
-                    <p>{photo.author.username}</p>
+                    <img
+                        alt="" src={photo.author.profile_picture_url}
+                        onClick={handleUserPageRedirect}
+                    />
+                    <p onClick={handleUserPageRedirect}>
+                        {photo.author.username}
+                    </p>
                 </div>
 
                 {user.id === photo.author.id &&

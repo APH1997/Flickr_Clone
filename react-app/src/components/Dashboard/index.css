@@ -23,6 +23,10 @@
 .content-card p {
     margin:2px;
 }
+.username-and-pro-pic p:hover, img:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
 #photo-caption {
     font-weight: bold;
     padding-top:10px;
@@ -58,7 +62,12 @@
 .username-and-pro-pic{
     display: flex;
     padding: 10px;
+    font-weight: bold;
 }
+.username-and-pro-pic:hover{
+    cursor: auto;
+}
+
 .username-and-pro-pic>img{
     height: 30px;
     width: 30px;
