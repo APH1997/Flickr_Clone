@@ -11,6 +11,7 @@ import UpdatePostForm from "./components/Photos/UpdatePostPage";
 import UserPage from "./components/UserPage";
 import AlbumShow from "./components/Albums";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import ThunkHub from "./components/ThunkHub";
 
 
 function App() {
@@ -61,7 +62,7 @@ function App() {
           </Route>
           <Route exact path="/thunk/hub">
             <ProtectedRoute>
-              <h1>Thunk hub component here</h1>
+              <ThunkHub />
             </ProtectedRoute>
           </Route>
           <Route>
