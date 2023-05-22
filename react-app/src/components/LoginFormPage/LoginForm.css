@@ -26,3 +26,13 @@ form#login-form-fields button{
     align-self: center;
     padding: 8px;
 }
+
+.no-account-options{
+    color: #0b7c84;
+}
+
+.no-account-options:hover{
+    cursor: pointer;
+    text-decoration: underline;
+
+}
