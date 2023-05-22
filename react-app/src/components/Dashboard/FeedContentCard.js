@@ -7,18 +7,21 @@ function ContentCard({photo}){
     const history = useHistory()
     const user = useSelector(state => state.session.user)
 
-    function handleUserPageRedirect(){
+    function handleUserPageRedirect(e){
+        e.stopPropagation()
         history.push(`/users/${photo.author.id}`)
     }
     return (
-        <div className="content-card">
+        <div className="content-card"
+            onClick={() => history.push(`/photos/${photo.id}`)}>
+                
             <div className="cc-poster-info">
                 <div className="username-and-pro-pic">
                     <img
                         alt="" src={photo.author.profile_picture_url}
-                        onClick={handleUserPageRedirect}
+                        onClick={(e) => handleUserPageRedirect(e)}
                     />
-                    <p onClick={handleUserPageRedirect}>
+                    <p onClick={(e) => handleUserPageRedirect(e)}>
                         {photo.author.username}
                     </p>
                 </div>

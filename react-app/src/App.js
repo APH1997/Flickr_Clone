@@ -12,6 +12,7 @@ import UserPage from "./components/UserPage";
 import AlbumShow from "./components/Albums";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import ThunkHub from "./components/ThunkHub";
+import PhotoDetails from "./components/Photos/PhotoDetails";
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
             </ProtectedRoute>
           </Route>
           <Route exact path="/photos/:photoId">
-            <h1>View 1 photo</h1>
+            <PhotoDetails />
           </Route>
           <Route exact path="/albums/:albumId">
             <ProtectedRoute>
