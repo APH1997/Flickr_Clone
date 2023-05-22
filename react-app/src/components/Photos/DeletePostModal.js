@@ -1,12 +1,17 @@
 import { useDispatch } from "react-redux"
 import { useModal } from "../../context/Modal"
 import { deletePhotoThunk } from "../../store/photos"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { authenticate } from "../../store/session"
+import { ThunkHubContext } from "../../context/ThunkHub"
+import { useHistory } from "react-router-dom"
 
 
 function DeletePostModal({photoId}){
+    const {setDestination} = useContext(ThunkHubContext)
+    const history = useHistory()
     const { closeModal } = useModal()
+
     const dispatch = useDispatch()
     const [isDeleting, setIsDeleting] = useState(false)
 
@@ -14,10 +19,11 @@ function DeletePostModal({photoId}){
         setIsDeleting(true)
         await dispatch(deletePhotoThunk(photoId))
 
-        //update session store
-        setTimeout(() => dispatch(authenticate()), 1000)
-        setTimeout(() => setIsDeleting(false), 1000)
 
+        setTimeout(() => setIsDeleting(false), 500)
+
+        setDestination('/')
+        history.push('/thunk/hub')
         closeModal()
     }
 
