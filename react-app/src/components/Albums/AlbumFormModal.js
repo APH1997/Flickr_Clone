@@ -143,7 +143,7 @@ function AlbumFormModal({album}){
                                         <div className={isThisSelected(photo.id) ? "selected-photo" : "unselected-photo"} style={{height: "100px", width: "100px"}}>
                                             <i class="fas fa-check"></i>
                                         </div>
-                                        <img className="image-card-image" style={{height: "100px", width: "100px"}} src={photo.url}></img>
+                                        <img alt="" className="image-card-image" style={{height: "100px", width: "100px"}} src={photo.url}></img>
                                         <input
                                         type="checkbox"
                                         name='photo'

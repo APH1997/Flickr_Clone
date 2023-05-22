@@ -142,7 +142,7 @@ function PostForm({type}) {
                 {errors.photo &&
                 <p className="errors">{errors.photo}</p>
                 }
-                <img src={photoPreview} style={{width:"100px", height:"100px"}}/>
+                <img alt="" src={photoPreview} style={{width:"100px", height:"100px"}}/>
             </div>
 
             <button disabled={isUploading}>{isUploading ? "Uploading..." : "Submit"}</button>

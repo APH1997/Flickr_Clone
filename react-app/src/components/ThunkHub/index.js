@@ -18,11 +18,10 @@ CRUD operation, including login and signup
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getAllAlbumsThunk())
-        dispatch(getAllPhotosThunk())
-        dispatch(authenticate())
-    }, [])
+    dispatch(getAllAlbumsThunk())
+    dispatch(getAllPhotosThunk())
+    dispatch(authenticate())
+
 
     // if (userId){
     //     dispatch(getProfileThunk(userId))
