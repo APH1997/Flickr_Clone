@@ -19,7 +19,7 @@ function AlbumShow(){
 
     const singleAlbum = allAlbums[albumId]
     if (!singleAlbum) return null;
-    
+
     return (
         <>
             <div className="album-photos-container">
@@ -35,12 +35,12 @@ function AlbumShow(){
                             </NavLink>
                         </div>
                     </div>
-                    <img id="album-show-cover-photo" src={singleAlbum.cover_photo}></img>
+                    <img alt="" id="album-show-cover-photo" src={singleAlbum.cover_photo}></img>
                 </div>
                 <div className="non-cover-photos">
                     {singleAlbum.pics.map((photo) =>
                         <div className="album-photo-card">
-                            <img src={photo.url}/>
+                            <img alt="" src={photo.url}/>
                         </div>
                     )}
                 </div>

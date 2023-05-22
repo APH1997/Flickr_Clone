@@ -76,9 +76,9 @@ export default function reducer(state = initialState, action) {
         case GET_ALL_ALBUMS: {
             const newState = {
                 ...state,
-                allAlbums: {...state.allAlbums},
-                singleAlbum: {...state.singleAlbum}
+                allAlbums: {},
             }
+            console.log(action.payload)
             action.payload.forEach(album => {
                 newState.allAlbums[album.id] = album
             })
@@ -88,7 +88,6 @@ export default function reducer(state = initialState, action) {
             const newState = {
                 ...state,
                 allAlbums: {...state.allAlbums},
-                singleAlbum: {...state.singleAlbum}
             }
             newState.allAlbums[action.payload.id] = action.payload;
 
@@ -98,9 +97,8 @@ export default function reducer(state = initialState, action) {
             const newState = {
                 ...state,
                 allAlbums: {...state.allAlbums},
-                singleAlbum: {...state.singleAlbum}
             }
-            
+
             delete newState.allAlbums[action.payload]
             return newState;
         }

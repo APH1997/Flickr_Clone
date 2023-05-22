@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { createPhotoThunk, updatePhotoThunk } from "../../../store/photos"
 import "../index.css"
 import { authenticate } from "../../../store/session"
+import { ThunkHubContext } from "../../../context/ThunkHub"
 
 function PostForm({type}) {
-
+    const {setDestination} = useContext(ThunkHubContext)
 
     const {photoId} = useParams()
     const allPhotos = useSelector(state => state.photos.allPhotos)
@@ -77,9 +78,10 @@ function PostForm({type}) {
 
             setTimeout(() => {
                 setIsUploading(false);
-                history.push('/');
             }, 1000)
 
+            setDestination('/')
+            history.push('/thunk/hub');
 
         } else {
 
@@ -99,9 +101,10 @@ function PostForm({type}) {
 
             setTimeout(() => {
                 setIsUploading(false);
-                history.push('/')
-            }, 2000);
+            }, 1000);
 
+            setDestination('/')
+            history.push('/thunk/hub')
         }
 
     }
@@ -139,7 +142,7 @@ function PostForm({type}) {
                 {errors.photo &&
                 <p className="errors">{errors.photo}</p>
                 }
-                <img src={photoPreview} style={{width:"100px", height:"100px"}}/>
+                <img alt="" src={photoPreview} style={{width:"100px", height:"100px"}}/>
             </div>
 
             <button disabled={isUploading}>{isUploading ? "Uploading..." : "Submit"}</button>

@@ -11,7 +11,7 @@ function ContentCard({photo}){
         <div className="content-card">
             <div className="cc-poster-info">
                 <div>
-                    <img src="awslink"></img>
+                    <img alt="" src="awslink"></img>
                     <p>{photo.author.username}</p>
                 </div>
                 {user.id === photo.author.id &&
@@ -22,7 +22,7 @@ function ContentCard({photo}){
                         <NavLink to={`/photos/${photo.id}/edit`}>Edit</NavLink>
                 }
             </div>
-            <img id="photo" src={photo.url}></img>
+            <img alt="" id="photo" src={photo.url}></img>
             <p id="photo-caption">{photo.caption}</p>
             <div className="description-and-comments">
                 <p>{photo.description}</p>
