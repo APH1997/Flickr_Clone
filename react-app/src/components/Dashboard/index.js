@@ -28,7 +28,7 @@ function Feed(){
     if (!sortedPhotos) return null
 
     return (
-            <div className="feed-main-container">The Feed
+            <div className="feed-main-container">
 
             {sortedPhotos.map(photo => {
                 return <ContentCard key={photo.id} photo={photo}/>

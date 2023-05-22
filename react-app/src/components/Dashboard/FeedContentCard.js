@@ -10,7 +10,7 @@ function ContentCard({photo}){
     return (
         <div className="content-card">
             <div className="cc-poster-info">
-                <div>
+                <div className="username-and-pro-pic">
                     <img id="" alt="" src={photo.author.profile_picture_url}></img>
                     <p>{photo.author.username}</p>
                 </div>
