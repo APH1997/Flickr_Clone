@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { useEffect } from "react"
 import { getAllPhotosThunk } from "../../../store/photos"
 import "./index.css"
 
 function PhotoDetails(){
+    const history = useHistory()
     const dispatch = useDispatch()
     const {photoId} = useParams()
     const allPhotos = useSelector((state) => state.photos.allPhotos)
@@ -19,11 +20,15 @@ function PhotoDetails(){
     return (
         <div>
             <div className="big-black-background-div">
-                <div id="breadcrumb-to-dash">
-                    <i class="fas fa-arrow-left"></i>
-                    <span>Back to feed</span>
+                <div className="breadcrumb-to-dash-container">
+                    <div onClick={() => history.push('/')}id="breadcrumb">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Back to feed</span>
+                    </div>
                 </div>
-                <div><img src={photo.url}></img></div>
+                <div id="main-photo-container">
+                    <img id="photo-show-main-img"src={photo.url}></img>
+                </div>
                 <div>author controls</div>
             </div>
             <h2>Second div is a column of all comments</h2>

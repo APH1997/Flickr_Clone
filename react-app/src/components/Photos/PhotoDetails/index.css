@@ -6,7 +6,14 @@
     align-items: center;
 }
 
-#breadcrumb-to-dash{
+#breadcrumb{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    flex-flow: wrap;
+    gap: 8px;
+}
+.breadcrumb-to-dash-container{
     width: 100%;
     height: 50px;
     display: flex;
@@ -16,10 +23,21 @@
     padding-left: 35px;
     gap: 8px;
 }
-#breadcrumb-to-dash:hover{
+.breadcrumb-to-dash-container:hover{
     cursor: pointer;
 }
 
-#breadcrumb-to-dash:hover span{
+#breadcrumb:hover span{
     text-decoration: underline;
+}
+
+#photo-show-main-img{
+    max-height: 90%;
+    max-width: 80%;
+}
+
+#main-photo-container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
