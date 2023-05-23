@@ -31,13 +31,8 @@ function AuthorControls({photo}){
     const ulClassName = "author-controls-dropdown" + (showMenu ? "" : " hidden");
     const closeMenu = () => setShowMenu(false)
 
-    function editRedirect(){
-        closeMenu();
-        history.push(`/photos/${photo.id}/edit`)
-    }
-
     return(
-        <div>
+        <div onClick={(e) => e.stopPropagation()}>
             <button id="open-author-controls-btn"onClick={openMenu}>
                 <i className="fas fa-ellipsis-h"></i>
             </button>
