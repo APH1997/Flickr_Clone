@@ -35,9 +35,23 @@
     max-height: 90%;
     max-width: 80%;
 }
+#photo-show-main-img:hover{
+    cursor: default;
+}
 
 #main-photo-container{
     display: flex;
     justify-content: center;
     align-content: center;
+}
+
+#author-controls-container{
+    height: 55px;
+}
+
+#author-controls-container>div>button{
+    color: whitesmoke;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
 }
