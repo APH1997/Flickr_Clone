@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import ThunkHub from "./components/ThunkHub";
 import PhotoDetails from "./components/Photos/PhotoDetails";
 import { PhotoContextProvider } from "./context/Photo";
+import AlbumFormModal from "./components/Albums/AlbumFormModal";
 
 
 function App() {
@@ -41,6 +42,11 @@ function App() {
             <PhotoContextProvider>
               <PhotoDetails />
             </PhotoContextProvider>
+          </Route>
+          <Route exact path="/albums/new">
+            <ProtectedRoute>
+              <AlbumFormModal />
+            </ProtectedRoute>
           </Route>
           <Route exact path="/albums/:albumId">
             <ProtectedRoute>

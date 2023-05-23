@@ -46,6 +46,7 @@ function ProfileButton({ user }) {
   }
   function handleAlbumNav(){
     closeMenu()
+    history.push('/albums/new')
 
   }
   function handleProfileNav(){
@@ -63,7 +64,7 @@ function ProfileButton({ user }) {
           <>
             <li id="hello-li">Hello, {user.username}!</li>
             <li onClick={() => handleProfileNav()}>Profile</li>
-            <li>
+            <li onClick={() => handleAlbumNav()}>
 								<i className="fas fa-folder-plus"></i>
 								Create Album
             </li>
