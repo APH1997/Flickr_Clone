@@ -66,7 +66,7 @@ function App() {
           <Route exact path="/signup">
               <SignupFormPage />
           </Route>
-          <Route exact path="/thunk/hub">
+          <Route exact path="/thunk/hub/:resource/:method/:destination">
             <ProtectedRoute>
               <ThunkHub />
             </ProtectedRoute>

@@ -1,10 +1,14 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 export const ThunkHubContext = createContext();
 
 export function ThunkHubProvider(props) {
+    const history = useHistory()
 
-    const [destination, setDestination] = useState('/')
+    function dispatchThunkHub(resource, method, destination){
+      history.push(`/thunk/hub/${resource.toUpperCase()}/${method.toUpperCase()}/${destination}`)
+    }
 
     return (
       <ThunkHubContext.Provider value={{destination, setDestination}}>
@@ -12,3 +16,5 @@ export function ThunkHubProvider(props) {
       </ThunkHubContext.Provider>
     )
   }
+
+  export const useThunkHub = () => useContext(ThunkHubContext)
