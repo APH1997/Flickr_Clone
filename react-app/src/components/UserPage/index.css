@@ -153,10 +153,30 @@ create-album-button:hover{
 display: flex;
 flex-flow: row wrap;
 gap: 5px;
-padding: 50px 80px;
+justify-content: flex-start;
+padding-top: 0;
 }
 .user-page-photo-container img{
  height: 300px;
  width: fit-content;
  z-index: 0;
+
+}
+
+.upload-photo-user-page-container{
+    width: 100%;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+.photo-show-card{
+    width: fit-content;
+    margin: 0;
+}
+.photo-show-container{
+    width: 95%;
+    display: flex;
+    flex-flow: wrap;
+    gap: 5px;
+    justify-content: center;
 }
