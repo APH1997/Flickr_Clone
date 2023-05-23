@@ -39,9 +39,11 @@ function App() {
             </ProtectedRoute>
           </Route>
           <Route exact path="/photos/:photoId">
-            <PhotoContextProvider>
-              <PhotoDetails />
-            </PhotoContextProvider>
+            <ProtectedRoute>
+              <PhotoContextProvider>
+                <PhotoDetails />
+              </PhotoContextProvider>
+            </ProtectedRoute>
           </Route>
           <Route exact path="/albums/new">
             <ProtectedRoute>
