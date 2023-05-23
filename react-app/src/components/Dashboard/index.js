@@ -1,25 +1,26 @@
 import { ThunkHubContext } from "../../context/ThunkHub"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { useHistory } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import ContentCard from "./FeedContentCard"
 import "./index.css"
+import { getAllPhotosThunk } from "../../store/photos"
 
 function Feed(){
     /*
     Renders a column of content-cards,
     which conditonally render their comments below
     */
-    const history = useHistory()
-    const {setDestination} = useContext(ThunkHubContext)
-
-    const user = useSelector(state => state.session.user)
+    const dispatch = useDispatch()
     const allPhotos = useSelector(state => state.photos.allPhotos)
+
+    useEffect(() => {
+        dispatch(getAllPhotosThunk())
+    }, [dispatch])
 
     let sortedPhotos;
     if (!allPhotos){
-        setDestination('/')
-        history.push('/thunk/hub')
+        return null
     } else{
         sortedPhotos = Object.values(allPhotos)
         .sort((a,b) =>  new Date(b.created_at) - new Date(a.created_at))
