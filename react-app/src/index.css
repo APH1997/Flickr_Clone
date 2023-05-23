@@ -15,10 +15,15 @@ html{
     height: 100%;
 }
 .profile-dropdown{
+    position: absolute;
     background-color: white;
     border: .5px solid black;
     border-radius: 2px;
-    translate: 0px 10px;
+    translate: 285px 10px;
     list-style-type: none;
     padding: 6px;
 }
+
+.hidden {
+    display: none;
+  }
