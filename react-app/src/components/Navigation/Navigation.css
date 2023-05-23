@@ -51,17 +51,14 @@
 }
 
 
-.fas.fa-cloud-upload-alt:hover{
-  color: gray;
-}
-
 .profile-dropdown .fas {
   color: black;
   align-self:center;
 }
 
 .profile-dropdown ul{
-  width: fit-content;
+  min-width: fit-content;
+  width: 500px;
 }
 .profile-dropdown li{
   display: flex;
@@ -77,6 +74,9 @@
 .profile-dropdown li:hover{
   background-color: rgb(173, 173, 173);
   cursor: pointer;
+}
+.profile-dropdown li:hover .fas{
+  display:inline;
 
 }
 #profile-dropdown-button{
@@ -102,4 +102,8 @@
   color: black;
   background-color: white;
   cursor: default;
+}
+
+.fa-cloud-upload-alt, .fa-folder-plus{
+  display: none;
 }

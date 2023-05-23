@@ -62,14 +62,14 @@ function ProfileButton({ user }) {
         {user ? (
           <>
             <li id="hello-li">Hello, {user.username}!</li>
-            <li onClick={() => handleProfileNav()}>My Profile</li>
+            <li onClick={() => handleProfileNav()}>Profile</li>
             <li>
-								Create Album
 								<i className="fas fa-folder-plus"></i>
+								Create Album
             </li>
             <li onClick={() => handlePhotoNav()}>
-                Upload Photo
 								<i className="fas fa-cloud-upload-alt"></i>
+                Upload Photo
             </li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
