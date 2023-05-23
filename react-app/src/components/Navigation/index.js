@@ -25,7 +25,14 @@ function Navigation({ isLoaded }){
 					{isLoaded && (sessionUser && (
 						<div className='profile-and-upload'>
 
-								<NavLink id="upload-cloud-link" exact to="/photos/new"><i className="fas fa-cloud-upload-alt"></i></NavLink>
+								<div style={{color: "white"}}>
+									<i className="fas fa-folder-plus"></i>
+									Create an album
+								</div>
+								<NavLink id="upload-cloud-link" exact to="/photos/new">
+									<i className="fas fa-cloud-upload-alt"></i>
+									Upload Image
+								</NavLink>
 								<ProfileButton user={sessionUser} />
 
 						</div>
