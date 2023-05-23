@@ -4,12 +4,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
-import { ThunkHubContext } from "../../context/ThunkHub";
 import { createAlbumThunk } from "../../store/photos";
 import { updateAlbumThunk } from "../../store/albums";
 
 function AlbumFormModal({album}){
-    const {setDestination} = useContext(ThunkHubContext)
     // if album is defined, then it is an edit form
     const history = useHistory();
     const dispatch = useDispatch();
@@ -91,12 +89,9 @@ function AlbumFormModal({album}){
         //If album is defined, this should be an edit
         if (album){
             await dispatch(updateAlbumThunk(album.id, albumData))
-
             setTimeout(() => setIsLoading(false), 3000)
-
             closeModal();
-            setDestination(`/albums/${album.id}`)
-            history.push(`/thunk/hub`)
+            history.push(`/albums/${album.id}`)
 
         } else {
             const data = await dispatch(createAlbumThunk(albumData))
@@ -104,8 +99,7 @@ function AlbumFormModal({album}){
 
             setTimeout(() => setIsLoading(false), 3000)
             closeModal();
-            setDestination(`/albums/${data.newAlbumId}`)
-            history.push(`/thunk/hub`)
+            history.push(`/albums/${data.newAlbumId}`)
         }
     }
 

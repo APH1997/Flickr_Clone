@@ -4,13 +4,10 @@ import { useState, useEffect, useContext } from "react"
 import { createPhotoThunk, updatePhotoThunk } from "../../../store/photos"
 import "../index.css"
 import { authenticate } from "../../../store/session"
-import { ThunkHubContext } from "../../../context/ThunkHub"
 import { useModal } from "../../../context/Modal"
 
 function PostForm({post}) {
     const {closeModal} = useModal()
-    const {setDestination} = useContext(ThunkHubContext)
-
     const user = useSelector(state => state.session.user)
     const history = useHistory()
     const dispatch = useDispatch()
@@ -74,8 +71,7 @@ function PostForm({post}) {
             }, 1000)
 
             closeModal()
-            setDestination(`/photos/${post.id}`)
-            history.push('/thunk/hub');
+            history.push(`/photos/${post.id}`);
 
         } else {
 
@@ -91,10 +87,8 @@ function PostForm({post}) {
             setTimeout(() => {
                 setIsUploading(false);
             }, 1000);
-
             closeModal()
-            setDestination(`/photos/${newPhoto.id}`)
-            history.push('/thunk/hub')
+            history.push(`/photos/${newPhoto.id}`)
         }
 
     }

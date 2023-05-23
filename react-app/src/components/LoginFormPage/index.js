@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import './LoginForm.css';
-import { ThunkHubContext } from "../../context/ThunkHub";
+
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -11,12 +11,10 @@ function LoginFormPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const {setDestination} = useContext(ThunkHubContext)
   const history = useHistory()
 
   if (sessionUser) {
-    setDestination('/')
-    history.push('/thunk/hub')
+    history.push('/')
   };
 
   const handleSubmit = async (e) => {

@@ -1,6 +1,4 @@
-import { ThunkHubContext } from "../../context/ThunkHub"
-import { useContext, useEffect } from "react"
-import { useHistory } from "react-router-dom"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import ContentCard from "./FeedContentCard"
 import "./index.css"

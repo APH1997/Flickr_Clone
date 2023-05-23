@@ -10,7 +10,6 @@ import PostForm from "./components/Photos/CreatePostPage";
 import UserPage from "./components/UserPage";
 import AlbumShow from "./components/Albums";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import ThunkHub from "./components/ThunkHub";
 import PhotoDetails from "./components/Photos/PhotoDetails";
 import { PhotoContextProvider } from "./context/Photo";
 import AlbumFormModal from "./components/Albums/AlbumFormModal";
@@ -65,11 +64,6 @@ function App() {
           </Route>
           <Route exact path="/signup">
               <SignupFormPage />
-          </Route>
-          <Route exact path="/thunk/hub">
-            <ProtectedRoute>
-              <ThunkHub />
-            </ProtectedRoute>
           </Route>
           <Route>
             <h1>404: Page not found</h1>

@@ -3,23 +3,18 @@ import { useModal } from "../../context/Modal"
 import { deletePhotoThunk } from "../../store/photos"
 import { useContext, useState } from "react"
 import { authenticate } from "../../store/session"
-import { ThunkHubContext } from "../../context/ThunkHub"
 import { useHistory } from "react-router-dom"
 
 
 function DeletePostModal({photoId}){
-    const {setDestination} = useContext(ThunkHubContext)
-
     const history = useHistory()
     const { closeModal } = useModal()
-
     const dispatch = useDispatch()
     const [isDeleting, setIsDeleting] = useState(false)
 
     const handleYes = async () => {
         setIsDeleting(true)
-        setDestination('/')
-        history.push('/thunk/hub')
+        history.push('/')
         await dispatch(deletePhotoThunk(photoId))
         setTimeout(() => setIsDeleting(false), 100)
         closeModal()
