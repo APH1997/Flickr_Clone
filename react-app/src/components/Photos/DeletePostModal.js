@@ -18,12 +18,12 @@ function DeletePostModal({photoId}){
 
     const handleYes = async () => {
         setIsDeleting(true)
+        setDestination('/')
+        history.push('/thunk/hub')
         await dispatch(deletePhotoThunk(photoId))
 
         setTimeout(() => setIsDeleting(false), 100)
 
-        setDestination('/')
-        history.push('/thunk/hub')
         closeModal()
     }
 
