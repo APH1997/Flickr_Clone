@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import { getAllPhotosThunk } from "../../../store/photos"
 import "./index.css"
 import AuthorControls from "../../Dashboard/AuthorControls"
+import CommentSection from "../Comments"
 
 function PhotoDetails(){
     const history = useHistory()
@@ -18,6 +19,7 @@ function PhotoDetails(){
 
     if (!allPhotos) return null;
     const photo = allPhotos[photoId];
+    //SET PHOTO CONTEXT HERE, SO COMMENTS AND AUTHOR COMPONENTS COME MORE NATURALLY?
     return (
         <div>
             <div className="big-black-background-div">
@@ -35,10 +37,11 @@ function PhotoDetails(){
                         <AuthorControls photo={photo}/>
                     }
                 </div>
+
             </div>
-            <h2>Second div is a column of all comments</h2>
-            <div className="dark-div">
-                <h1>Make a comment card to map</h1>
+
+            <div className="photo-comments-container">
+                <CommentSection photo={photo}/>
             </div>
         </div>
     )
