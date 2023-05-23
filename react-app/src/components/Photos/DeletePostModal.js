@@ -21,9 +21,7 @@ function DeletePostModal({photoId}){
         setDestination('/')
         history.push('/thunk/hub')
         await dispatch(deletePhotoThunk(photoId))
-
         setTimeout(() => setIsDeleting(false), 100)
-
         closeModal()
     }
 
