@@ -14,7 +14,7 @@ function ContentCard({photo}){
     return (
         <div className="content-card"
             onClick={() => history.push(`/photos/${photo.id}`)}>
-                
+
             <div className="cc-poster-info">
                 <div className="username-and-pro-pic">
                     <img
@@ -25,7 +25,7 @@ function ContentCard({photo}){
                         {photo.author.username}
                     </p>
                 </div>
-
+                
                 {user.id === photo.author.id &&
                     <AuthorControls photo={photo}/>
                 }

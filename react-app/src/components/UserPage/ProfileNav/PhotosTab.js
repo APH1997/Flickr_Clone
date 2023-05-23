@@ -16,11 +16,14 @@ function PhotosTab(){
             {user.id === pageOwner.id &&
                 <div onClick={() => setUploadComponent(!uploadComponent)}>Upload a photo</div>
             }
-            {!uploadComponent &&
-            photos.map(photo => {
-                return <PhotoShow id={photo.id} photo={photo}/>
 
-            })}
+            <div>
+                {!uploadComponent &&
+                photos.map(photo => {
+                    return <PhotoShow id={photo.id} photo={photo}/>
+
+                })}
+            </div>
             {uploadComponent &&
                 <PostForm />
             }
