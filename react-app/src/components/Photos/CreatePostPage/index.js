@@ -74,7 +74,7 @@ function PostForm({post}) {
             }, 1000)
 
             closeModal()
-            setDestination('/')
+            setDestination(`/photos/${post.id}`)
             history.push('/thunk/hub');
 
         } else {
@@ -86,19 +86,14 @@ function PostForm({post}) {
             formData.append("description", description)
 
             setIsUploading(true);
-            dispatch(createPhotoThunk(formData));
-
-            //reload user with updated photos
-            setTimeout(() => {
-                dispatch(authenticate())
-            }, 1000)
+            const newPhoto = await dispatch(createPhotoThunk(formData));
 
             setTimeout(() => {
                 setIsUploading(false);
             }, 1000);
 
             closeModal()
-            setDestination('/')
+            setDestination(`/photos/${newPhoto.id}`)
             history.push('/thunk/hub')
         }
 
