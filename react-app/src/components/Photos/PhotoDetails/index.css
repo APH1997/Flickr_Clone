@@ -6,6 +6,12 @@
     align-items: center;
 }
 
+.big-white-background-div{
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+}
+
 #breadcrumb{
     display: flex;
     width: fit-content;
@@ -56,15 +62,36 @@
     padding: 0;
 }
 
+.photo-details-component, .photo-comments-component{
+    width: fit-content;
+}
+
 /* COMMENTS */
 .comment-section-container{
     color: black;
 }
 .comment-card-container{
     display: flex;
+    padding: 10px;
+    transition: background-color .25s;
+}
+.comment-card-container:hover{
+    background-color: white;
+    transition: background-color .25s;
+    border-radius: 4px;
 }
 
 #comment-card-pro-pic{
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
+    border-radius: 100px;
+    margin-right: 10px;
+}
+.comment-card-content>a{
+    text-decoration: none;
+    color: rgb(16, 107, 199);
+
+}
+.comment-card-content>a:hover{
+    text-decoration: underline;
 }

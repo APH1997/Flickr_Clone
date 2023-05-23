@@ -43,9 +43,14 @@ function PhotoDetails(){
                 </div>
 
             </div>
+                <div className="big-white-background-div">
 
-            <div className="photo-comments-container">
-                <CommentSection/>
+                <div className="photo-details-component">
+                        nada
+                </div>
+                <div className="photo-comments-component">
+                    <CommentSection/>
+                </div>
             </div>
         </div>
     )

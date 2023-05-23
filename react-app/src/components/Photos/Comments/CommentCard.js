@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom"
+
 function CommentCard({comment}){
     console.log(comment)
     return(
@@ -5,8 +7,8 @@ function CommentCard({comment}){
             <div>
                 <img id="comment-card-pro-pic" src={comment.author.profile_picture_url}></img>
             </div>
-            <div>
-                <div>{comment.author.first_name} {comment.author.last_name}</div>
+            <div className="comment-card-content">
+                <NavLink to={`/users/${comment.author.id}`}>{comment.author.first_name} {comment.author.last_name}</NavLink>
                 <div>{comment.content}</div>
             </div>
         </div>
