@@ -6,6 +6,7 @@ import "./index.css"
 import AuthorControls from "../../Dashboard/AuthorControls"
 import CommentSection from "../Comments"
 import { usePhoto } from "../../../context/Photo"
+import PhotoAuthorDetails from "./PhotoAuthorDetails"
 
 function PhotoDetails(){
     const {setPhoto} = usePhoto()
@@ -43,10 +44,9 @@ function PhotoDetails(){
                 </div>
 
             </div>
-                <div className="big-white-background-div">
-
-                <div className="photo-details-component">
-                        nada
+            <div className="big-white-background-div">
+                <div className="photo-author-details-component">
+                    <PhotoAuthorDetails />
                 </div>
                 <div className="photo-comments-component">
                     <CommentSection/>

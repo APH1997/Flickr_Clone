@@ -95,3 +95,44 @@
 .comment-card-content>a:hover{
     text-decoration: underline;
 }
+
+.photo-author-details-card{
+    display: flex;
+    padding-top: 10px;
+}
+
+.photo-author-details-component{
+    width: 35%;
+    translate: -8px;
+
+}
+#comments-head-author-head{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    margin-right: 8px;
+}
+
+
+.photo-caption-author-name{
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+
+#comments-photo-author-name{
+    font-weight: bolder;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    margin-bottom: 10px;
+    transition: color .15s;
+}
+
+#comments-photo-author-name:hover{
+    color:rgb(16, 107, 199);
+    transition: color .15s;
+    text-decoration: underline;
+}
+#comments-photo-caption{
+    font-weight: bold;
+}
