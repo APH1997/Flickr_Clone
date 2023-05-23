@@ -19,16 +19,17 @@ function Navigation({ isLoaded }){
 					<i className="fas fa-cloud"></i>
 				</NavLink>
 				<h1 id="home">high<span id="home-r">r</span>Me</h1>
-		
+
 			</div>
-			{isLoaded && (
+			{isLoaded && (sessionUser && (
 				<div className='profile-and-upload'>
 
 						<NavLink id="upload-cloud-link" exact to="/photos/new"><i className="fas fa-cloud-upload-alt"></i></NavLink>
 						<ProfileButton user={sessionUser} />
 
 				</div>
-			)}
+			)) || (<div style={{width: "60px"}}/>)}
+			{/* This condition is so the logo stays to the left when no signed in user */}
 		</div>
 
 	);

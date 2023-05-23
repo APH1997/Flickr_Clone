@@ -4,17 +4,28 @@
     flex-flow: column wrap;
     align-content: center;
     padding-top: 50px;
+    gap: 25px;
 }
 .content-card{
-    border: red solid 1px;
     display: flex;
     flex-flow: column;
     width: 65%;
-    height: 550px;
+    height: fit-content;
+    background-color: whitesmoke;
+    box-shadow: grey 2px 3px 5px;
+    border-radius: 2px;
+}
+.content-card:hover{
+    cursor: pointer;
+    box-shadow: grey 1px 2px 4px; ;
 }
 
 .content-card p {
     margin:2px;
+}
+.username-and-pro-pic p:hover, img:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 #photo-caption {
     font-weight: bold;
@@ -33,12 +44,75 @@
     max-height: 80%;
 }
 
+
 .description-and-comments{
     display: flex;
     justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.description-and-comments, #photo-caption{
+    padding-left: 15px;
 }
 
 #comments-button{
     align-self:flex-end;
     border: 1px solid green;
+}
+.username-and-pro-pic{
+    display: flex;
+    padding: 10px;
+    font-weight: bold;
+}
+.username-and-pro-pic:hover{
+    cursor: auto;
+}
+
+.username-and-pro-pic>img{
+    height: 30px;
+    width: 30px;
+    border-radius: 200px;
+    margin-right: 10px;
+}
+
+
+/* AUTHOR CONTROLS */
+#open-author-controls-btn{
+    background-color: transparent;
+    border: none;
+    padding: 20px;
+}
+
+#open-author-controls-btn:hover{
+    color: red;
+    cursor: pointer;
+}
+.author-controls-dropdown{
+    border: 1px red solid;
+    position: absolute;
+    list-style-type: none;
+    padding: 0;
+    background-color: aliceblue;
+    translate: 25px -38px;
+}
+
+.author-controls-dropdown>li{
+    width: 100%;
+    height: 100%;
+}
+.author-controls-dropdown>li:hover{
+    background-color: red;
+}
+
+.author-controls-dropdown>li>button{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+}
+.author-controls-dropdown>li>button:hover{
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
 }

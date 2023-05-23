@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom"
 
 function DeletePostModal({photoId}){
     const {setDestination} = useContext(ThunkHubContext)
+
     const history = useHistory()
     const { closeModal } = useModal()
 
@@ -19,8 +20,7 @@ function DeletePostModal({photoId}){
         setIsDeleting(true)
         await dispatch(deletePhotoThunk(photoId))
 
-
-        setTimeout(() => setIsDeleting(false), 500)
+        setTimeout(() => setIsDeleting(false), 100)
 
         setDestination('/')
         history.push('/thunk/hub')

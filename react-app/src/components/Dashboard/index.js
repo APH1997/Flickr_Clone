@@ -1,18 +1,15 @@
-import { useContext, useEffect } from "react"
+import { ThunkHubContext } from "../../context/ThunkHub"
+import { useContext } from "react"
 import { useHistory } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { useDispatch } from "react-redux"
-import { getAllPhotosThunk } from "../../store/photos"
 import ContentCard from "./FeedContentCard"
 import "./index.css"
-import { ThunkHubContext } from "../../context/ThunkHub"
 
 function Feed(){
     /*
     Renders a column of content-cards,
     which conditonally render their comments below
     */
-    const dispatch = useDispatch()
     const history = useHistory()
     const {setDestination} = useContext(ThunkHubContext)
 
@@ -31,7 +28,7 @@ function Feed(){
     if (!sortedPhotos) return null
 
     return (
-            <div className="feed-main-container">The Feed
+            <div className="feed-main-container">
 
             {sortedPhotos.map(photo => {
                 return <ContentCard key={photo.id} photo={photo}/>

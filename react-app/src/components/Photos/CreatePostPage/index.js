@@ -1,22 +1,15 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { useState, useEffect, useContext } from "react"
 import { createPhotoThunk, updatePhotoThunk } from "../../../store/photos"
 import "../index.css"
 import { authenticate } from "../../../store/session"
 import { ThunkHubContext } from "../../../context/ThunkHub"
+import { useModal } from "../../../context/Modal"
 
-function PostForm({type}) {
+function PostForm({post}) {
+    const {closeModal} = useModal()
     const {setDestination} = useContext(ThunkHubContext)
-
-    const {photoId} = useParams()
-    const allPhotos = useSelector(state => state.photos.allPhotos)
-
-    let post;
-    if (type === "update"){
-        post = allPhotos[photoId]
-    }
-
 
     const user = useSelector(state => state.session.user)
     const history = useHistory()
@@ -45,7 +38,7 @@ function PostForm({type}) {
         if (description && description.length > 500){
             errObj.description = "Description must not exceed 500 characters."
         }
-        if (type !== "update" && !photo){
+        if (!post && !photo){
             errObj.photo = "Please select a photo to upload."
         }
 
@@ -61,7 +54,7 @@ function PostForm({type}) {
 
         if (Object.keys(errors).length) return;
 
-        if (type === "update"){
+        if (post){
             const formData = new FormData();
             formData.append("author_id", user.id);
             photo && formData.append("photo", photo);
@@ -69,7 +62,7 @@ function PostForm({type}) {
             formData.append("description", description)
 
             setIsUploading(true);
-            await dispatch(updatePhotoThunk(photoId, formData))
+            await dispatch(updatePhotoThunk(post.id, formData))
 
             //reload user with updated photos
             setTimeout(() => {
@@ -80,6 +73,7 @@ function PostForm({type}) {
                 setIsUploading(false);
             }, 1000)
 
+            closeModal()
             setDestination('/')
             history.push('/thunk/hub');
 
@@ -103,6 +97,7 @@ function PostForm({type}) {
                 setIsUploading(false);
             }, 1000);
 
+            closeModal()
             setDestination('/')
             history.push('/thunk/hub')
         }
@@ -110,7 +105,7 @@ function PostForm({type}) {
     }
 
     return (
-        <form className="post-form" encType="multipart/form-data" onSubmit={handleSubmit} method={type ? "PUT" : "POST"}>
+        <form className="post-form" encType="multipart/form-data" onSubmit={handleSubmit} method={post ? "PUT" : "POST"}>
             <div className="caption-label-input">
                 <label>Caption</label>
                 <input

@@ -3,58 +3,44 @@ from sqlalchemy.sql import text
 from random import choice
 
 def seed_comments(users, pics):
-    comment1 = Comment(
-        photo = choice(pics),
-        author = choice(users),
-        content="Gee whiz!"
-    )
-    comment2 = Comment(
-        photo = choice(pics),
-        author = choice(users),
-        content="Golly! What a view!"
-    )
-    comment3 = Comment(
-        photo = choice(pics),
-        author = choice(users),
-        content="Holy toledo, this ROCKS!"
-    )
-    comment4 = Comment(
-        photo = choice(pics),
-        author = choice(users),
-        content="Now, this? THIS is art"
-    )
-    comment5 = Comment(
-        photo = choice(pics),
-        author = choice(users),
-        content="This picture launched me into a spiral of existential dread."
-    )
-    comment6 = Comment(
-        photo = choice(pics),
-        author = choice(users),
-        content="google.com how to undelete system 32"
-    )
-    comment7 = Comment(
-        photo = choice(pics),
-        author = choice(users),
-        content="Now I've seen a lotta pictures in my day, but this takes the cake"
-    )
-    comment8 = Comment(
-        photo = choice(pics),
-        author = choice(users),
-        content="Neato"
-    )
-    comment9 = Comment(
-        photo = choice(pics),
-        author = choice(users),
-        content="Does anyone else want to lick this picture?"
-    )
-    comment10 = Comment(
-        photo = choice(pics),
-        author = choice(users),
-        content="I wish MY photos came out this good. Wow!"
-    )
 
-    all_comments = [comment1, comment2, comment3, comment4, comment5, comment6, comment7, comment8, comment9, comment10]
+    generic_comments = [
+        'Oh YEAH!!',
+        'Hey did Flickr get rid of ads?',
+        'Stupendous',
+        "I don't know who I'm more jealous of; you, or the camera!",
+        "qerfjfapjs sorry cat on keyboard LOL",
+        "I'm gonna email this to my grandson!",
+        "I feel like a new man after seeing this!",
+        "Good eye",
+        "ChatGPT can't compete",
+        "Blast off!!!",
+        "Cowwabunga ROFL",
+        "Houston, we have a problem",
+        "Mid",
+        "Hey, how do I use emojies on here?",
+        "Can't believe I verify my bank pin to sign up for this",
+        "I did NOT expect this picture to go so hard",
+        "These colors remind me of grandpa. Miss ya, peepaw",
+        "Gee whiz!",
+        "Golly! What a view!",
+        "Holy toledo, this ROCKS!",
+        "Now, this? THIS is art",
+        "This picture launched me into a spiral of existential dread.",
+        "google.com how to undelete system 32",
+        "Now I've seen a lotta pictures in my day, but this takes the cake",
+        "Neato",
+        "Does anyone else want to lick this picture?",
+        "I wish MY photos came out this good. Wow!"
+    ]
+
+    all_comments = [Comment(
+        photo = choice(pics),
+        author = choice(users),
+        content = comment
+    ) for comment in generic_comments]
+
+  
     add = [db.session.add(comment) for comment in all_comments]
 
     db.session.commit()

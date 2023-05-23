@@ -7,11 +7,12 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Feed from "./components/Dashboard";
 import PostForm from "./components/Photos/CreatePostPage";
-import UpdatePostForm from "./components/Photos/UpdatePostPage";
 import UserPage from "./components/UserPage";
 import AlbumShow from "./components/Albums";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import ThunkHub from "./components/ThunkHub";
+import PhotoDetails from "./components/Photos/PhotoDetails";
+import { PhotoContextProvider } from "./context/Photo";
 
 
 function App() {
@@ -36,13 +37,10 @@ function App() {
               <PostForm />
             </ProtectedRoute>
           </Route>
-          <Route exact path="/photos/:photoId/edit">
-            <ProtectedRoute>
-              <UpdatePostForm />
-            </ProtectedRoute>
-          </Route>
           <Route exact path="/photos/:photoId">
-            <h1>View 1 photo</h1>
+            <PhotoContextProvider>
+              <PhotoDetails />
+            </PhotoContextProvider>
           </Route>
           <Route exact path="/albums/:albumId">
             <ProtectedRoute>

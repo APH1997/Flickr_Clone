@@ -27,10 +27,25 @@ function LoginFormPage() {
     }
   };
 
+  const handleDemo = async(e) => {
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data)
+    }
+  }
+
+  const signupRedirect = () => {
+    history.push('/signup')
+  }
+
   return (
-    <>
+    <div className="login-form-page-container">
+      <form id="login-form-fields"onSubmit={handleSubmit}>
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <p>Don't have an account?
+        <span> <span onClick={() => signupRedirect()} className="no-account-options">Sign up</span> </span>
+        or log in as a <span className="no-account-options" onClick={() => handleDemo()}>Demo User!</span>
+      </p>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -56,7 +71,7 @@ function LoginFormPage() {
         </label>
         <button type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 

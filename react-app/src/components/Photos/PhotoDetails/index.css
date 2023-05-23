@@ -1,0 +1,139 @@
+.big-black-background-div{
+    background-color: #212124;
+    color: white;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.big-white-background-div{
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+}
+
+#breadcrumb{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    flex-flow: wrap;
+    gap: 8px;
+}
+.breadcrumb-to-dash-container{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-flow: wrap;
+    align-content: flex-end;
+    justify-content: flex-start;
+    padding-left: 35px;
+    gap: 8px;
+}
+.breadcrumb-to-dash-container:hover{
+    cursor: pointer;
+}
+
+#breadcrumb:hover span{
+    text-decoration: underline;
+}
+
+#photo-show-main-img{
+    max-height: 90%;
+    max-width: 80%;
+}
+#photo-show-main-img:hover{
+    cursor: default;
+}
+
+#main-photo-container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#author-controls-container{
+    height: 55px;
+}
+
+#author-controls-container>div>button{
+    color: whitesmoke;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.photo-details-component, .photo-comments-component{
+    width: fit-content;
+}
+
+/* COMMENTS */
+.comment-section-container{
+    color: black;
+}
+.comment-card-container{
+    display: flex;
+    padding: 10px;
+    transition: background-color .25s;
+    width: 105%;
+}
+.comment-card-container:hover{
+    background-color: white;
+    transition: background-color .25s;
+    border-radius: 4px;
+}
+
+#comment-card-pro-pic{
+    height: 30px;
+    width: 30px;
+    border-radius: 100px;
+    margin-right: 10px;
+}
+.comment-card-content>a{
+    text-decoration: none;
+    color: rgb(16, 107, 199);
+}
+.comment-card-content>a:hover{
+    text-decoration: underline;
+}
+
+.photo-author-details-card{
+    display: flex;
+    padding-top: 10px;
+}
+
+.photo-author-details-component{
+    width: 35%;
+    translate: -8px;
+    margin-bottom: 20px;
+
+}
+#comments-head-author-head{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    margin-right: 8px;
+}
+
+
+.photo-caption-author-name{
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+
+#comments-photo-author-name{
+    font-weight: bolder;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    margin-bottom: 10px;
+    transition: color .15s;
+}
+
+#comments-photo-author-name:hover{
+    color:rgb(16, 107, 199);
+    transition: color .15s;
+    text-decoration: underline;
+}
+#comments-photo-caption{
+    font-weight: bold;
+}
