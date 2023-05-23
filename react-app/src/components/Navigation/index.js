@@ -24,17 +24,7 @@ function Navigation({ isLoaded }){
 					</div>
 					{isLoaded && (sessionUser && (
 						<div className='profile-and-upload'>
-
-								<div style={{color: "white"}}>
-									<i className="fas fa-folder-plus"></i>
-									Create an album
-								</div>
-								<NavLink id="upload-cloud-link" exact to="/photos/new">
-									<i className="fas fa-cloud-upload-alt"></i>
-									Upload Image
-								</NavLink>
 								<ProfileButton user={sessionUser} />
-
 						</div>
 					)) || (<div style={{width: "60px"}}/>)}
 					{/* This condition is so the logo stays to the left when no signed in user */}

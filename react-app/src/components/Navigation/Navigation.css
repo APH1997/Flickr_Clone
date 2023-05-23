@@ -50,10 +50,39 @@
   gap: 10px;
 }
 
-.fas.fa-cloud-upload-alt{
-  color: white;
-  scale: 1.1;
-}
+
 .fas.fa-cloud-upload-alt:hover{
   color: gray;
+}
+
+.profile-dropdown .fas {
+  color: black;
+  align-self:center;
+}
+
+.profile-dropdown ul{
+  width: fit-content;
+}
+.profile-dropdown li{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 8px 10px;
+
+  gap: 5px;
+
+}
+
+.profile-dropdown li:hover{
+  background-color: rgb(173, 173, 173);
+  cursor: pointer;
+  
+}
+#profile-dropdown-button{
+  background-color: transparent;
+  border: none;
+}
+.fa-bars{
+  scale: 1.5;
+  color: white;
 }

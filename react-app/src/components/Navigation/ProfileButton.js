@@ -40,16 +40,23 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button id="profile-dropdown-button" onClick={openMenu}>
+        <i className="fas fa-bars"></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
             <li>Hello, {user.username}!</li>
-            <li>{user.email}</li>
+            {/* <li>{user.email}</li> */}
             <li><NavLink to={`/users/${user.id}`}>Your Profile</NavLink></li>
-
+            <li>
+								Create Album
+								<i className="fas fa-folder-plus"></i>
+            </li>
+            <li>
+                Upload Photo
+								<i className="fas fa-cloud-upload-alt"></i>
+            </li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
