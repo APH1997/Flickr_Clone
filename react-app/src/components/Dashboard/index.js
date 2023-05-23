@@ -11,7 +11,7 @@ function Feed(){
     */
     const dispatch = useDispatch()
     const allPhotos = useSelector(state => state.photos.allPhotos)
-
+    
     useEffect(() => {
         dispatch(getAllPhotosThunk())
     }, [dispatch])
