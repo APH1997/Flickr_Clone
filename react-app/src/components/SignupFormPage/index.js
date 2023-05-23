@@ -19,8 +19,7 @@ function SignupFormPage() {
   const history = useHistory()
 
   if (sessionUser) {
-    setDestination('/')
-    history.push('/thunk/hub')
+    history.push('/')
   };
 
   const handleSubmit = async (e) => {
