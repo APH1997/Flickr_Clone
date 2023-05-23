@@ -5,7 +5,7 @@ import { usePhoto } from "../../../context/Photo";
 function PhotoAuthorDetails(){
     const {photo} = usePhoto()
     if (!photo) return null;
-    console.log(photo)
+    
     return (
         <div className="photo-author-details-card">
             <div style={{height:"100%"}}>

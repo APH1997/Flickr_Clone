@@ -74,6 +74,7 @@
     display: flex;
     padding: 10px;
     transition: background-color .25s;
+    width: 105%;
 }
 .comment-card-container:hover{
     background-color: white;
@@ -90,7 +91,6 @@
 .comment-card-content>a{
     text-decoration: none;
     color: rgb(16, 107, 199);
-
 }
 .comment-card-content>a:hover{
     text-decoration: underline;
@@ -104,6 +104,7 @@
 .photo-author-details-component{
     width: 35%;
     translate: -8px;
+    margin-bottom: 20px;
 
 }
 #comments-head-author-head{
