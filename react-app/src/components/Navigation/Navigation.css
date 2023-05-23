@@ -12,10 +12,14 @@
   gap: 225px;
   align-items: center;
   background-color: rgba(21,21,23,.95);
-  position: sticky;
+  position: fixed;
   width: 100%;
   height: 50px;
+}
 
+.nav-spacing-div{
+  height: 50px;
+  position: sticky;
 }
 
 #home{
