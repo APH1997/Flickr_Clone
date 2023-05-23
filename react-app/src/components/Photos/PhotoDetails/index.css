@@ -55,3 +55,16 @@
     margin: 0;
     padding: 0;
 }
+
+/* COMMENTS */
+.comment-section-container{
+    color: black;
+}
+.comment-card-container{
+    display: flex;
+}
+
+#comment-card-pro-pic{
+    height: 40px;
+    width: 40px;
+}

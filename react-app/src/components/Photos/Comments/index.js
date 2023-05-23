@@ -1,6 +1,17 @@
-function CommentSection({photo}){
+import { usePhoto } from "../../../context/Photo"
+import CommentCard from "./CommentCard"
+
+function CommentSection(){
+    const {photo} = usePhoto()
+
+    if (!photo) return null;
+
     return(
-        <div>a mapping of commentcards using the photo prop</div>
+        <div className="comment-section-container">
+            {photo.comments.map((comment) =>
+                <CommentCard comment={comment}/>
+            )}
+        </div>
     )
 }
 

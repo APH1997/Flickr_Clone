@@ -5,8 +5,11 @@ import { getAllPhotosThunk } from "../../../store/photos"
 import "./index.css"
 import AuthorControls from "../../Dashboard/AuthorControls"
 import CommentSection from "../Comments"
+import { usePhoto } from "../../../context/Photo"
 
 function PhotoDetails(){
+    const {setPhoto} = usePhoto()
+
     const history = useHistory()
     const dispatch = useDispatch()
     const {photoId} = useParams()
@@ -19,6 +22,7 @@ function PhotoDetails(){
 
     if (!allPhotos) return null;
     const photo = allPhotos[photoId];
+    setPhoto(photo)
     //SET PHOTO CONTEXT HERE, SO COMMENTS AND AUTHOR COMPONENTS COME MORE NATURALLY?
     return (
         <div>
@@ -41,7 +45,7 @@ function PhotoDetails(){
             </div>
 
             <div className="photo-comments-container">
-                <CommentSection photo={photo}/>
+                <CommentSection/>
             </div>
         </div>
     )
