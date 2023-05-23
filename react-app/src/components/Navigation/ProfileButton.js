@@ -4,9 +4,10 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 function ProfileButton({ user }) {
+  const history = useHistory()
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -38,6 +39,20 @@ function ProfileButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
+
+  function handlePhotoNav(){
+    closeMenu()
+    history.push('/photos/new')
+  }
+  function handleAlbumNav(){
+    closeMenu()
+
+  }
+  function handleProfileNav(){
+    closeMenu();
+    history.push(`/users/${user.id}`)
+
+  }
   return (
     <>
       <button id="profile-dropdown-button" onClick={openMenu}>
@@ -46,14 +61,13 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>Hello, {user.username}!</li>
-            {/* <li>{user.email}</li> */}
-            <li><NavLink to={`/users/${user.id}`}>Your Profile</NavLink></li>
+            <li id="hello-li">Hello, {user.username}!</li>
+            <li onClick={() => handleProfileNav()}>My Profile</li>
             <li>
 								Create Album
 								<i className="fas fa-folder-plus"></i>
             </li>
-            <li>
+            <li onClick={() => handlePhotoNav()}>
                 Upload Photo
 								<i className="fas fa-cloud-upload-alt"></i>
             </li>
