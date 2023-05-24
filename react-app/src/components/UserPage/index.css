@@ -214,8 +214,15 @@ create-album-button:hover{
 display: flex;
 flex-flow: row wrap;
 gap: 5px;
-justify-content: flex-start;
+justify-content: center;
 padding-top: 0;
+}
+
+.no-photos-comp-container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
 }
 .user-page-photo-container img{
  height: 300px;
