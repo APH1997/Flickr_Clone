@@ -36,9 +36,13 @@ function ContentCard({photo}){
             </div>
             <img alt="" id="photo" src={photo.url}></img>
             <p id="photo-caption">{photo.caption}</p>
+
             <div className="description-and-comments">
                 <p>{photo.description}</p>
-                <p id="comments-button">{photo.comments.length} comments</p>
+            </div>
+            <div id="comments-button">
+                <i className="far fa-comment"></i>
+                <span>{photo.comments.length}</span>
             </div>
 
         </div>

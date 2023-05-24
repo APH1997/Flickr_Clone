@@ -49,6 +49,7 @@
     display: flex;
     justify-content: space-between;
     padding-bottom: 10px;
+    border-bottom: 1px solid rgb(198, 198, 198)
 }
 
 .description-and-comments, #photo-caption{
@@ -57,8 +58,17 @@
 
 #comments-button{
     align-self:flex-end;
-    border: 1px solid green;
+    display: flex;
+    gap: 5px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: grey;
 }
+#comments-button:hover{
+    color: black;
+}
+
 .username-and-pro-pic{
     display: flex;
     padding: 10px;
