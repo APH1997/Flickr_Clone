@@ -1,10 +1,11 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { NavLink, useParams } from "react-router-dom"
+import { NavLink, useHistory, useParams } from "react-router-dom"
 import { getAllAlbumsThunk } from "../../store/albums"
 import "./index.css"
 
 function AlbumShow(){
+    const history = useHistory()
     const {albumId} = useParams()
     const dispatch = useDispatch()
     const allAlbums = useSelector((state => state.albums.allAlbums))
@@ -39,7 +40,12 @@ function AlbumShow(){
                 </div>
                 <div className="non-cover-photos">
                     {singleAlbum.pics.map((photo) =>
-                        <div className="album-photo-card">
+                        <div className="album-photo-card"
+                            onClick={() => history.push({
+                                pathname: `/photos/${photo.id}`,
+                                state: {from: 'ALBUM'}
+                            })}
+                        >
                             <img alt="" src={photo.url}/>
                         </div>
                     )}

@@ -48,6 +48,7 @@ class Photo(db.Model):
         return {
             'id': self.id,
             'url': self.aws_url,
+            'authorId': self.author.id,
             'caption': self.caption,
             'description': self.description,
             'created_at': self.created_at

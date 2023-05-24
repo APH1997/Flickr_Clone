@@ -9,13 +9,15 @@ import { usePhoto } from "../../../context/Photo"
 import PhotoAuthorDetails from "./PhotoAuthorDetails"
 
 function PhotoDetails(){
+    //history has location.state based on
+    //if user gets here from album,feed, or userpage
     const {setPhoto} = usePhoto()
-
     const history = useHistory()
     const dispatch = useDispatch()
     const {photoId} = useParams()
     const allPhotos = useSelector((state) => state.photos.allPhotos)
     const user = useSelector((state) => state.session.user)
+
 
     useEffect(() => {
         dispatch(getAllPhotosThunk())
@@ -25,13 +27,32 @@ function PhotoDetails(){
     const photo = allPhotos[photoId];
     //SET PHOTO CONTEXT HERE
     setPhoto(photo)
+
+
+    function breadCrumbTrail(historyState){
+        switch (history.location.state.from) {
+            case "FEED":{
+                return "Back to feed"
+            }
+            case "ALBUM":{
+                return "Back to album"
+            }
+            case "PROFILE":{
+                return "Back to profile"
+            }
+
+            default:{
+                return "Back"
+            }
+        }
+    }
     return (
         <div>
             <div className="big-black-background-div">
                 <div className="breadcrumb-to-dash-container">
-                    <div onClick={() => history.push('/')}id="breadcrumb">
+                    <div onClick={() => history.goBack()} id="breadcrumb">
                         <i class="fas fa-arrow-left"></i>
-                        <span>Back to feed</span>
+                        <span>{breadCrumbTrail()}</span>
                     </div>
                 </div>
                 <div id="main-photo-container">
