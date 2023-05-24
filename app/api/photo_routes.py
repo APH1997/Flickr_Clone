@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
-from app.models import db, Photo, User, Album
-from app.forms import PhotoForm, EditPhotoForm, CreateAlbumForm, EditAlbumForm
+from flask_login import login_required, current_user
+from app.models import db, Photo, User, Album, Comment
+from app.forms import PhotoForm, EditPhotoForm, CreateAlbumForm, EditAlbumForm, CommentForm
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 photo_routes = Blueprint('photos', __name__)
@@ -243,11 +243,22 @@ def create_comment(photoId):
     Queries for photo by Id
     constructs comment with form data after validation
     Then adds to photo with
-    photo.comments.extend([new_comment])
     Returns photo.to_dict() for reducer to update
     """
+    form = CommentForm()
+    if form.validate_on_submit():
+        target_photo = Photo.query.get(photoId)
+        new_comment = Comment(
+            author = current_user,
+            photo = target_photo,
+            content = form.data["content"]
+        )
+        db.session.add(new_comment)
+        db.session.commit()
 
-    photo = Photo.query.get(photoId)
+        return target_photo.to_dict()
+    else:
+        return form.errors
 
 
 
@@ -260,4 +271,9 @@ def delete_comment(photoId, commentId):
     to remove comment by id
     returns photo.to_dict() for reducer to update
     """
-    pass
+    target_comment = Comment.query.get(commentId)
+    db.session.delete(target_comment)
+    db.session.commit()
+
+    target_photo = Photo.query.get(photoId)
+    return target_photo.to_dict()
