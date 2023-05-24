@@ -246,6 +246,7 @@ def create_comment(photoId):
     Returns photo.to_dict() for reducer to update
     """
     form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         target_photo = Photo.query.get(photoId)
         new_comment = Comment(

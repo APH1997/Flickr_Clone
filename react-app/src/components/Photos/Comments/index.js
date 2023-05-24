@@ -1,5 +1,6 @@
-import { usePhoto } from "../../../context/Photo"
-import CommentCard from "./CommentCard"
+import { usePhoto } from "../../../context/Photo";
+import CommentCard from "./CommentCard";
+import CommentForm from "./CommentForm";
 
 function CommentSection(){
     const {photo} = usePhoto()
@@ -11,6 +12,7 @@ function CommentSection(){
             {photo.comments.map((comment) =>
                 <CommentCard comment={comment}/>
             )}
+            <CommentForm />
         </div>
     )
 }

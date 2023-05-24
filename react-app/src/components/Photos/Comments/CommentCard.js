@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 
 function CommentCard({comment}){
-    
+
     return(
         <div className="comment-card-container">
             <div>
