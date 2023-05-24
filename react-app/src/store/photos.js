@@ -5,6 +5,11 @@ const GET_ONE_PHOTO = "photos/GET_ONE"
 const CREATE_PHOTO = "photos/CREATE"
 const UPDATE_PHOTO = "photos/UPDATE"
 const DELETE_PHOTO = "photos/DELETE"
+//comment constants
+const CREATE_COMMENT = "photos/comments/CREATE"
+const DELETE_COMMENT = "photos/comments/DELETE"
+
+
 
 //GET ALL PHOTOS
 const getAllPhotosAction = (photos) => {

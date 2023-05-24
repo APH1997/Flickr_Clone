@@ -233,3 +233,31 @@ def delete_album(albumId):
     return {
         "message":"Album Deleted"
     }
+
+
+# PHOTO COMMENTS
+@photo_routes.route('/<int:photoId>/comments/new', methods=["POST"])
+@login_required
+def create_comment(photoId):
+    """
+    Queries for photo by Id
+    constructs comment with form data after validation
+    Then adds to photo with
+    photo.comments.extend([new_comment])
+    Returns photo.to_dict() for reducer to update
+    """
+
+    photo = Photo.query.get(photoId)
+
+
+
+@photo_routes.route('/<int:photoId>/comments/<int:commentId>/delete', methods=["DELETE"])
+@login_required
+def delete_comment(photoId, commentId):
+    """
+    Queries for photo by id
+    and list comprehends photo.comments
+    to remove comment by id
+    returns photo.to_dict() for reducer to update
+    """
+    pass
