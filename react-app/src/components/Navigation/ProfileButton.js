@@ -40,18 +40,18 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
 
-  function handlePhotoNav(){
+  async function handlePhotoNav(){
     closeMenu()
-    history.push('/photos/new')
+    setTimeout(() => history.push('/photos/new'), 300)
   }
-  function handleAlbumNav(){
+  async function handleAlbumNav(){
     closeMenu()
-    history.push('/albums/new')
+    setTimeout(() => history.push('/albums/new'), 300)
 
   }
-  function handleProfileNav(){
+  async function handleProfileNav(){
     closeMenu();
-    history.push(`/users/${user.id}`)
+    setTimeout(() => history.push(`/users/${user.id}`), 300)
 
   }
   return (

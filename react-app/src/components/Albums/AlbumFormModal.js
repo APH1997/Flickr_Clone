@@ -3,13 +3,11 @@ import { useModal } from "../../context/Modal"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
-import { ThunkHubContext } from "../../context/ThunkHub";
-import { createAlbumThunk } from "../../store/photos";
+import { useEffect, useState } from "react";
+import { createAlbumThunk, getAllPhotosThunk } from "../../store/photos";
 import { updateAlbumThunk } from "../../store/albums";
 
 function AlbumFormModal({album}){
-    const {setDestination} = useContext(ThunkHubContext)
     // if album is defined, then it is an edit form
     const history = useHistory();
     const dispatch = useDispatch();
@@ -31,6 +29,7 @@ function AlbumFormModal({album}){
     const [errors, setErrors] = useState({})
 
     const user = useSelector(state => state.session.user)
+    const allPhotos = useSelector(state => state.photos.allPhotos)
 
     function handleNoPhotoClick() {
         closeModal()
@@ -91,12 +90,9 @@ function AlbumFormModal({album}){
         //If album is defined, this should be an edit
         if (album){
             await dispatch(updateAlbumThunk(album.id, albumData))
-
             setTimeout(() => setIsLoading(false), 3000)
-
             closeModal();
-            setDestination(`/albums/${album.id}`)
-            history.push(`/thunk/hub`)
+            history.push(`/albums/${album.id}`)
 
         } else {
             const data = await dispatch(createAlbumThunk(albumData))
@@ -104,15 +100,17 @@ function AlbumFormModal({album}){
 
             setTimeout(() => setIsLoading(false), 3000)
             closeModal();
-            setDestination(`/albums/${data.newAlbumId}`)
-            history.push(`/thunk/hub`)
+            history.push(`/albums/${data.newAlbumId}`)
         }
     }
-
-
+    if (!allPhotos){
+        dispatch(getAllPhotosThunk())
+        return null;
+    }
+    const userPhotos = Object.values(allPhotos).filter((pic) => pic.author.id === user.id)
     return(
         <div className="album-form-container">
-            {(user.photos.length &&
+            {(userPhotos.length &&
             <div>
                 <h1>{album ? "Update Album":"Create an album out of uploaded photos"}</h1>
                     <form onSubmit={handleSubmit} method={album ? "PUT" : "POST"}>
@@ -137,7 +135,7 @@ function AlbumFormModal({album}){
                         <div>
                             <label>Choose photos</label>
                             <div className="image-select-card-container">
-                            {user.photos.map(photo =>
+                            {userPhotos.map(photo =>
                                 <div className="image-select-card">
                                     <label>
                                         <div className={isThisSelected(photo.id) ? "selected-photo" : "unselected-photo"} style={{height: "100px", width: "100px"}}>

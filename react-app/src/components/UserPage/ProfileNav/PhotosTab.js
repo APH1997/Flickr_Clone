@@ -1,13 +1,10 @@
 import { useSelector } from "react-redux"
 import PhotoShow from "../PhotoShow";
-import { useState } from "react";
 import PostForm from "../../Photos/CreatePostPage";
-import { useModal } from "../../../context/Modal";
 import OpenModalButton from "../../OpenModalButton";
+import NoPhotos from "./NoPhotos";
 
 function PhotosTab(){
-    const [uploadComponent, setUploadComponent] = useState(false)
-
     const pageOwner = useSelector(state => state.session.profilePageUser)
     const user = useSelector(state => state.session.user)
     if (!pageOwner) return null;
@@ -25,15 +22,16 @@ function PhotosTab(){
             }
 
             <div className="photo-show-container">
-                {!uploadComponent &&
+                {
                 photos.map(photo => {
                     return <PhotoShow id={photo.id} photo={photo}/>
-
                 })}
             </div>
-            {uploadComponent &&
-                <PostForm />
+
+            {!photos.length && user.id === pageOwner.id &&
+                <NoPhotos />
             }
+
 
         </div>
     )

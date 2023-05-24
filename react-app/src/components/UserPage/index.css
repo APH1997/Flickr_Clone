@@ -1,27 +1,88 @@
 /* User Page Banner */
 #cover-photo{
-    max-width: 100%;
+    width: 100%;
     object-fit: cover;
+    height: 250px;
+}
+#banner-shadow{
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(0deg, black -10%, transparent 70%);
+    z-index: 0;
+    position: absolute;
+
 }
 .user-page-banner-container{
     display: flex;
+    justify-content: center;
     align-items: flex-end;
+    color: white;
 }
 
 .banner-left-user-info{
     position: absolute;
     display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding-bottom: 20px;
+    z-index: 1;
+    margin-right: 40%;
+}
 
+#banner-profile-bubble{
+    height: 90px;
+    width: 90px;
+    border-radius: 500px;
 }
 
 #user-names{
     line-height: 5px;
 }
 
+#user-names h3{
+    width: fit-content;
+    margin-right: 0px;
+}
+
+.owner-name-and-controls{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    height: 50px;
+}
+
+.owner-name-and-controls button{
+    background-color: rgba(0, 0, 0, 0.17);
+    color: white;
+    font-size: 18px;
+    padding: 6px 12px;
+    border: white 2px solid;
+    border-radius: 4px;
+    transition: background-color .40s;
+}
+
+.owner-name-and-controls h3{
+    font-size: 36px;
+}
+.owner-name-and-controls button:hover{
+    background-color: whitesmoke;
+    color: black;
+    cursor: pointer;
+    transition: background-color .40s;
+}
+
 #names-bottom{
     display: flex;
     gap: 40px;
     align-items: center;
+}
+
+.profile-edit-form{
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    height: 250px;
+    width: 250px;
 }
 
 /* Profile Nav Bar */

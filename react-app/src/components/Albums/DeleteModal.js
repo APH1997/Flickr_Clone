@@ -3,11 +3,9 @@ import { useModal } from "../../context/Modal"
 import { useHistory } from "react-router-dom"
 import { deleteAlbumThunk } from "../../store/albums"
 import { useState } from "react"
-import { ThunkHubContext } from "../../context/ThunkHub"
 import { useContext } from "react"
 
 function DeleteAlbumModal({album}){
-    const {setDestination} = useContext(ThunkHubContext)
     const {closeModal} = useModal()
     const dispatch = useDispatch()
     const history = useHistory()
@@ -19,10 +17,8 @@ function DeleteAlbumModal({album}){
 
         setTimeout(() => setIsDeleting(false), 1500)
         closeModal();
+        history.push(`/users/${album.author.id}`)
 
-        setDestination(`/users/${album.author.id}`)
-        history.push('/thunk/hub')
-        
     }
     return (
         <div>

@@ -2,6 +2,7 @@
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 const GET_USER_PAGE = "session/USER_PAGE";
+const EDIT_USER = "session/EDIT_USER"
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -99,7 +100,7 @@ export const signUp = (username, email, password, first_name, last_name) => asyn
 //VISITNG A USER PAGE
 const getProfileAction = (user) => ({
 	type: GET_USER_PAGE,
-	payload: user,
+	payload: user
 })
 
 export const getProfileThunk = (userId) => async (dispatch) => {
@@ -111,6 +112,24 @@ export const getProfileThunk = (userId) => async (dispatch) => {
 		return
 	}
 }
+//EDIT USER PAGE
+const updateProfileAction = (user) => ({
+	type: EDIT_USER,
+	payload: user
+})
+
+export const updateProfileThunk = (formData, userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/edit`,{
+		method: "PUT",
+		body: formData
+	})
+
+	if (response.ok){
+		const user = await response.json()
+		await dispatch(updateProfileAction(user))
+	}
+}
+
 
 const initialState = { user: null, profilePageUser: null };
 export default function reducer(state = initialState, action) {
@@ -122,6 +141,10 @@ export default function reducer(state = initialState, action) {
 		case GET_USER_PAGE: {
 			const newState = {user: {...state.user}, profilePageUser: {...state.profilePageUser}}
 			newState.profilePageUser = action.payload
+			return newState
+		}
+		case EDIT_USER: {
+			const newState = {user: action.payload, profilePageUser: action.payload}
 			return newState
 		}
 		default:
