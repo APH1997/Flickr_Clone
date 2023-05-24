@@ -23,8 +23,8 @@ function PhotoDetails(){
 
     if (!allPhotos) return null;
     const photo = allPhotos[photoId];
+    //SET PHOTO CONTEXT HERE
     setPhoto(photo)
-    //SET PHOTO CONTEXT HERE, SO COMMENTS AND AUTHOR COMPONENTS COME MORE NATURALLY?
     return (
         <div>
             <div className="big-black-background-div">
