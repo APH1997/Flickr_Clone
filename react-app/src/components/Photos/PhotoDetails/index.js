@@ -29,7 +29,8 @@ function PhotoDetails(){
     setPhoto(photo)
 
 
-    function breadCrumbTrail(historyState){
+    function breadCrumbTrail(){
+        //based on history object, will render different text :D)
         switch (history.location.state.from) {
             case "FEED":{
                 return "Back to feed"
