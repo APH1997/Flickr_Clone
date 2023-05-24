@@ -1,10 +1,13 @@
 import { NavLink } from "react-router-dom"
 import OpenModalButton from "../../OpenModalButton"
 import DeleteComment from "./DeleteCommentModal"
+import { useSelector } from "react-redux"
+import { usePhoto } from "../../../context/Photo"
 
 
 function CommentCard({comment}){
-
+    const user = useSelector((state) => state.session.user)
+    const {photo} = usePhoto()
     return(
         <div className="comment-card-container">
             <div>
@@ -16,10 +19,17 @@ function CommentCard({comment}){
                 <div>
                     {comment.content}
                     <div>
-                        <OpenModalButton
-                        buttonText={<i className="fas fa-trash-alt"></i>}
-                        modalComponent={<DeleteComment />}
-                        />
+                        { user.id === comment.author.id &&
+                            <OpenModalButton
+                            buttonText={<i className="fas fa-trash-alt"></i>}
+                            modalComponent={
+                                <DeleteComment
+                                    commentId={comment.id}
+                                    photoId={photo.id}
+                                />
+                            }
+                            />
+                        }
                     </div>
                 </div>
             </div>

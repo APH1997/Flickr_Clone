@@ -1,15 +1,20 @@
 import { useModal } from "../../../context/Modal"
+import { useDispatch } from "react-redux"
+import { deleteCommentThunk } from "../../../store/photos"
 
-function DeleteComment(){
+
+function DeleteComment({commentId, photoId}){
+    const dispatch = useDispatch()
     const {closeModal} = useModal()
-    function handleYes(){
 
-        
+    async function handleYes(){
+        await dispatch(deleteCommentThunk(photoId, commentId))
         closeModal()
     }
     function handleNo(){
         closeModal()
     }
+
     return (
         <div>
             <h2>Delete comment?</h2>
