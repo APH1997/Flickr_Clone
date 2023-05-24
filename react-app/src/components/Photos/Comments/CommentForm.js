@@ -40,10 +40,10 @@ function CommentForm(){
 
 
     return (
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form className="post-comment-form" onSubmit={(e) => handleSubmit(e)}>
             <div>
                 <textarea
-                placeholder={`Let ${photo.author.first_name} know much you love their photo`}
+                placeholder={`Let ${photo.author.first_name} know much you love this photo!`}
                 value={comment}
                 onChange={(e) => handleComment(e)}
                 />

@@ -159,3 +159,16 @@
     color: black;
     border: 0;
 }
+
+.post-comment-form{
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 200px;
+    padding-left: 50px;
+}
+
+.post-comment-form textarea{
+    width: 300px;
+    height: 100px;
+    font-family: 'Quicksand', sans-serif;
+}
