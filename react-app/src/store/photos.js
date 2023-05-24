@@ -173,6 +173,28 @@ export const createCommentThunk = (commentData, photoId) => async (dispatch) => 
     }
 }
 
+
+//DELETE COMMENT
+const deleteCommentAction = (photo) => {
+    return {
+        type: DELETE_COMMENT,
+        payload: photo
+    }
+}
+
+export const deleteCommentThunk = (photoId, commentId) => async (dispatch) => {
+    const response = await fetch (`/photos/${photoId}/comments/${commentId}/delete`, {
+        method: "DELETE"
+    });
+    if (response.ok){
+        const commentPhoto = await response.json()
+        await dispatch(deleteCommentAction(commentPhoto))
+        return commentPhoto
+    } else {
+        return response
+    }
+}
+
 const initialState = {allPhotos: null, userPhotos: null, singlePhoto: null}
 
 export default function reducer(state = initialState, action) {
@@ -254,6 +276,17 @@ export default function reducer(state = initialState, action) {
         }
 
         case CREATE_COMMENT: {
+            const newState = {
+                allPhotos: {...state.allPhotos},
+                userPhotos: {...state.userPhotos},
+                singlePhoto: {...state.singlePhoto}
+            }
+            newState.allPhotos[action.payload.id] = action.payload
+
+            return newState
+        }
+
+        case DELETE_COMMENT: {
             const newState = {
                 allPhotos: {...state.allPhotos},
                 userPhotos: {...state.userPhotos},
