@@ -74,7 +74,7 @@
     display: flex;
     padding: 10px;
     transition: background-color .25s;
-    width: 105%;
+    width: 500px;
 }
 .comment-card-container:hover{
     background-color: white;
