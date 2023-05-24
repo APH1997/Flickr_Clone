@@ -30,7 +30,8 @@ function AlbumShow(){
                     <div className="album-by-id-author-controls-container">
                         {user.id === singleAlbum.author.id &&
                         <EditAlbum album={singleAlbum} show={true}/>}
-                        <DeleteAlbum album={singleAlbum}/>
+                        {user.id === singleAlbum.author.id &&
+                        <DeleteAlbum album={singleAlbum}/>}
                     </div>
 
                     <div id="cover-photo-mask" style={{width:"80%", height:"250px"}}>
