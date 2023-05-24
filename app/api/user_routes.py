@@ -23,3 +23,14 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict_with_pics()
+
+@user_routes.route('/<int:id>/edit')
+@login_required
+def edit_user(id):
+    """
+    Queries for user by id, instantiates flask form,
+    checks for new cover photo or new pro pic
+    updates applicable properties with form data
+    """
+    
+    form['csrf_token'].data = request.cookies['csrf_token']
