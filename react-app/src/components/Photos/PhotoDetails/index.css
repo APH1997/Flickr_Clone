@@ -75,6 +75,13 @@
     padding: 10px;
     transition: background-color .25s;
     width: 500px;
+    justify-content: space-between;
+    border-radius: 4px;
+}
+
+.comment-card-content-container{
+    display: flex;
+
 }
 .comment-card-container:hover{
     background-color: white;
@@ -136,4 +143,19 @@
 }
 #comments-photo-caption{
     font-weight: bold;
+}
+
+.delete-comment-modal-button button{
+    background-color: transparent;
+    color: transparent;
+    border: 0;
+}
+.comment-card-container:hover .delete-comment-modal-button button:hover{
+    cursor: pointer;
+    color: red;
+}
+.comment-card-container:hover .delete-comment-modal-button button{
+    background-color: transparent;
+    color: black;
+    border: 0;
 }

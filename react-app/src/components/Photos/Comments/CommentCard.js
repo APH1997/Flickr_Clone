@@ -10,28 +10,30 @@ function CommentCard({comment}){
     const {photo} = usePhoto()
     return(
         <div className="comment-card-container">
-            <div>
-                <img id="comment-card-pro-pic" src={comment.author.profile_picture_url}></img>
-
-            </div>
-            <div className="comment-card-content">
-                <NavLink to={`/users/${comment.author.id}`}>{comment.author.first_name} {comment.author.last_name}</NavLink>
+            <div className="comment-card-content-container">
                 <div>
-                    {comment.content}
+                    <img id="comment-card-pro-pic" src={comment.author.profile_picture_url}></img>
+
+                </div>
+                <div className="comment-card-content">
+                    <NavLink to={`/users/${comment.author.id}`}>{comment.author.first_name} {comment.author.last_name}</NavLink>
                     <div>
-                        { user.id === comment.author.id &&
-                            <OpenModalButton
-                            buttonText={<i className="fas fa-trash-alt"></i>}
-                            modalComponent={
-                                <DeleteComment
-                                    commentId={comment.id}
-                                    photoId={photo.id}
-                                />
-                            }
-                            />
-                        }
+                        {comment.content}
                     </div>
                 </div>
+            </div>
+            <div className="delete-comment-modal-button">
+                { user.id === comment.author.id &&
+                    <OpenModalButton
+                    buttonText={<i className="fas fa-trash-alt"></i>}
+                    modalComponent={
+                        <DeleteComment
+                            commentId={comment.id}
+                            photoId={photo.id}
+                        />
+                    }
+                    />
+                }
             </div>
         </div>
     )
