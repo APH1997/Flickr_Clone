@@ -29,7 +29,7 @@ function UserPageBanner(){
                         {pageOwner.id === user.id &&
                             <OpenModalButton
                             buttonText={<i className="fas fa-ellipsis-h"></i>}
-                            modalComponent={<ProfileModal />}
+                            modalComponent={<ProfileModal user={user}/>}
                             />
                         }
                     </div>

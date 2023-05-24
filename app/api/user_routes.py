@@ -26,7 +26,7 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict_with_pics()
 
-@user_routes.route('/<int:id>/edit')
+@user_routes.route('/<int:id>/edit', methods=["PUT"])
 @login_required
 def edit_user(id):
     """
@@ -78,4 +78,4 @@ def edit_user(id):
         return user.to_dict_with_pics()
 
     else:
-        return form.errors
+        return form.errors, 400
