@@ -4,6 +4,7 @@ import { NavLink, useHistory, useParams } from "react-router-dom"
 import { getAllAlbumsThunk } from "../../store/albums"
 import "./index.css"
 import EditAlbum from "./EditAlbumModalButton"
+import DeleteAlbum from "./DeleteAlbumModalButton"
 
 function AlbumShow(){
     const history = useHistory()
@@ -26,8 +27,11 @@ function AlbumShow(){
         <>
             <div className="album-photos-container">
                 <div>
-
-                    {user.id === singleAlbum.author.id && <EditAlbum album={singleAlbum} show={true}/>}
+                    <div className="album-by-id-author-controls-container">
+                        {user.id === singleAlbum.author.id &&
+                        <EditAlbum album={singleAlbum} show={true}/>}
+                        <DeleteAlbum album={singleAlbum}/>
+                    </div>
 
                     <div id="cover-photo-mask" style={{width:"80%", height:"250px"}}>
                         <div id="cover-photo-mask-details">
