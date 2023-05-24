@@ -27,7 +27,10 @@ function UserPageBanner(){
                 </div>
 
             </div>
-            <img alt="" id="cover-photo" src={pageOwner.cover_photo_url}></img>
+            <div id="banner-shadow"></div>
+            
+                <img alt="" id="cover-photo" src={pageOwner.cover_photo_url}></img>
+
         </div>
     )
 }
