@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useHistory, useParams } from "react-router-dom"
 import { getAllAlbumsThunk } from "../../store/albums"
 import "./index.css"
+import EditAlbum from "./EditAlbumModalButton"
 
 function AlbumShow(){
     const history = useHistory()
     const {albumId} = useParams()
     const dispatch = useDispatch()
     const allAlbums = useSelector((state => state.albums.allAlbums))
-
+    const user = useSelector((state) => state.session.user)
 
     useEffect(() => {
         dispatch(getAllAlbumsThunk())
@@ -25,6 +26,9 @@ function AlbumShow(){
         <>
             <div className="album-photos-container">
                 <div>
+
+                    {user.id === singleAlbum.author.id && <EditAlbum album={singleAlbum} show={true}/>}
+
                     <div id="cover-photo-mask" style={{width:"80%", height:"250px"}}>
                         <div id="cover-photo-mask-details">
                             <div id="title-and-photo-count">

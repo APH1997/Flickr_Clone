@@ -48,6 +48,21 @@ input[type="checkbox"]{
     padding-right: 10%;
     gap: 5px;
 }
+
+.album-show-edit .fas{
+    color: black;
+}
+.album-show-edit .fas span{
+    color: black;
+    font-family: 'Quicksand', sans-serif;
+    font-size:larger;
+}
+.album-show-edit:hover .fas{
+    color: red;
+}
+.album-show-edit:hover .fas span{
+    color: red;
+}
 #album-show-cover-photo{
     width: 100%;
     height: 250px;
