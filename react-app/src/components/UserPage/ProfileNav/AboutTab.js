@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
+import EditBioForm from "./EditBioForm"
 
 function AboutTab(){
     const [isEditing, setIsEditing] = useState(false)
@@ -18,12 +19,7 @@ function AboutTab(){
                 <p id="bio-text">{pageOwner.bio || `It looks like ${pageOwner.first_name} is a little shy. Check back later to see if they update their information!`}</p>
             }
             {isEditing &&
-                <form className="edit-bio-field">
-                    <textarea
-                    placeholder="Tell us about yourself"
-                    />
-                </form>
-
+                <EditBioForm user={pageOwner}/>
             }
         </div>
     )
