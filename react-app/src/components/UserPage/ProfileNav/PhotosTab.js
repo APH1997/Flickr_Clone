@@ -12,7 +12,7 @@ function PhotosTab(){
 
     return (
         <div className="user-page-photo-container">
-            {user.id === pageOwner.id &&
+            {user.id === pageOwner.id && photos.length > 0 &&
                 <div className="upload-photo-user-page-container">
                     <OpenModalButton
                     buttonText="Upload a photo"

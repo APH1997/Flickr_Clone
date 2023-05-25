@@ -1,4 +1,6 @@
 import { useHistory } from "react-router-dom"
+import OpenModalButton from "../../OpenModalButton"
+import PostForm from "../../Photos/CreatePostPage"
 
 function NoPhotos(){
     const history = useHistory()
@@ -6,7 +8,10 @@ function NoPhotos(){
         <div className="no-photos-comp-container">
             <h2>You don't have any photos yet!</h2>
             <p>That's ok, we all get lost in the clouds sometimes.</p>
-            <button className="no-photos-comp-button"onClick={() => history.push('/photos/new')}>Upload Photos</button>
+            <OpenModalButton
+                buttonText="Upload a photo"
+                modalComponent={<PostForm />}
+            />
         </div>
     )
 }
