@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom"
 import { deleteAlbumThunk } from "../../store/albums"
 import { useState } from "react"
 import { useContext } from "react"
+import { getProfileThunk } from "../../store/session"
 
 function DeleteAlbumModal({album}){
     const {closeModal} = useModal()
@@ -14,9 +15,10 @@ function DeleteAlbumModal({album}){
     async function handleDelete(){
         setIsDeleting(true)
         await dispatch(deleteAlbumThunk(album.id))
+        await dispatch(getProfileThunk(album.author.id))
 
-        setTimeout(() => setIsDeleting(false), 1500)
         closeModal();
+        setTimeout(() => setIsDeleting(false), 1500)
         history.push(`/users/${album.author.id}`)
 
     }

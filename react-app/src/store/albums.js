@@ -78,7 +78,6 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 allAlbums: {},
             }
-            console.log(action.payload)
             action.payload.forEach(album => {
                 newState.allAlbums[album.id] = album
             })

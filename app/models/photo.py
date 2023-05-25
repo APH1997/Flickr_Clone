@@ -5,6 +5,14 @@ from datetime import datetime
 class Photo(db.Model):
     __tablename__ = 'photos'
 
+    def default_time():
+        """
+        Apparently need a function to pass
+        in a time that actually changes per call
+        """
+        return datetime.now()
+
+
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
@@ -13,7 +21,9 @@ class Photo(db.Model):
     aws_url = db.Column(db.String, nullable=False)
     caption = db.Column(db.String(100))
     description = db.Column(db.String(500))
-    created_at = db.Column(db.Date, default=datetime.today)
+    created_at = db.Column(db.DateTime, default=default_time, nullable=False)
+
+
 
     author = db.relationship(
         "User",

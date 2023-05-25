@@ -89,6 +89,7 @@
 .profile-nav-bar{
     display: flex;
     background-color: white;
+    padding-left: 17%;
     margin-top: 0;
     height: 50px;
     box-shadow: 1px 1px 2px 1px lightgrey;
@@ -173,9 +174,31 @@
 }
 
 
-create-album-button:hover{
+#create-album-button:hover{
     cursor: pointer;
     text-decoration: underline;
+}
+#create-album-button{
+    width: 100%;
+    padding: 10px;
+    padding-bottom: 0;
+}
+#create-album-button button{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #8000ff95;
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+    border: .5px solid grey;
+    transition: background-color .2s;
+    margin-top: 5px;
+}
+#create-album-button button:hover{
+    cursor: pointer;
+    /* color: black; */
+    background-color: #8000FF;
+    transition: background-color .2s;
+    font-weight: bold;
 }
 
 /* Album card author controls */
@@ -224,6 +247,100 @@ padding-top: 0;
     justify-content: center;
     align-items: center;
 }
+.no-photos-comp-container button{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #8000ff95;
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+    border: .5px solid grey;
+    transition: background-color .2s;
+    margin-top: 10px;
+}
+.no-photos-comp-container button:hover{
+    cursor: pointer;
+    /* color: black; */
+    background-color: #8000FF;
+    transition: background-color .2s;
+    font-weight: bold;
+}
+.no-photos-comp-button{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #8000ff95;
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+    border: .5px solid grey;
+    transition: background-color .2s;
+}
+
+.no-photos-comp-button:hover{
+    cursor: pointer;
+    /* color: black; */
+    background-color: #8000FF;
+    transition: background-color .2s;
+    font-weight: bold;
+}
+.no-albums-comp-container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+.no-albums-comp-container button{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #8000ff95;
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+    border: .5px solid grey;
+    transition: background-color .2s;
+    margin-top: 10px;
+}
+.no-albums-comp-container button:hover{
+    cursor: pointer;
+    /* color: black; */
+    background-color: #8000FF;
+    transition: background-color .2s;
+    font-weight: bold;
+}
+.no-albums-comp-button{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #8000ff95;
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+    border: .5px solid grey;
+    transition: background-color .2s;
+}
+
+.no-albums-comp-button:hover{
+    cursor: pointer;
+    /* color: black; */
+    background-color: #8000FF;
+    transition: background-color .2s;
+    font-weight: bold;
+}
+
+.upload-photo-user-page-container button{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #8000ff95;
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+    border: .5px solid grey;
+    transition: background-color .2s;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.upload-photo-user-page-container button:hover{
+    cursor: pointer;
+    /* color: black; */
+    background-color: #8000FF;
+    transition: background-color .2s;
+    font-weight: bold;
+}
+
 .user-page-photo-container img{
  height: 300px;
  width: fit-content;
