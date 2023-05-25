@@ -2,25 +2,28 @@ import { useState } from "react";
 import AboutTab from "./AboutTab";
 import PhotosTab from "./PhotosTab";
 import AlbumsTab from "./AlbumsTab";
+import { useTab } from "../../../context/UserPageTab";
 
 function ProfileNav(){
     const [selected, setSelected] = useState('photos')
+    const {tab, setTab} = useTab()
+
     return (
         <>
             <div className="profile-nav-bar">
-                <div onClick={() => setSelected('about')} className={selected === "about" ? "active-tab" : ""}>About</div>
-                <div onClick={() => setSelected('photos')} className={selected === "photos" ? "active-tab" : ""}>Photos</div>
-                <div onClick={() => setSelected('albums')} className={selected === "albums" ? "active-tab" : ""}>Albums</div>
+                <div onClick={() => setTab('about')} className={tab === "about" ? "active-tab" : ""}>About</div>
+                <div onClick={() => setTab('photos')} className={tab === "photos" ? "active-tab" : ""}>Photos</div>
+                <div onClick={() => setTab('albums')} className={tab === "albums" ? "active-tab" : ""}>Albums</div>
             </div>
-            {(selected === "about" &&
+            {(tab === "about" &&
             <div className="about-tab-main-container">
                 <AboutTab />
             </div>
             )}
-            {(selected === "photos" &&
+            {(tab === "photos" &&
                 <PhotosTab />
             )}
-            {(selected === "albums" &&
+            {(tab === "albums" &&
                 <AlbumsTab />
             )}
 
