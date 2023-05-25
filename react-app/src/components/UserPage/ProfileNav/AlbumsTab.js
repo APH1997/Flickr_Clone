@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import AlbumCard from "../AlbumCard";
 import AlbumFormModal from "../../Albums/AlbumFormModal";
 import OpenModalButton from "../../OpenModalButton";
+import NoPhotos from "./NoPhotos";
 
 
 function AlbumsTab(){
@@ -10,13 +11,15 @@ function AlbumsTab(){
 
     if (!pageOwner) return null;
     return (
-        <div>
-            {pageOwner.id === sessionUser.id &&
+        <div style={{marginTop: "5px"}}>
+            {pageOwner.id === sessionUser.id && (pageOwner.photos.length > 0 &&
                 <div id="create-album-button">
                     <OpenModalButton
                     buttonText="Create an album"
                     modalComponent={<AlbumFormModal />}/>
-                </div>
+                </div>)
+                || pageOwner.id === sessionUser.id &&
+                <NoPhotos />
             }
 
             {pageOwner.id !== sessionUser.id &&
