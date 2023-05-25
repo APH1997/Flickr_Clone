@@ -5,7 +5,6 @@ import AlbumsTab from "./AlbumsTab";
 import { useTab } from "../../../context/UserPageTab";
 
 function ProfileNav(){
-    const [selected, setSelected] = useState('photos')
     const {tab, setTab} = useTab()
 
     return (
