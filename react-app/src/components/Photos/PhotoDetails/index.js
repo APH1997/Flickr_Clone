@@ -22,7 +22,7 @@ function PhotoDetails(){
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
-      
+
     useEffect(() => {
         dispatch(getAllPhotosThunk())
     },[dispatch])
@@ -35,7 +35,7 @@ function PhotoDetails(){
 
     function breadCrumbTrail(){
         //based on history object, will render different text :D)
-        switch (history.location.state.from) {
+        switch (history.location.state?.from) {
             case "FEED":{
                 return "Back to feed"
             }
@@ -51,11 +51,19 @@ function PhotoDetails(){
             }
         }
     }
+
+    function followBreadCrumbs(){
+        if (breadCrumbTrail() === "Back"){
+            history.push('/')
+        } else {
+            history.goBack()
+        }
+    }
     return (
         <div>
             <div className="big-black-background-div">
                 <div className="breadcrumb-to-dash-container">
-                    <div onClick={() => history.goBack()} id="breadcrumb">
+                    <div onClick={() => followBreadCrumbs()} id="breadcrumb">
                         <i class="fas fa-arrow-left"></i>
                         <span>{breadCrumbTrail()}</span>
                     </div>
