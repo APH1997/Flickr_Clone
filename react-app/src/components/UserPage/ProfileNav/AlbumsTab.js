@@ -15,7 +15,6 @@ function AlbumsTab(){
                 <div id="create-album-button">
                     <OpenModalButton
                     buttonText="Create an album"
-                    
                     modalComponent={<AlbumFormModal />}/>
                 </div>
             }
@@ -31,6 +30,8 @@ function AlbumsTab(){
                     return <AlbumCard album={album}/>
                 })}
             </div>
+
+
         </div>
     )
 }
