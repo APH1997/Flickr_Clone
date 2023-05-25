@@ -30,7 +30,9 @@ function AlbumCard({album}){
                         </p>
                     </div>
                 </div>
+
                 <img alt="" id="album-cover-photo"src={album.cover_photo}></img>
+            
             </div>
 
     )

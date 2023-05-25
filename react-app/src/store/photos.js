@@ -5,6 +5,11 @@ const GET_ONE_PHOTO = "photos/GET_ONE"
 const CREATE_PHOTO = "photos/CREATE"
 const UPDATE_PHOTO = "photos/UPDATE"
 const DELETE_PHOTO = "photos/DELETE"
+//comment constants
+const CREATE_COMMENT = "photos/comments/CREATE"
+const DELETE_COMMENT = "photos/comments/DELETE"
+
+
 
 //GET ALL PHOTOS
 const getAllPhotosAction = (photos) => {
@@ -145,6 +150,51 @@ export const createAlbumThunk = (albumData) => async (dispatch) => {
     }
 }
 
+//CREATE COMMENT
+const createCommentAction = (photo) => {
+    return {
+        type: CREATE_COMMENT,
+        payload: photo
+    }
+}
+
+export const createCommentThunk = (commentData, photoId) => async (dispatch) => {
+    const response = await fetch(`/photos/${photoId}/comments/new`, {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(commentData)
+    });
+    if (response.ok) {
+        const commentPhoto = await response.json()
+        await dispatch(createCommentAction(commentPhoto))
+        return commentPhoto
+    } else {
+        return response
+    }
+}
+
+
+//DELETE COMMENT
+const deleteCommentAction = (photo) => {
+    return {
+        type: DELETE_COMMENT,
+        payload: photo
+    }
+}
+
+export const deleteCommentThunk = (photoId, commentId) => async (dispatch) => {
+    const response = await fetch (`/photos/${photoId}/comments/${commentId}/delete`, {
+        method: "DELETE"
+    });
+    if (response.ok){
+        const commentPhoto = await response.json()
+        await dispatch(deleteCommentAction(commentPhoto))
+        return commentPhoto
+    } else {
+        return response
+    }
+}
+
 const initialState = {allPhotos: null, userPhotos: null, singlePhoto: null}
 
 export default function reducer(state = initialState, action) {
@@ -221,6 +271,28 @@ export default function reducer(state = initialState, action) {
             delete newState.allPhotos[action.payload]
             delete newState.userPhotos[action.payload]
             newState.singlePhoto = null
+
+            return newState
+        }
+
+        case CREATE_COMMENT: {
+            const newState = {
+                allPhotos: {...state.allPhotos},
+                userPhotos: {...state.userPhotos},
+                singlePhoto: {...state.singlePhoto}
+            }
+            newState.allPhotos[action.payload.id] = action.payload
+
+            return newState
+        }
+
+        case DELETE_COMMENT: {
+            const newState = {
+                allPhotos: {...state.allPhotos},
+                userPhotos: {...state.userPhotos},
+                singlePhoto: {...state.singlePhoto}
+            }
+            newState.allPhotos[action.payload.id] = action.payload
 
             return newState
         }

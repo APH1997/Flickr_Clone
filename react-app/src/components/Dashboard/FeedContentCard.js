@@ -13,7 +13,10 @@ function ContentCard({photo}){
     }
     return (
         <div className="content-card"
-            onClick={() => history.push(`/photos/${photo.id}`)}>
+            onClick={() => history.push({
+                pathname: `/photos/${photo.id}`,
+                state: {from: 'FEED'}
+            })}>
 
             <div className="cc-poster-info">
                 <div className="username-and-pro-pic">
@@ -25,7 +28,7 @@ function ContentCard({photo}){
                         {photo.author.username}
                     </p>
                 </div>
-                
+
                 {user.id === photo.author.id &&
                     <AuthorControls photo={photo}/>
                 }
@@ -33,9 +36,13 @@ function ContentCard({photo}){
             </div>
             <img alt="" id="photo" src={photo.url}></img>
             <p id="photo-caption">{photo.caption}</p>
+
             <div className="description-and-comments">
                 <p>{photo.description}</p>
-                <p id="comments-button">{photo.comments.length} comments</p>
+            </div>
+            <div id="comments-button">
+                <i className="far fa-comment"></i>
+                <span>{photo.comments.length}</span>
             </div>
 
         </div>
