@@ -118,6 +118,8 @@ input[type="checkbox"]{
 }
 .non-cover-photos{
     display: flex;
+    flex-flow: wrap;
+    column-count: 4;
     gap: 5px;
 }
 .album-photo-card{
@@ -127,4 +129,10 @@ input[type="checkbox"]{
 .album-photo-card img{
     height: 200px;
     z-index: -1;
+}
+.album-show-card-ghost-div {
+    border: red 1px solid;
+    height: 200px;
+    position: absolute;
+    width: 100%;
 }
