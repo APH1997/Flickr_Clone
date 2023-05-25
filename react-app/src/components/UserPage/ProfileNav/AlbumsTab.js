@@ -4,12 +4,13 @@ import AlbumFormModal from "../../Albums/AlbumFormModal";
 import OpenModalButton from "../../OpenModalButton";
 import NoPhotos from "./NoPhotos";
 import NoAlbums from "./NoAlbums";
+import { useEffect } from "react";
 
 
 function AlbumsTab(){
     const pageOwner = useSelector(state => state.session.profilePageUser)
     const sessionUser = useSelector(state => state.session.user)
-
+    
     if (!pageOwner) return null;
     return (
         <div style={{marginTop: "5px"}}>
