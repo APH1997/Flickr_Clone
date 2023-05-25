@@ -1,6 +1,8 @@
+import { useState } from "react"
 import { useSelector } from "react-redux"
 
 function AboutTab(){
+    const [isEditing, setIsEditing] = useState(false)
     const pageOwner = useSelector(state => state.session.profilePageUser)
     const user = useSelector(state => state.session.user)
     return (
@@ -8,11 +10,21 @@ function AboutTab(){
             <div>
                 <h3 id="about-me-h3">
                 {user.id === pageOwner.id &&
-                    <i className="fas fa-edit"></i>
+                    <i id="edit-bio-button" onClick={() => setIsEditing(!isEditing)} className={ isEditing ? "fas fa-edit under-edit" : "fas fa-edit"}></i>
                 }
                 About Me...</h3>
             </div>
-            <p id="bio-text">{pageOwner.bio || `It looks like ${pageOwner.first_name} is a little shy. Check back later to see if they update their information!`}</p>
+            {!isEditing &&
+                <p id="bio-text">{pageOwner.bio || `It looks like ${pageOwner.first_name} is a little shy. Check back later to see if they update their information!`}</p>
+            }
+            {isEditing &&
+                <form className="edit-bio-field">
+                    <textarea
+                    placeholder="Tell us about yourself"
+                    />
+                </form>
+
+            }
         </div>
     )
 }

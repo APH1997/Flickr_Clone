@@ -133,6 +133,35 @@
 #bio-text{
     width: 60%;
     align-self: center;
+    min-height: 260px;
+}
+
+.under-edit{
+    color: red;
+}
+
+#edit-bio-button:hover{
+    cursor: pointer;
+    color: red;
+}
+
+.edit-bio-field{
+    width: 60%;
+    align-self: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    height: 260px;
+}
+.edit-bio-field textarea{
+    width: 100%;
+    height: 20px;
+    transition: height 2s;
+
+}
+
+.edit-bio-field textarea:focus{
+    height: 250px;
+    transition: height 2s;
 }
 
 /* Album Card */
