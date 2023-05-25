@@ -20,6 +20,10 @@ function PhotoDetails(){
 
 
     useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+      
+    useEffect(() => {
         dispatch(getAllPhotosThunk())
     },[dispatch])
 
