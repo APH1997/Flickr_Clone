@@ -15,6 +15,7 @@
     gap: 10px;
     border: red 1px solid;
     padding-top: 150px;
+    height: 100vh;
  }
 
  .caption-label-input{
