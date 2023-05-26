@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import PhotoDetails from "./components/Photos/PhotoDetails";
 import { PhotoContextProvider } from "./context/Photo";
 import AlbumFormModal from "./components/Albums/AlbumFormModal";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }
