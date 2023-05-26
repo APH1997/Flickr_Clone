@@ -37,10 +37,11 @@
 
 }
 
-#photo{
+.photo{
     align-self: center;
     max-width: 80%;
     max-height: 80%;
+    box-shadow: 1px 1px 4px grey;
 }
 
 
