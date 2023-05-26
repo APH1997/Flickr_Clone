@@ -6,8 +6,8 @@ import "../index.css"
 import { authenticate } from "../../../store/session"
 import { useModal } from "../../../context/Modal"
 
-function PostForm({post}) {
-    const {closeModal} = useModal()
+function PostForm({ post }) {
+    const { closeModal } = useModal()
     const user = useSelector(state => state.session.user)
     const history = useHistory()
     const dispatch = useDispatch()
@@ -26,20 +26,20 @@ function PostForm({post}) {
 
     useEffect(() => {
         const errObj = {}
-        if (!caption){
+        if (!caption) {
             errObj.caption = "Please caption your photo."
         }
-        if (caption.length > 100){
+        if (caption.length > 100) {
             errObj.caption = "Caption must be less than 100 characters."
         }
-        if (description && description.length > 500){
+        if (description && description.length > 500) {
             errObj.description = "Description must not exceed 500 characters."
         }
-        if (!post && !photo){
+        if (!post && !photo) {
             errObj.photo = "Please select a photo to upload."
         }
 
-        if (Object.keys(errObj).length){
+        if (Object.keys(errObj).length) {
             setErrors(errObj)
         } else setErrors({})
 
@@ -51,7 +51,7 @@ function PostForm({post}) {
 
         if (Object.keys(errors).length) return;
 
-        if (post){
+        if (post) {
             const formData = new FormData();
             formData.append("author_id", user.id);
             photo && formData.append("photo", photo);
@@ -94,44 +94,51 @@ function PostForm({post}) {
     }
 
     return (
+    <div className="post-photo-form-container">
         <form className="post-form" encType="multipart/form-data" onSubmit={handleSubmit} method={post ? "PUT" : "POST"}>
-            <div className="caption-label-input">
-                <label>Caption</label>
-                <input
-                type="text"
-                value={caption}
-                onChange={(e) => setCaption(e.target.value)}
-                />
-                {errors.caption &&
-                <p className="errors">{errors.caption}</p>
-                }
+            <div>
+                <div className="post-form-photo-detail-inputs">
+                    <div className="caption-label-input">
+                        <label>Caption</label>
+                        <input
+                            type="text"
+                            value={caption}
+                            onChange={(e) => setCaption(e.target.value)}
+                        />
+                        {errors.caption &&
+                            <p className="errors">{errors.caption}</p>
+                        }
+                    </div>
+                    <div className="photo-description">
+                        <label>Description</label>
+                        <textarea
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                        {errors.description &&
+                            <p className="errors">{errors.description}</p>
+                        }
+                    </div>
+                </div>
             </div>
-            <div className="photo-description">
-                <label>Description</label>
-                <textarea
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                />
-                {errors.description &&
-                <p className="errors">{errors.description}</p>
-                }
-            </div>
-            <div className="photo-form-image-section">
-                <label>Upload Photo</label>
-                <input
-                type="file"
-                accept="image/*"
-                onChange={handlePhotoChange}/>
-                {errors.photo &&
-                <p className="errors">{errors.photo}</p>
-                }
-                <img alt="" src={photoPreview} style={{width:"100px", height:"100px"}}/>
+            <div>
+                <div className="photo-form-image-section">
+                    <label>Upload Photo</label>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handlePhotoChange} />
+                    {errors.photo &&
+                        <p className="errors">{errors.photo}</p>
+                    }
+                    <img alt="" src={photoPreview} style={{ width: "100px", height: "100px" }} />
+                </div>
             </div>
 
             <button disabled={isUploading}>{isUploading ? "Uploading..." : "Submit"}</button>
-
         </form>
+    </div>
     )
 }
 

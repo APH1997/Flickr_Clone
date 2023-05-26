@@ -3,22 +3,36 @@
     flex-flow: column;
 }
 
-.photo-form-image-section{
+
+.post-photo-form-container{
+    height: 100vh;
     display: flex;
-    flex-flow: column;
-    padding-bottom: 20px;
+    justify-content: center;
+
 }
  .post-form{
     display: flex;
     flex-flow: column wrap;
-    align-content: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 150px;
     border: red 1px solid;
-    padding-top: 150px;
-    height: 100vh;
+    padding-top: 120px;
+    height: 400px;
+    width: fit-content;
  }
+.post-form-photo-details-inputs{
+    height: fit-content;
+}
+
+.photo-form-image-section{
+    display: flex;
+    flex-flow: column;
+    height: fit-content;
+    /* padding-bottom: 20px; */
+}
 
  .caption-label-input{
     display: flex;
     flex-flow: column;
+    height: fit-content;
  }
