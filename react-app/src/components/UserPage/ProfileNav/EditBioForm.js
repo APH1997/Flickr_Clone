@@ -1,27 +1,30 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux";
+import { updateBioThunk } from "../../../store/session";
 
 
 function EditBioForm({user}) {
     const [bio, setBio] = useState(user.bio || "")
+    const dispatch = useDispatch();
 
     function bioLimit(e){
         if (e.target.value.length > 1000) return;
         setBio(e.target.value)
     }
 
-    function handleBioUpdate(e){
+    async function handleBioUpdate(e){
         e.preventDefault()
 
-        const data = {
-            bio,
-        }
+        const data = {bio}
+        await dispatch(updateBioThunk(data, user.id))
+
 
     }
 
     return (
         <form className="edit-bio-field"
         method="PUT"
-        onSubmit={(e) => handleBioUpdate}>
+        onSubmit={(e) => handleBioUpdate(e)}>
             <textarea
                 placeholder="Tell us about yourself"
                 value={bio}
