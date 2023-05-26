@@ -129,6 +129,8 @@
 #about-me-h3{
     padding-left: 40px;
     padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 #bio-text{
     width: 60%;
@@ -161,10 +163,15 @@
 }
 
 .edit-bio-field textarea:focus{
-    height: 250px;
+    height: 240px;
     transition: height 1s;
 }
 
+#bio-submit-and-count{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
 
 /* Album Card */
 .main-album-card-container{

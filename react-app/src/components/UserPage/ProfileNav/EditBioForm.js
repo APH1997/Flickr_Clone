@@ -9,6 +9,12 @@ function EditBioForm({user}) {
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
             />
+            {bio.length > 0 &&
+            <div id="bio-submit-and-count">
+                <button>Submit</button>
+                <span>{bio.length}/1000</span>
+            </div>
+            }
         </form>
     )
 }

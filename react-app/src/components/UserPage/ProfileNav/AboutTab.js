@@ -10,10 +10,13 @@ function AboutTab(){
         <div id="userpage-bio-box">
             <div>
                 <h3 id="about-me-h3">
+                About Me...
                 {user.id === pageOwner.id &&
-                    <i id="edit-bio-button" onClick={() => setIsEditing(!isEditing)} className={ isEditing ? "fas fa-edit under-edit" : "fas fa-edit"}></i>
+                    <span>
+                        <i id="edit-bio-button" onClick={() => setIsEditing(!isEditing)} className={ isEditing ? "fas fa-edit under-edit" : "fas fa-edit"}></i>
+                    </span>
                 }
-                About Me...</h3>
+                </h3>
             </div>
             {!isEditing &&
                 <p id="bio-text">{pageOwner.bio || `It looks like ${pageOwner.first_name} is a little shy. Check back later to see if they update their information!`}</p>
