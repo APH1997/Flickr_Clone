@@ -106,6 +106,6 @@
   cursor: default;
 }
 
-.fa-cloud-upload-alt, .fa-folder-plus{
+.fa-cloud-upload-alt, .fa-folder-plus, .fa-sign-out-alt{
   display: none;
 }
