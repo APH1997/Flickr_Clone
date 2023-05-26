@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import EditBioForm from "./EditBioForm"
+import { useTab } from "../../../context/UserPageTab"
 
 function AboutTab(){
-    const [isEditing, setIsEditing] = useState(false)
+    const {isEditing, setIsEditing} = useTab()
+
     const pageOwner = useSelector(state => state.session.profilePageUser)
     const user = useSelector(state => state.session.user)
     return (

@@ -1,9 +1,12 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { updateBioThunk } from "../../../store/session";
+import { useTab } from "../../../context/UserPageTab";
 
 
 function EditBioForm({user}) {
+    const {setIsEditing} = useTab()
+
     const [bio, setBio] = useState(user.bio || "")
     const dispatch = useDispatch();
 
@@ -18,6 +21,7 @@ function EditBioForm({user}) {
         const data = {bio}
         await dispatch(updateBioThunk(data, user.id))
 
+        setIsEditing(false)
 
     }
 

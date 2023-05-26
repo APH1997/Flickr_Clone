@@ -4,8 +4,10 @@ export const TabContext = createContext()
 
 export function TabContextProvider(props){
     const [tab, setTab] = useState('photos')
+    const [isEditing, setIsEditing] = useState(false)
+
     return (
-        <TabContext.Provider value={{tab, setTab}}>
+        <TabContext.Provider value={{tab, setTab, isEditing, setIsEditing}}>
             {props.children}
         </TabContext.Provider>
     )
