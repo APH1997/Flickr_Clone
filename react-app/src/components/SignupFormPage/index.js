@@ -54,9 +54,11 @@ function SignupFormPage() {
         <span> <span onClick={() => loginRedirect()} className="no-account-options">Log in here</span> </span>
         or take the <span className="no-account-options" onClick={() => handleDemo()}>Demo User</span> for a spin!
       </p>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
+        {errors.length > 0 &&
+          <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
+        }
         <label>
           Email
           <input

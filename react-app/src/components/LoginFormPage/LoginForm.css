@@ -11,8 +11,14 @@ form#login-form-fields{
     display: flex;
     flex-flow: column;
     width: 25%;
-    border: red 1px solid;
     padding: 15px;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    box-shadow: .5px .5px 3px grey;
+}
+form#login-form-fields>h1{
+    margin-bottom: 0;
+    align-self: center;
 }
 
 form#login-form-fields label{
