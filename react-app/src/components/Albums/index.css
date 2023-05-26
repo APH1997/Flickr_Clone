@@ -42,11 +42,14 @@ input[type="checkbox"]{
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    padding-top: 100px;
+    top: 0;
+    padding-top: 0px;
+    margin-top: -50px;
     width: 80%;
     padding-left: 10%;
     padding-right: 10%;
     gap: 5px;
+    height: 100vh;
 }
 
 .album-show-edit .fas{

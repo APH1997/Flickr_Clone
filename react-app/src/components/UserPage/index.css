@@ -116,6 +116,7 @@
 .about-tab-main-container{
     display: flex;
     justify-content: center;
+    height: 100vh;
 }
 #userpage-bio-box{
     display: flex;
@@ -284,6 +285,7 @@ padding-top: 0;
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 .no-photos-comp-container button{
     font-family: 'Quicksand', sans-serif;
@@ -322,8 +324,9 @@ padding-top: 0;
 .no-albums-comp-container{
     display: flex;
     flex-flow: column wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    height: 100vh;
 }
 .no-albums-comp-container button{
     font-family: 'Quicksand', sans-serif;
@@ -402,4 +405,5 @@ padding-top: 0;
     flex-flow: wrap;
     gap: 5px;
     justify-content: center;
+    height: 100vh;
 }

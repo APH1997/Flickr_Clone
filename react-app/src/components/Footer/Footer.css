@@ -28,12 +28,10 @@
     translate: -3px -5px;
 }
 .fab.fa-github:hover{
-    color: red;
+    color: rgb(178, 178, 178);
 
 }
-.fab.fa-linkedin:hover{
-    color: #0A66C2;
-}
+
 .linked-in-background:hover{
     background-color: white;
     z-index: 0;
@@ -41,6 +39,9 @@
     width: fit-content;
     display: flex;
     align-content: center;
+}
+.linked-in-background:hover .fab.fa-linkedin{
+    color: #0A66C2;
 }
 .huh{
     display: flex;
