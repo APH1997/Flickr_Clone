@@ -55,14 +55,12 @@ function SignupFormPage() {
         or take the <span className="no-account-options" onClick={() => handleDemo()}>Demo User</span> for a spin!
       </p>
         {errors.length > 0 &&
-          <ul>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-          </ul>
+            errors.map((error, idx) => <p key={idx} className="errors">{error}</p>)
         }
         <label>
           Email
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
