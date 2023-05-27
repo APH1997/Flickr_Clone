@@ -27,6 +27,7 @@
 .album-form-right-half{
     background-color: whitesmoke;
     padding: 10px;
+    width: 500px;
 }
 .album-title-input{
     display: flex;
@@ -74,6 +75,17 @@ input[type="checkbox"]{
     display: flex;
     gap: 20px;
     padding: 10px;
+    flex-flow: wrap;
+}
+
+/* ALBUM FORM MODAL */
+#modal-content .album-form-container{
+    width: 100%;
+    height: 100%;
+    padding-top: 0;
+}
+#modal-content .album-form-container form {
+    padding: 20px;
 }
 
 /* ALBUM SHOW */
