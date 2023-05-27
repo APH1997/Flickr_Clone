@@ -1,4 +1,45 @@
-.photo-description{
+.photo-form-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-form{
+    display: flex;
+    flex-flow: row;
+    width: 30%;
+    gap: 30px;
+}
+.photo-form-left-upper{
+    display: flex;
+    flex-flow: column;
+    gap: 25px;
+}
+.photo-form button{
+    margin-top: 50px;
+}
+.photo-form>div{
+    display: flex;
+    flex-flow: column;
+}
+.photo-form-left-side{
+    height: 50%;
+    background-color: whitesmoke;
+    padding: 5px;
+}
+.photo-form-left-side>div{
+    display: flex;
+    flex-flow: column;
+}
+.upload-photo-input>input{
+    display: none;
+}
+
+
+
+
+/* .photo-description{
     display: flex;
     flex-flow: column;
 }
@@ -28,11 +69,11 @@
     display: flex;
     flex-flow: column;
     height: fit-content;
-    /* padding-bottom: 20px; */
+
 }
 
  .caption-label-input{
     display: flex;
     flex-flow: column;
     height: fit-content;
- }
+ } */

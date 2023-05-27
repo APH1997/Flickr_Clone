@@ -16,7 +16,7 @@ function PostForm({ post }) {
     const [photo, setPhoto] = useState(null)
     const [photoPreview, setPhotoPreview] = useState(post ? post.url : null)
     const [isUploading, setIsUploading] = useState(false)
-
+    const [hasSubmitted, setHasSubmitted] = useState(false)
     const [errors, setErrors] = useState({})
 
     const handlePhotoChange = (e) => {
@@ -48,7 +48,7 @@ function PostForm({ post }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        setHasSubmitted(true)
         if (Object.keys(errors).length) return;
 
         if (post) {
@@ -69,7 +69,7 @@ function PostForm({ post }) {
             setTimeout(() => {
                 setIsUploading(false);
             }, 1000)
-
+            setHasSubmitted(false)
             closeModal()
             history.push(`/photos/${post.id}`);
 
@@ -88,57 +88,52 @@ function PostForm({ post }) {
                 setIsUploading(false);
             }, 1000);
             closeModal()
+            setHasSubmitted(false)
             history.push(`/photos/${newPhoto.id}`)
         }
 
     }
 
     return (
-    <div className="post-photo-form-container">
-        <form className="post-form" encType="multipart/form-data" onSubmit={handleSubmit} method={post ? "PUT" : "POST"}>
-            <div>
-                <div className="post-form-photo-detail-inputs">
-                    <div className="caption-label-input">
-                        <label>Caption</label>
-                        <input
-                            type="text"
-                            value={caption}
-                            onChange={(e) => setCaption(e.target.value)}
-                        />
-                        {errors.caption &&
-                            <p className="errors">{errors.caption}</p>
-                        }
+        <div className="photo-form-container">
+            <form className="photo-form" encType="multipart/form-data" onSubmit={handleSubmit} method={post ? "PUT" : "POST"}>
+                <div className="photo-form-left-side">
+                    <div className="photo-form-left-upper">
+                        <div className="photo-form-section1">
+                            <label>Caption{hasSubmitted && errors.caption ? <span style={{color:"red"}}>*</span>:''}</label>
+                            <input
+                                type="text"
+                                value={caption}
+                                onChange={(e) => setCaption(e.target.value)}
+                            />
+                        </div>
+
+                        <div className="photo-form-section2">
+                            <label>Description{hasSubmitted && errors.description ? <span style={{color:"red"}}>*</span>:''}</label>
+                            <textarea
+                                type="text"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
                     </div>
-                    <div className="photo-description">
-                        <label>Description</label>
-                        <textarea
-                            type="text"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
-                        {errors.description &&
-                            <p className="errors">{errors.description}</p>
-                        }
-                    </div>
+                    <button disabled={isUploading}>{isUploading ? "Uploading..." : "Submit"}</button>
+                    {hasSubmitted && Object.values(errors).length > 0 &&
+                        Object.values(errors).map((error) =>
+                        <p className="errors">{error}</p>)
+                    }
                 </div>
-            </div>
-            <div>
-                <div className="photo-form-image-section">
-                    <label>Upload Photo</label>
+                <div className="photo-form-section3">
+                    <label className="upload-photo-input">Upload Photo {hasSubmitted && errors.photo ? <span style={{color:"red"}}>*</span>:''}
                     <input
                         type="file"
                         accept="image/*"
                         onChange={handlePhotoChange} />
-                    {errors.photo &&
-                        <p className="errors">{errors.photo}</p>
-                    }
-                    <img alt="" src={photoPreview} style={{ width: "100px", height: "100px" }} />
+                    <img alt="" src={photoPreview} style={{ width: "400px", height: "400px" }}/>
+                    </label>
                 </div>
-            </div>
-
-            <button disabled={isUploading}>{isUploading ? "Uploading..." : "Submit"}</button>
-        </form>
-    </div>
+            </form>
+        </div>
     )
 }
 
