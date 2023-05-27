@@ -406,5 +406,5 @@ padding-top: 0;
     flex-flow: wrap;
     gap: 5px;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
 }
