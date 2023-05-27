@@ -124,11 +124,12 @@ input[type="checkbox"]{
 /* ALBUM SHOW */
 .album-photos-container{
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column;
     justify-content: center;
     top: 0;
     padding-top: 0px;
-    margin-top: -50px;
+    margin-top: 50px;
+    padding-bottom: 100px;
     width: 80%;
     padding-left: 10%;
     padding-right: 10%;
