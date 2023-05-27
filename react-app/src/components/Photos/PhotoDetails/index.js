@@ -59,6 +59,7 @@ function PhotoDetails(){
             history.goBack()
         }
     }
+
     return (
         <div>
             <div className="big-black-background-div">
