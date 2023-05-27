@@ -33,7 +33,7 @@ function AuthorControls({photo}){
 
     return(
         <div onClick={(e) => e.stopPropagation()}>
-            <button id="open-author-controls-btn" className={showMenu ? "menu-is-open" : ""}onClick={openMenu}>
+            <button id="open-author-controls-btn" className={showMenu ? "menu-is-open" : ""}onClick={() => setShowMenu(!showMenu)}>
                 <i className="fas fa-ellipsis-h"></i>
             </button>
             <ul className={ulClassName} ref={ulRef}>
