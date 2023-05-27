@@ -1,6 +1,44 @@
+/* ALBUM FORM */
 .album-form-container{
     padding-top: 100px;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.album-form-container form{
+    display: flex;
+    gap: 50px;
+}
+
+.album-form-container>div>h1{
+    display: flex;
+    justify-content: center;
+}
+
+.album-form-left-half{
+    background-color: whitesmoke;
+    padding: 10px;
+}
+
+.album-form-left-half button{
+    margin-left: 10px;
+}
+.album-form-right-half{
+    background-color: whitesmoke;
+    padding: 10px;
+}
+.album-title-input{
+    display: flex;
+    flex-flow: column;
+    padding: 10px;
+
+}
+.album-desc-input{
+    display: flex;
+    flex-flow: column;
+    padding: 10px;
+    background-color: whitesmoke;
 }
 
 input[type="checkbox"]{

@@ -20,7 +20,6 @@ function PostForm({ type }) {
     const [isUploading, setIsUploading] = useState(false)
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [errors, setErrors] = useState({})
-
     const handlePhotoChange = (e) => {
         setPhoto(e.target.files[0]);
         setPhotoPreview(URL.createObjectURL(e.target.files[0]))

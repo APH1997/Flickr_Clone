@@ -14,6 +14,7 @@ function AlbumFormModal({album}){
     const {closeModal} = useModal();
     const [title, setTitle] = useState(album ? album.title : '')
     const [description, setDescription] = useState(album ? album.description : '')
+    const [hasSubmitted, setHasSubmitted] = useState(false)
     /*
     If editing an album, need to convert album.pics to an array of ids
     */
@@ -74,6 +75,7 @@ function AlbumFormModal({album}){
 
     async function handleSubmit(e){
         e.preventDefault()
+        setHasSubmitted(true)
 
         if (Object.keys(errors).length) return;
 
@@ -112,28 +114,39 @@ function AlbumFormModal({album}){
         <div className="album-form-container">
             {(userPhotos.length &&
             <div>
-                <h1>{album ? "Update Album":"Create an album out of uploaded photos"}</h1>
+                <h1>{album ? "Update Album":"Create an album from your uploaded photos"}</h1>
                     <form onSubmit={handleSubmit} method={album ? "PUT" : "POST"}>
-                        <div>
-                            <label>Title</label>
-                            <input
-                            type="text"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            />
-                            {errors.title && <p className="errors">{errors.title}</p>}
+                        <div className="album-form-left-half">
+                            <div className="album-title-input">
+                                <label>
+                                    {errors.title && hasSubmitted ? <span style={{color:"red"}}>*</span> : ""}
+                                    Title</label>
+                                <input
+                                type="text"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                />
+                            </div>
+                            <div className="album-desc-input">
+                                <label>
+                                {errors.description && hasSubmitted ? <span style={{color:"red"}}>*</span> : ""}
+                                    Description</label>
+                                <textarea
+                                type="text"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                />
+                            </div>
+                            <button disabled={isLoading}>{isLoading ? "loading..." : "Submit"}</button>
+                            {Object.values(errors).length > 0 &&
+                            hasSubmitted &&
+                            Object.values(errors).map((error) =>
+                                <p className="errors">*{error}</p>)}
                         </div>
-                        <div>
-                            <label>Description</label>
-                            <textarea
-                            type="text"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            />
-                            {errors.description && <p className="errors">{errors.description}</p>}
-                        </div>
-                        <div>
-                            <label>Choose photos</label>
+                        <div className="album-form-right-half">
+                            <label>
+                            {errors.photos && hasSubmitted ? <span style={{color:"red"}}>*</span> : ""}
+                                Choose photos</label>
                             <div className="image-select-card-container">
                             {userPhotos.map(photo =>
                                 <div className="image-select-card">
@@ -152,10 +165,8 @@ function AlbumFormModal({album}){
                                     </label>
                                 </div>
                                 )}
-                                {errors.photos && <p className="errors">{errors.photos}</p>}
                             </div>
                         </div>
-                        <button disabled={isLoading}>{isLoading ? "loading..." : "Submit"}</button>
                     </form>
             </div>)
             //If no photos, redirect to upload photos
