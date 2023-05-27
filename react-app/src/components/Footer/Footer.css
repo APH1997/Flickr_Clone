@@ -1,6 +1,6 @@
 .footer-container{
     display: flex;
-    position: sticky;
+    position: fixed;
     bottom: 0;
     justify-content: center;
     gap: 20px;
@@ -10,6 +10,7 @@
     height: 50px;
     z-index: 3;
     color: rgba(255, 255, 255, 0.567);
+    margin-top: 90%;
 }
 
 .footer-container:hover{
