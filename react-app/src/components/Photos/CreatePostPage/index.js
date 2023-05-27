@@ -1,20 +1,22 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { useState, useEffect, useContext } from "react"
 import { createPhotoThunk, updatePhotoThunk } from "../../../store/photos"
 import "../index.css"
 import { authenticate } from "../../../store/session"
 import { useModal } from "../../../context/Modal"
 
-function PostForm({ post }) {
+function PostForm({ type }) {
     const { closeModal } = useModal()
-    const user = useSelector(state => state.session.user)
+    const {photoId} = useParams()
     const history = useHistory()
     const dispatch = useDispatch()
-    const [caption, setCaption] = useState(post ? post.caption : "")
-    const [description, setDescription] = useState(post ? post.description : "")
+    const user = useSelector(state => state.session.user)
+    const allPhotos = useSelector(state => state.photos.allPhotos)
+    const [caption, setCaption] = useState(type ? allPhotos[photoId].caption : "")
+    const [description, setDescription] = useState(type ? allPhotos[photoId].description : "")
     const [photo, setPhoto] = useState(null)
-    const [photoPreview, setPhotoPreview] = useState(post ? post.url : null)
+    const [photoPreview, setPhotoPreview] = useState(type ? allPhotos[photoId].url : null)
     const [isUploading, setIsUploading] = useState(false)
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [errors, setErrors] = useState({})
@@ -35,7 +37,7 @@ function PostForm({ post }) {
         if (description && description.length > 500) {
             errObj.description = "Description must not exceed 500 characters."
         }
-        if (!post && !photo) {
+        if (!type && !photo) {
             errObj.photo = "Please select a photo to upload."
         }
 
@@ -51,7 +53,7 @@ function PostForm({ post }) {
         setHasSubmitted(true)
         if (Object.keys(errors).length) return;
 
-        if (post) {
+        if (type) {
             const formData = new FormData();
             formData.append("author_id", user.id);
             photo && formData.append("photo", photo);
@@ -59,7 +61,7 @@ function PostForm({ post }) {
             formData.append("description", description)
 
             setIsUploading(true);
-            await dispatch(updatePhotoThunk(post.id, formData))
+            await dispatch(updatePhotoThunk(photoId, formData))
 
             //reload user with updated photos
             setTimeout(() => {
@@ -71,7 +73,7 @@ function PostForm({ post }) {
             }, 1000)
             setHasSubmitted(false)
             closeModal()
-            history.push(`/photos/${post.id}`);
+            history.push(`/photos/${photoId}`);
 
         } else {
 
@@ -96,12 +98,12 @@ function PostForm({ post }) {
 
     return (
         <div className="photo-form-container">
-            <h1>Upload a Photo</h1>
-            <form className="photo-form" encType="multipart/form-data" onSubmit={handleSubmit} method={post ? "PUT" : "POST"}>
+            <h1>{type ? "Edit your post" : "Upload a Photo"}</h1>
+            <form className="photo-form" encType="multipart/form-data" onSubmit={handleSubmit} method={type ? "PUT" : "POST"}>
                 <div className="photo-form-left-side">
                     <div className="photo-form-left-upper">
                         <div className="photo-form-section1">
-                            <label>Caption{hasSubmitted && errors.caption ? <span style={{color:"red"}}>*</span>:''}</label>
+                            <label>{type ? "Edit Caption" : "Caption"}{hasSubmitted && errors.caption ? <span style={{color:"red"}}>*</span>:''}</label>
                             <input
                                 type="text"
                                 value={caption}
@@ -110,7 +112,7 @@ function PostForm({ post }) {
                         </div>
 
                         <div className="photo-form-section2">
-                            <label>Description{hasSubmitted && errors.description ? <span style={{color:"red"}}>*</span>:''}</label>
+                            <label>{type ? "Edit Description" : "Description"}{hasSubmitted && errors.description ? <span style={{color:"red"}}>*</span>:''}</label>
                             <textarea
                                 type="text"
                                 value={description}
@@ -126,6 +128,7 @@ function PostForm({ post }) {
                 </div>
                 <div className="photo-form-section3">
                     <label className="upload-photo-input">
+                        {type ? "Click to upload a different file" : ""}
                     <input
                         type="file"
                         accept="image/*"

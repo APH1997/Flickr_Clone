@@ -37,12 +37,13 @@ function AuthorControls({photo}){
                 <i className="fas fa-ellipsis-h"></i>
             </button>
             <ul className={ulClassName} ref={ulRef}>
-                <li>
-                    <OpenModalButton
+                <li onClick={() => history.push(`/photos/${photo.id}/edit`)}>
+                    edit
+                    {/* <OpenModalButton
                     buttonText="Edit"
                     onItemClick={closeMenu}
                     modalComponent={<UpdatePostForm post={photo}/>}
-                    />
+                    /> */}
                 </li>
                 <li>
                     <OpenModalButton
