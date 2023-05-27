@@ -108,10 +108,14 @@
     list-style-type: none;
     padding: 2px;
     background-color: whitesmoke;
-    translate: -10px -35px;
+    translate: 35px -45px;
     border-radius: 4px;
 }
 
+.cc-poster-info .author-controls-dropdown{
+    background-color: whitesmoke;
+    translate: -10px -35px;
+}
 
 .author-controls-dropdown>li{
     width: 100%;
