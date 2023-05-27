@@ -97,27 +97,37 @@
     color: red;
     cursor: pointer;
 }
+
+#open-author-controls-btn.menu-is-open{
+    color: red;
+}
+
 .author-controls-dropdown{
-    border: 1px red solid;
+    /* border: 1px red solid; */
     position: absolute;
     list-style-type: none;
-    padding: 0;
+    padding: 2px;
     background-color: aliceblue;
-    translate: 25px -38px;
+    translate: 35px -45px;
+    border-radius: 4px;
 }
+
 
 .author-controls-dropdown>li{
     width: 100%;
     height: 100%;
+    color: black;
 }
 .author-controls-dropdown>li:hover{
     background-color: red;
+    cursor: pointer;
 }
 
 .author-controls-dropdown>li>button{
     width: 100%;
     background-color: transparent;
     border: none;
+    font-family: 'Quicksand', sans-serif;
 }
 .author-controls-dropdown>li>button:hover{
     cursor: pointer;

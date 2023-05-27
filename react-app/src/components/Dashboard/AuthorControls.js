@@ -33,17 +33,12 @@ function AuthorControls({photo}){
 
     return(
         <div onClick={(e) => e.stopPropagation()}>
-            <button id="open-author-controls-btn"onClick={openMenu}>
+            <button id="open-author-controls-btn" className={showMenu ? "menu-is-open" : ""}onClick={openMenu}>
                 <i className="fas fa-ellipsis-h"></i>
             </button>
             <ul className={ulClassName} ref={ulRef}>
                 <li onClick={() => history.push(`/photos/${photo.id}/edit`)}>
-                    edit
-                    {/* <OpenModalButton
-                    buttonText="Edit"
-                    onItemClick={closeMenu}
-                    modalComponent={<UpdatePostForm post={photo}/>}
-                    /> */}
+                    <button>Edit</button>
                 </li>
                 <li>
                     <OpenModalButton
