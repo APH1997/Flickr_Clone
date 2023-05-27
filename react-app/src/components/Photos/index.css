@@ -1,15 +1,17 @@
 .photo-form-container{
     height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-flow: column;
+    justify-content: flex-start;
     align-items: center;
+    gap: 75px;
 }
 
 .photo-form{
     display: flex;
     flex-flow: row;
     width: 30%;
-    gap: 30px;
+    gap: 20px;
 }
 .photo-form-left-upper{
     display: flex;
@@ -36,7 +38,41 @@
     display: none;
 }
 
+#photo-form-preview{
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
 
+.photo-form-preview-container{
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    height: fit-content;
+    background-color: lightgrey;
+    border-radius: 3px;
+
+}
+
+#hide-text{
+    display: none;
+}
+.photo-form-preview-container:hover span{
+    text-decoration: underline;
+    cursor: pointer;
+    color: #8000FF;
+}
+.photo-form-preview-text{
+    position: absolute;
+    align-self: center;
+    color: whitesmoke;
+    font-weight: bolder;
+    font-size: 20px;
+    z-index: 0;
+
+
+
+}
 
 
 /* .photo-description{

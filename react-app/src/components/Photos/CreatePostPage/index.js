@@ -96,6 +96,7 @@ function PostForm({ post }) {
 
     return (
         <div className="photo-form-container">
+            <h1>Upload a Photo</h1>
             <form className="photo-form" encType="multipart/form-data" onSubmit={handleSubmit} method={post ? "PUT" : "POST"}>
                 <div className="photo-form-left-side">
                     <div className="photo-form-left-upper">
@@ -120,16 +121,21 @@ function PostForm({ post }) {
                     <button disabled={isUploading}>{isUploading ? "Uploading..." : "Submit"}</button>
                     {hasSubmitted && Object.values(errors).length > 0 &&
                         Object.values(errors).map((error) =>
-                        <p className="errors">{error}</p>)
+                        <p className="errors">*{error}</p>)
                     }
                 </div>
                 <div className="photo-form-section3">
-                    <label className="upload-photo-input">Upload Photo {hasSubmitted && errors.photo ? <span style={{color:"red"}}>*</span>:''}
+                    <label className="upload-photo-input">
                     <input
                         type="file"
                         accept="image/*"
                         onChange={handlePhotoChange} />
-                    <img alt="" src={photoPreview} style={{ width: "400px", height: "400px" }}/>
+                    <div className="photo-form-preview-container">
+                        <span className="photo-form-preview-text" id={photoPreview ? "hide-text" : ""}>
+                            {hasSubmitted && errors.photo ?
+                            <span style={{color:"red", textDecoration:"none"}}>*</span> : ''}SELECT AN IMAGE FOR UPLOAD</span>
+                        <img id="photo-form-preview" alt="" src={photoPreview}/>
+                    </div>
                     </label>
                 </div>
             </form>
