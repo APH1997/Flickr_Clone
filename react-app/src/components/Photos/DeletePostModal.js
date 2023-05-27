@@ -25,7 +25,7 @@ function DeletePostModal({photoId}){
             <h2>Are you sure you want to remove this post?</h2>
             <div className="delete-yes-no-btns">
                 <button onClick={() => handleYes()}>{isDeleting ? "Deleting..." : "Yes, delete it"}</button>
-                <button onClick={() => closeModal()} disabled={isDeleting}>No</button>
+                <button onClick={() => closeModal()} disabled={isDeleting}>Cancel</button>
             </div>
         </div>
     )

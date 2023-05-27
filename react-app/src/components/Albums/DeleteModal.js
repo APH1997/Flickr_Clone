@@ -23,14 +23,14 @@ function DeleteAlbumModal({album}){
 
     }
     return (
-        <div>
+        <div className="delete-album-modal">
             <h2>Are you sure want to delete this album?</h2>
             <h3>{album.title}: {album.pics.length} photo(s)</h3>
             <p>Photos within this album will NOT be deleted</p>
 
-            <div>
+            <div className="delete-album-modal-btns">
                 <button onClick={() => handleDelete()}>
-                    {isDeleting ? "Deleting..." : "Delete Album"}
+                    {isDeleting ? "Deleting..." : "Yes, delete it"}
                 </button>
                 <button onClick={() => closeModal()}>
                     Cancel

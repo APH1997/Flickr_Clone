@@ -42,7 +42,6 @@ form button{
 }
 form button:hover{
     cursor: pointer;
-    /* color: black; */
     background-color: #8000FF;
     transition: background-color .2s;
     font-weight: bold;

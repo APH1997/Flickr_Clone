@@ -88,6 +88,39 @@ input[type="checkbox"]{
     padding: 20px;
 }
 
+/* DELETE ALBUM MODAL */
+#modal-content .delete-album-modal{
+    display: flex;
+    flex-flow: column;
+    padding: 10px;
+    align-items: center;
+}
+#modal-content .delete-album-modal button{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #8000ff95;
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+    border: .5px solid grey;
+    transition: background-color .2s;
+    width: 100px;
+}
+#modal-content .delete-album-modal h2, h3{
+    margin-bottom: 0px;
+}
+#modal-content .delete-album-modal p {
+    margin-top: 0px;
+}
+#modal-content .delete-album-modal button:hover{
+    cursor: pointer;
+    background-color: #8000FF;
+    transition: background-color .2s;
+    font-weight: bold;
+}
+#modal-content .delete-album-modal .delete-album-modal-btns{
+    display: flex;
+    gap: 20px;
+}
 /* ALBUM SHOW */
 .album-photos-container{
     display: flex;
