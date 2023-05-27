@@ -179,7 +179,13 @@
     display:flex;
     justify-content: center;
     gap: 10px;
-    height: 100vh;
+    height: 100%;
+    flex-flow: wrap;
+    width: 70%;
+}
+.album-card-container-container{
+    display: flex;
+    justify-content: center;
 }
 
 .album-card-container{
@@ -212,6 +218,18 @@
 .album-card-details:hover p{
     text-decoration: underline;
 }
+
+#delete-album-button button{
+    padding: 4px;
+    background-color: rgb(228, 228, 228);
+    border: none;
+}
+#delete-album-button:hover button{
+    color: red;
+    cursor: pointer;
+}
+
+
 
 
 #create-album-button:hover{
@@ -256,6 +274,10 @@
     color: white;
     border: none;
     background-color: transparent;
+}
+
+#edit-album-button button span{
+    font-family: 'Quicksand', sans-serif;
 }
 
 .album-cover-author{
