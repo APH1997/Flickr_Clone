@@ -81,8 +81,10 @@
     display: flex;
     flex-flow: column wrap;
     align-content: center;
-    height: 250px;
+    height: 300px;
     width: 250px;
+    padding: 25px;
+    gap: 10px;
 }
 
 /* Profile Nav Bar */
@@ -306,9 +308,10 @@ padding-top: 0;
 .no-photos-comp-container{
     display: flex;
     flex-flow: column wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
+    margin-top: 5px;
 }
 .no-photos-comp-container button{
     font-family: 'Quicksand', sans-serif;
@@ -429,4 +432,5 @@ padding-top: 0;
     gap: 5px;
     justify-content: center;
     height: 100%;
+    padding-bottom: 50px;
 }

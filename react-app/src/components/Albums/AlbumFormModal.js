@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { createAlbumThunk, getAllPhotosThunk } from "../../store/photos";
 import { updateAlbumThunk } from "../../store/albums";
+import NoPhotos from "../UserPage/ProfileNav/NoPhotos";
 
 function AlbumFormModal({album}){
     // if album is defined, then it is an edit form
@@ -172,9 +173,7 @@ function AlbumFormModal({album}){
             //If no photos, redirect to upload photos
             ||
                 <div>
-                    <h2>Hm...</h2>
-                    <h3>You don't have any photos yet!</h3>
-                    <div onClick={handleNoPhotoClick}>Click here to upload some!</div>
+                    <NoPhotos />
                 </div>
 
             }
