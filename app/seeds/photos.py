@@ -134,8 +134,59 @@ def seed_photos():
         created_at=fake.date_between(start_date='-1y', end_date='today'),
     )
 
+    cloud1 = Photo(
+        author_id=5,
+        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/clouds.jpg",
+        caption="Found Some Clouds",
+        description="Puffy and white, they resemble cotton balls floating in the sky.",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    cloud2 = Photo(
+        author_id=5,
+        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/clouds2.jpg",
+        caption="Oh look, More Clouds!",
+        description=" Low and featureless, they create a gray, blanket-like cover overhead.",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    cloud3 = Photo(
+        author_id=5,
+        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/clouds3.jpg",
+        caption="Love the Sky",
+        description="Delicate and wispy, they form high in the atmosphere, resembling feathery streaks.",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    cloud4 = Photo(
+        author_id=5,
+        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/clouds4.jpg",
+        caption="Clouds",
+        description="Dark and ominous, they bring rain or storms, casting a gloomy atmosphere.",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    cloud5 = Photo(
+        author_id=5,
+        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/clouds5.jpg",
+        caption="Look out!",
+        description="Mid-level and lumpy, they create a mottled pattern with shades of gray and white.",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    cloud6 = Photo(
+        author_id=5,
+        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/clouds6.jpg",
+        caption="Lorum Ipsum",
+        description="Small, high-level clouds that resemble a field of tiny cotton balls.",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    cloud7 = Photo(
+        author_id=5,
+        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/clouds7.jpg",
+        caption="Woah, Check out this Cloud!",
+        description="Towering and majestic, they can reach great heights, producing thunderstorms and lightning.",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
 
-    all_pics = [sunset1, sunset2, sunset3,
+
+    all_pics = [sunset1, sunset2, sunset3, sunset4,
+                sunset5, sunset6, sunset7,
                 space1, space2, space3, space4,
                 space5, space6, space7, space8,
                 space9, space10, space11]
