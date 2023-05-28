@@ -34,7 +34,7 @@ function ContentCard({photo}){
                 }
 
             </div>
-            <img alt="" id="photo" src={photo.url}></img>
+            <img alt="" className="photo" src={photo.url}></img>
             <p id="photo-caption">{photo.caption}</p>
 
             <div className="description-and-comments">

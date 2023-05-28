@@ -21,12 +21,14 @@ function PhotosTab(){
                 </div>
             }
 
-            <div className="photo-show-container">
-                {
-                photos.map(photo => {
-                    return <PhotoShow id={photo.id} photo={photo}/>
-                })}
-            </div>
+            {photos.length > 0 &&
+                <div className="photo-show-container">
+                    {
+                        photos.map(photo => {
+                            return <PhotoShow id={photo.id} photo={photo}/>
+                        })}
+                </div>
+            }
 
             {!photos.length && user.id === pageOwner.id &&
                 <NoPhotos />

@@ -1,24 +1,25 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { useState, useEffect, useContext } from "react"
 import { createPhotoThunk, updatePhotoThunk } from "../../../store/photos"
 import "../index.css"
 import { authenticate } from "../../../store/session"
 import { useModal } from "../../../context/Modal"
 
-function PostForm({post}) {
-    const {closeModal} = useModal()
-    const user = useSelector(state => state.session.user)
+function PostForm({ type }) {
+    const { closeModal } = useModal()
+    const {photoId} = useParams()
     const history = useHistory()
     const dispatch = useDispatch()
-    const [caption, setCaption] = useState(post ? post.caption : "")
-    const [description, setDescription] = useState(post ? post.description : "")
+    const user = useSelector(state => state.session.user)
+    const allPhotos = useSelector(state => state.photos.allPhotos)
+    const [caption, setCaption] = useState(type ? allPhotos[photoId].caption : "")
+    const [description, setDescription] = useState(type ? allPhotos[photoId].description : "")
     const [photo, setPhoto] = useState(null)
-    const [photoPreview, setPhotoPreview] = useState(post ? post.url : null)
+    const [photoPreview, setPhotoPreview] = useState(type ? allPhotos[photoId].url : null)
     const [isUploading, setIsUploading] = useState(false)
-
+    const [hasSubmitted, setHasSubmitted] = useState(false)
     const [errors, setErrors] = useState({})
-
     const handlePhotoChange = (e) => {
         setPhoto(e.target.files[0]);
         setPhotoPreview(URL.createObjectURL(e.target.files[0]))
@@ -26,20 +27,20 @@ function PostForm({post}) {
 
     useEffect(() => {
         const errObj = {}
-        if (!caption){
+        if (!caption) {
             errObj.caption = "Please caption your photo."
         }
-        if (caption.length > 100){
+        if (caption.length > 100) {
             errObj.caption = "Caption must be less than 100 characters."
         }
-        if (description && description.length > 500){
+        if (description && description.length > 500) {
             errObj.description = "Description must not exceed 500 characters."
         }
-        if (!post && !photo){
+        if (!type && !photo) {
             errObj.photo = "Please select a photo to upload."
         }
 
-        if (Object.keys(errObj).length){
+        if (Object.keys(errObj).length) {
             setErrors(errObj)
         } else setErrors({})
 
@@ -48,10 +49,10 @@ function PostForm({post}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        setHasSubmitted(true)
         if (Object.keys(errors).length) return;
 
-        if (post){
+        if (type) {
             const formData = new FormData();
             formData.append("author_id", user.id);
             photo && formData.append("photo", photo);
@@ -59,7 +60,7 @@ function PostForm({post}) {
             formData.append("description", description)
 
             setIsUploading(true);
-            await dispatch(updatePhotoThunk(post.id, formData))
+            await dispatch(updatePhotoThunk(photoId, formData))
 
             //reload user with updated photos
             setTimeout(() => {
@@ -69,9 +70,9 @@ function PostForm({post}) {
             setTimeout(() => {
                 setIsUploading(false);
             }, 1000)
-
+            setHasSubmitted(false)
             closeModal()
-            history.push(`/photos/${post.id}`);
+            history.push(`/photos/${photoId}`);
 
         } else {
 
@@ -88,50 +89,59 @@ function PostForm({post}) {
                 setIsUploading(false);
             }, 1000);
             closeModal()
+            setHasSubmitted(false)
             history.push(`/photos/${newPhoto.id}`)
         }
 
     }
 
     return (
-        <form className="post-form" encType="multipart/form-data" onSubmit={handleSubmit} method={post ? "PUT" : "POST"}>
-            <div className="caption-label-input">
-                <label>Caption</label>
-                <input
-                type="text"
-                value={caption}
-                onChange={(e) => setCaption(e.target.value)}
-                />
-                {errors.caption &&
-                <p className="errors">{errors.caption}</p>
-                }
-            </div>
-            <div className="photo-description">
-                <label>Description</label>
-                <textarea
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                />
-                {errors.description &&
-                <p className="errors">{errors.description}</p>
-                }
-            </div>
-            <div className="photo-form-image-section">
-                <label>Upload Photo</label>
-                <input
-                type="file"
-                accept="image/*"
-                onChange={handlePhotoChange}/>
-                {errors.photo &&
-                <p className="errors">{errors.photo}</p>
-                }
-                <img alt="" src={photoPreview} style={{width:"100px", height:"100px"}}/>
-            </div>
+        <div className="photo-form-container">
+            <h1>{type ? "Edit your post" : "Upload a Photo"}</h1>
+            <form className="photo-form" encType="multipart/form-data" onSubmit={handleSubmit} method={type ? "PUT" : "POST"}>
+                <div className="photo-form-left-side">
+                    <div className="photo-form-left-upper">
+                        <div className="photo-form-section1">
+                            <label>{type ? "Edit Caption" : "Caption"}{hasSubmitted && errors.caption ? <span style={{color:"red"}}>*</span>:''}</label>
+                            <input
+                                type="text"
+                                value={caption}
+                                onChange={(e) => setCaption(e.target.value)}
+                            />
+                        </div>
 
-            <button disabled={isUploading}>{isUploading ? "Uploading..." : "Submit"}</button>
-
-        </form>
+                        <div className="photo-form-section2">
+                            <label>{type ? "Edit Description" : "Description"}{hasSubmitted && errors.description ? <span style={{color:"red"}}>*</span>:''}</label>
+                            <textarea
+                                type="text"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <button disabled={isUploading}>{isUploading ? "Uploading..." : "Submit"}</button>
+                    {hasSubmitted && Object.values(errors).length > 0 &&
+                        Object.values(errors).map((error) =>
+                        <p className="errors">*{error}</p>)
+                    }
+                </div>
+                <div className="photo-form-section3">
+                    <label className="upload-photo-input">
+                        {type ? "Click to upload a different file" : ""}
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handlePhotoChange} />
+                    <div className="photo-form-preview-container">
+                        <span className="photo-form-preview-text" id={photoPreview ? "hide-text" : ""}>
+                            {hasSubmitted && errors.photo ?
+                            <span style={{color:"red", textDecoration:"none"}}>*</span> : ''}SELECT AN IMAGE FOR UPLOAD</span>
+                        <img id="photo-form-preview" alt="" src={photoPreview}/>
+                    </div>
+                    </label>
+                </div>
+            </form>
+        </div>
     )
 }
 

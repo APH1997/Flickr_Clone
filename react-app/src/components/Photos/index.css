@@ -1,23 +1,130 @@
-.photo-description{
+.photo-form-container{
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 75px;
+}
+
+.photo-form{
+    display: flex;
+    flex-flow: row;
+    width: 30%;
+    gap: 20px;
+}
+.photo-form-left-upper{
+    display: flex;
+    flex-flow: column;
+    gap: 25px;
+}
+.photo-form button{
+    margin-top: 50px;
+}
+.photo-form>div{
     display: flex;
     flex-flow: column;
 }
-
-.photo-form-image-section{
-    display: flex;
-    flex-flow: column;
-    padding-bottom: 20px;
+.photo-form-left-side{
+    height: 50%;
+    background-color: whitesmoke;
+    padding: 5px;
 }
- .post-form{
-    display: flex;
-    flex-flow: column wrap;
-    align-content: center;
-    gap: 10px;
-    border: red 1px solid;
-    padding-top: 150px;
- }
-
- .caption-label-input{
+.photo-form-left-side>div{
     display: flex;
     flex-flow: column;
- }
+}
+.upload-photo-input>input{
+    display: none;
+}
+
+#photo-form-preview{
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.photo-form-preview-container{
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    height: fit-content;
+    background-color: lightgrey;
+    border-radius: 3px;
+
+}
+
+#hide-text{
+    display: none;
+}
+.photo-form-preview-container:hover span{
+    text-decoration: underline;
+    cursor: pointer;
+    color: #8000FF;
+}
+.photo-form-preview-text{
+    position: absolute;
+    align-self: center;
+    color: whitesmoke;
+    font-weight: bolder;
+    font-size: 20px;
+    z-index: 0;
+}
+
+/* DELETE POST MODAL */
+.delete-modal-content-container{
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.delete-yes-no-btns{
+    display: flex;
+    gap: 50px;
+}
+
+.delete-yes-no-btns button{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #8000ff95;
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+    border: .5px solid grey;
+    transition: background-color .2s;
+    width: 200px;
+}
+.delete-yes-no-btns button:hover{
+    cursor: pointer;
+    background-color: #8000FF;
+    transition: background-color .2s;
+    font-weight: bold;
+}
+
+/* COMMENTS */
+#modal-content .delete-comment-modal-form{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 10px;
+}
+#modal-content .delete-comment-buttons-container{
+    display: flex;
+    gap: 20px
+}
+#modal-content .delete-comment-modal-form button{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #8000ff95;
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+    border: .5px solid grey;
+    transition: background-color .2s;
+    width: 50px;
+
+}
+#modal-content .delete-comment-modal-form button:hover{
+    cursor: pointer;
+    background-color: #8000FF;
+    transition: background-color .2s;
+    font-weight: bold;
+}

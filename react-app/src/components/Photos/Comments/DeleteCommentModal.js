@@ -16,10 +16,12 @@ function DeleteComment({commentId, photoId}){
     }
 
     return (
-        <div>
+        <div className="delete-comment-modal-form">
             <h2>Delete comment?</h2>
-            <button onClick={handleYes}>Yes</button>
-            <button onClick={handleNo}>No</button>
+            <div className="delete-comment-buttons-container">
+                <button onClick={handleYes}>Yes</button>
+                <button onClick={handleNo}>No</button>
+            </div>
         </div>
     )
 }

@@ -44,11 +44,13 @@ function LoginFormPage() {
         <span> <span onClick={() => signupRedirect()} className="no-account-options">Sign up</span> </span>
         or log in as a <span className="no-account-options" onClick={() => handleDemo()}>Demo User!</span>
       </p>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
+        {errors.length > 0 &&
+
+            errors.map((error, idx) => (
+              <p className="errors" key={idx}>{error.split(': ')[1]}</p>
+              ))
+
+        }
         <label>
           Email
           <input

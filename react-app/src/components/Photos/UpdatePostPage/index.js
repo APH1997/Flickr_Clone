@@ -1,8 +1,8 @@
 import PostForm from "../CreatePostPage"
 
-function UpdatePostForm({post}){
+function UpdatePostForm(){
     return (
-        <PostForm post={post}/>
+        <PostForm type={"edit"}/>
     )
 }
 

@@ -72,8 +72,9 @@ function ProfileButton({ user }) {
 								<i className="fas fa-cloud-upload-alt"></i>
                 Upload Photo
             </li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
+            <li onClick={handleLogout}>
+                Log Out
+                <i className="fas fa-sign-out-alt"></i>
             </li>
           </>
         ) : (

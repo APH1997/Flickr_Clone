@@ -10,7 +10,7 @@ import { useEffect } from "react";
 function AlbumsTab(){
     const pageOwner = useSelector(state => state.session.profilePageUser)
     const sessionUser = useSelector(state => state.session.user)
-    
+
     if (!pageOwner) return null;
     return (
         <div style={{marginTop: "5px"}}>
@@ -39,10 +39,12 @@ function AlbumsTab(){
                 <NoAlbums />
             }
 
-            <div className="main-album-card-container">
-                {pageOwner.albums.map(album => {
-                    return <AlbumCard album={album}/>
-                })}
+            <div className="album-card-container-container">
+                <div className="main-album-card-container">
+                    {pageOwner.albums.map(album => {
+                        return <AlbumCard album={album}/>
+                    })}
+                </div>
             </div>
 
 

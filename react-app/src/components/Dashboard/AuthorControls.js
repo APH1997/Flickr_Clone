@@ -30,25 +30,21 @@ function AuthorControls({photo}){
 
     const ulClassName = "author-controls-dropdown" + (showMenu ? "" : " hidden");
     const closeMenu = () => setShowMenu(false)
-
+    if (!photo) return null;
     return(
         <div onClick={(e) => e.stopPropagation()}>
-            <button id="open-author-controls-btn"onClick={openMenu}>
+            <button id="open-author-controls-btn" className={showMenu ? "menu-is-open" : ""}onClick={() => setShowMenu(!showMenu)}>
                 <i className="fas fa-ellipsis-h"></i>
             </button>
             <ul className={ulClassName} ref={ulRef}>
-                <li>
-                    <OpenModalButton
-                    buttonText="Edit"
-                    onItemClick={closeMenu}
-                    modalComponent={<UpdatePostForm post={photo}/>}
-                    />
+                <li onClick={() => history.push(`/photos/${photo.id}/edit`)}>
+                    <button>Edit</button>
                 </li>
                 <li>
                     <OpenModalButton
                     buttonText="Delete"
                     onItemClick={closeMenu}
-                    modalComponent={<DeletePostModal photoId={photo.id}/>}
+                    modalComponent={<DeletePostModal photo={photo}/>}
                     />
                 </li>
             </ul>

@@ -13,6 +13,8 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import PhotoDetails from "./components/Photos/PhotoDetails";
 import { PhotoContextProvider } from "./context/Photo";
 import AlbumFormModal from "./components/Albums/AlbumFormModal";
+import Footer from "./components/Footer";
+import UpdatePostForm from "./components/Photos/UpdatePostPage";
 
 
 function App() {
@@ -35,6 +37,11 @@ function App() {
           <Route exact path="/photos/new">
             <ProtectedRoute>
               <PostForm />
+            </ProtectedRoute>
+          </Route>
+          <Route exact path="/photos/:photoId/edit">
+            <ProtectedRoute>
+              <UpdatePostForm />
             </ProtectedRoute>
           </Route>
           <Route exact path="/photos/:photoId">
@@ -70,6 +77,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

@@ -102,38 +102,43 @@ function ProfileModal({user}){
         onSubmit={(e) => handleSubmit(e)}
         >
 
-            <label>Change Profile Picture</label>
-            <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setProPic(e.target.files[0])}
-            />
-            <label>Change Cover Photo</label>
-            <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setCoverPic(e.target.files[0])}
-            />
-            <label>Edit First Name</label>
-            <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            />
+            <label>Change Profile Picture
+                <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setProPic(e.target.files[0])}
+                />
+            </label>
+            <label>Change Cover Photo
+                <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setCoverPic(e.target.files[0])}
+                />
+            </label>
+            <label>Edit First Name
+                <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                />
+            </label>
             {errors.firstName && <p className="errors">{errors.firstName}</p>}
-            <label>Edit Last Name</label>
-            <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            />
+            <label>Edit Last Name
+                <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                />
+            </label>
             {errors.lastName && <p className="errors">{errors.lastName}</p>}
-            <label>Edit Username</label>
-            <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            />
+            <label>Edit Username
+                <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                />
+            </label>
             {errors.lastName && <p className="errors">{errors.lastName}</p>}
             <button>Submit</button>
         </form>

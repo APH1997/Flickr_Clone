@@ -81,8 +81,10 @@
     display: flex;
     flex-flow: column wrap;
     align-content: center;
-    height: 250px;
+    height: 300px;
     width: 250px;
+    padding: 25px;
+    gap: 10px;
 }
 
 /* Profile Nav Bar */
@@ -116,6 +118,7 @@
 .about-tab-main-container{
     display: flex;
     justify-content: center;
+
 }
 #userpage-bio-box{
     display: flex;
@@ -124,15 +127,53 @@
     width: 70%;
     margin-top: 50px;
     padding: 10px;
-    /* border-radius: 7px; */
+    border-radius: 7px;
 }
 #about-me-h3{
     padding-left: 40px;
     padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 #bio-text{
     width: 60%;
     align-self: center;
+    min-height: 260px;
+}
+
+.under-edit{
+    color: red;
+}
+
+#edit-bio-button:hover{
+    cursor: pointer;
+    color: red;
+}
+
+.edit-bio-field{
+    width: 60%;
+    align-self: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    height: 260px;
+}
+.edit-bio-field textarea{
+    width: 100%;
+    height: 20px;
+    transition: height 2s;
+    font-size: 16px;
+
+}
+
+.edit-bio-field textarea:focus{
+    height: 240px;
+    transition: height 1s;
+}
+
+#bio-submit-and-count{
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }
 
 /* Album Card */
@@ -140,6 +181,13 @@
     display:flex;
     justify-content: center;
     gap: 10px;
+    height: 100%;
+    flex-flow: wrap;
+    width: 70%;
+}
+.album-card-container-container{
+    display: flex;
+    justify-content: center;
 }
 
 .album-card-container{
@@ -172,6 +220,18 @@
 .album-card-details:hover p{
     text-decoration: underline;
 }
+
+#delete-album-button button{
+    padding: 4px;
+    background-color: rgb(228, 228, 228);
+    border: none;
+}
+#delete-album-button:hover button{
+    color: red;
+    cursor: pointer;
+}
+
+
 
 
 #create-album-button:hover{
@@ -218,6 +278,10 @@
     background-color: transparent;
 }
 
+#edit-album-button button span{
+    font-family: 'Quicksand', sans-serif;
+}
+
 .album-cover-author{
     display: flex;
     justify-content: space-between;
@@ -244,8 +308,10 @@ padding-top: 0;
 .no-photos-comp-container{
     display: flex;
     flex-flow: column wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    height: 100vh;
+    margin-top: 5px;
 }
 .no-photos-comp-container button{
     font-family: 'Quicksand', sans-serif;
@@ -284,8 +350,9 @@ padding-top: 0;
 .no-albums-comp-container{
     display: flex;
     flex-flow: column wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    height: 100vh;
 }
 .no-albums-comp-container button{
     font-family: 'Quicksand', sans-serif;
@@ -364,4 +431,6 @@ padding-top: 0;
     flex-flow: wrap;
     gap: 5px;
     justify-content: center;
+    height: 100%;
+    padding-bottom: 50px;
 }
