@@ -81,7 +81,7 @@
     display: flex;
     flex-flow: column wrap;
     align-content: center;
-    height: 300px;
+    height: fit-content;
     width: 250px;
     padding: 25px;
     gap: 10px;
