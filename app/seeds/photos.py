@@ -184,9 +184,48 @@ def seed_photos():
         created_at=fake.date_between(start_date='-1y', end_date='today'),
     )
 
+    moon1 = Photo(
+        author_id=4,
+        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/moon_and_venus.jpg",
+        caption="Moon and Venus",
+        description="On the evening of April 23, 2023, in Yuzhno-Morskoy (Primorsky Krai), I photographed the conjunction of the crescent Moon and Venus. I used my camera Canon EOS 60D (with 135mm lens).",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    moon2 = Photo(
+        author_id=4,
+        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/34waxinggibbous.jpg",
+        caption="Waxing Gibbous",
+        description="Tonight's 34 percent illuminated waxing gibbous moon",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    moon3 = Photo(
+        author_id=4,
+        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/spookymoon.jpg",
+        caption="Spooky Mood in the Forest",
+        description="full moon between the branches",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    moon4 = Photo(
+        author_id=4,
+        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/moonandpliades.jpg",
+        caption="Conjunction of the Moon and The Pleiades",
+        description="Captured with a Vixen VSD astrograph and a Nikon ZII, six 1250 .5 sec x 120.",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    moon5 = Photo(
+        author_id=4,
+        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/waxing_crescent.jpg",
+        caption="Waxing Crescent",
+        description="I can't believe I finally caught one!! Yes!!!",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+
 
     all_pics = [sunset1, sunset2, sunset3, sunset4,
                 sunset5, sunset6, sunset7,
+                cloud1, cloud2, cloud3, cloud4,
+                cloud5, cloud6, cloud7,
+                moon1, moon2, moon3, moon4, moon5,
                 space1, space2, space3, space4,
                 space5, space6, space7, space8,
                 space9, space10, space11]
