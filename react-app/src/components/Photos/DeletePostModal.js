@@ -5,20 +5,23 @@ import { useState } from "react"
 import { useHistory } from "react-router-dom"
 
 
-function DeletePostModal({photoId}){
+
+function DeletePostModal({photo}){
     const history = useHistory()
     const { closeModal } = useModal()
     const dispatch = useDispatch()
     const [isDeleting, setIsDeleting] = useState(false)
 
-    const handleYes = async () => {
+
+    async function handleYes() {
         setIsDeleting(true)
-        history.replace('/')
-        await dispatch(deletePhotoThunk(photoId))
-        setTimeout(() => setIsDeleting(false), 500)
+        await dispatch(deletePhotoThunk(photo.id))
+        setTimeout(() => setIsDeleting(false), 1000)
+        history.replace(`/`)
         closeModal()
     }
 
+    if (!photo) return null;
 
     return (
         <div className="delete-modal-content-container">

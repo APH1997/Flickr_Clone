@@ -59,7 +59,7 @@ function PhotoDetails(){
             history.goBack()
         }
     }
-
+    if (!photo) return null;
     return (
         <div>
             <div className="big-black-background-div">

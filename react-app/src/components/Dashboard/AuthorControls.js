@@ -30,7 +30,7 @@ function AuthorControls({photo}){
 
     const ulClassName = "author-controls-dropdown" + (showMenu ? "" : " hidden");
     const closeMenu = () => setShowMenu(false)
-
+    if (!photo) return null;
     return(
         <div onClick={(e) => e.stopPropagation()}>
             <button id="open-author-controls-btn" className={showMenu ? "menu-is-open" : ""}onClick={() => setShowMenu(!showMenu)}>
@@ -44,7 +44,7 @@ function AuthorControls({photo}){
                     <OpenModalButton
                     buttonText="Delete"
                     onItemClick={closeMenu}
-                    modalComponent={<DeletePostModal photoId={photo.id}/>}
+                    modalComponent={<DeletePostModal photo={photo}/>}
                     />
                 </li>
             </ul>
