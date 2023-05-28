@@ -28,9 +28,11 @@ function AlbumsTab(){
             }
 
             {pageOwner.id !== sessionUser.id &&
+            <div className="no-albums-container">
                 <h2>
                     {!pageOwner.albums.length ? `It looks like ${pageOwner.first_name} hasn't put together any albums... yet.` : ''}
                 </h2>
+            </div>
             }
 
             {pageOwner.id === sessionUser.id &&

@@ -305,6 +305,8 @@ justify-content: center;
 padding-top: 0;
 }
 
+
+
 .no-photos-comp-container{
     display: flex;
     flex-flow: column wrap;
@@ -346,6 +348,11 @@ padding-top: 0;
     background-color: #8000FF;
     transition: background-color .2s;
     font-weight: bold;
+}
+
+.no-albums-container{
+    display: flex;
+    justify-content: center;
 }
 .no-albums-comp-container{
     display: flex;
