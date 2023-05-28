@@ -1,6 +1,6 @@
 from app.models import db, Album, environment, SCHEMA
 from sqlalchemy.sql import text
-
+from random import choice
 
 def seed_albums(all_pics):
     space = Album(
@@ -19,7 +19,25 @@ def seed_albums(all_pics):
         album_photos = [pic for pic in all_pics if pic.author_id==2]
     )
 
-    all_albums = [space, sunsets]
+    clouds = Album(
+        cover_photo_url = choice([pic.aws_url for pic in all_pics if pic.author_id==5]),
+        author_id = 5,
+        title = "Please, Just Clouds",
+        description = "Who doesn't like these fluffy beauts? I collected my best :)",
+        album_photos = [pic for pic in all_pics if pic.author_id==5],
+    )
+
+    moon = Album(
+        cover_photo_url = choice([pic.aws_url for pic in all_pics if pic.author_id==4]),
+        author_id=4,
+        title = "My Moon Collection",
+        description = "Just sharing my work in progress. One day, I want to capture every phase.",
+        album_photos = [pic for pic in all_pics if pic.author_id==4]
+    )
+
+
+
+    all_albums = [space, sunsets, clouds, moon]
 
     add = [db.session.add(album) for album in all_albums]
     db.session.commit()

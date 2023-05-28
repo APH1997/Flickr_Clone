@@ -31,7 +31,19 @@ def seed_comments(users, pics):
         "Now I've seen a lotta pictures in my day, but this takes the cake",
         "Neato",
         "Does anyone else want to lick this picture?",
-        "I wish MY photos came out this good. Wow!"
+        "I wish MY photos came out this good. Wow!",
+        "This sight might not look great, but the developer sure knows what they're doing!",
+        "Good job!",
+        "My brain literally cannot comprehend this",
+        "Oh?",
+        "First",
+        "I'll drink to that",
+        "Reminds me of the first time I licked a 9v battery lol",
+        "I almost get swept out to sea when I was little. My dad rescued me.",
+        "Get this person a raise",
+        "Did an AI make this?",
+        "Really? In this economy? Yeah right, buster.",
+        "oh, I forgot what I was going to say",
     ]
 
     all_comments = [Comment(
@@ -40,7 +52,7 @@ def seed_comments(users, pics):
         content = comment
     ) for comment in generic_comments]
 
-  
+
     add = [db.session.add(comment) for comment in all_comments]
 
     db.session.commit()
