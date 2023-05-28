@@ -12,8 +12,8 @@ def seed_users():
         username='GalacticGawker', first_name='Robert', last_name='Szabo', email='bobbie@aa.io', password='password')
     luna = User(
         username='LunarLunatic', first_name='Luthor', last_name='Ludlowe', email='luthor@aa.io', password='password')
-    padding1 = User(
-        username='Gribble419', first_name='Gary', last_name='Song', email='gary@aa.io', password='password')
+    clouds = User(
+        username='CloudConniseur', first_name='Barnaby', last_name='Klaxton', email='barnaby@aa.io', password='password')
     padding2 = User(
         username='HubbleBubbleTrubble', first_name='Dirk', last_name='Samson', email='dirk@aa.io', password='password')
     padding3 = User(
@@ -25,11 +25,11 @@ def seed_users():
     padding6 = User(
         username='GlueEater1122', first_name='Gloria', last_name='Kaufmann', email='gloria@aa.io', password='password')
 
-    allUsers = [demo, marnie, bobbie, luna, padding1, padding2,
+    allUsers = [demo, marnie, bobbie, luna, clouds, padding2,
                 padding3, padding4, padding5, padding6]
     addAll = [db.session.add(user) for user in allUsers]
     db.session.commit()
-    
+
     return allUsers
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't

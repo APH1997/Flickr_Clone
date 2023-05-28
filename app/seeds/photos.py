@@ -10,7 +10,7 @@ def seed_photos():
         author_id=2,
         aws_url='https://highrme-pics.s3.us-east-2.amazonaws.com/sunset_seed_1.webp',
         caption='Caught this beaut on the way to Zumba LOL',
-        description='',
+        description='Sunsets cast a serene ambiance as the sun dips below the horizon, painting the sky in a vivid display of colors.',
         created_at=fake.date_between(start_date='-1y', end_date='today'),
     )
     sunset2 = Photo(
@@ -25,6 +25,34 @@ def seed_photos():
         aws_url='https://highrme-pics.s3.us-east-2.amazonaws.com/sunset_seed_3.jpg',
         caption='Crispy Clouds Before Sunset',
         description='',
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    sunset4 = Photo(
+        author_id=2,
+        aws_url='https://highrme-pics.s3.us-east-2.amazonaws.com/sunset4.jpg',
+        caption='I love sunsets :)',
+        description="The breathtaking hues of a sunset emerge from the scattering of light particles in the Earth's atmosphere.",
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    sunset5 = Photo(
+        author_id=2,
+        aws_url='https://highrme-pics.s3.us-east-2.amazonaws.com/sunset5.jpg',
+        caption='Dusty Dusk',
+        description='Coastal regions boast mesmerizing sunsets, with the interplay of water reflecting and intensifying the radiant colors.',
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    sunset6 = Photo(
+        author_id=2,
+        aws_url='https://highrme-pics.s3.us-east-2.amazonaws.com/sunset6.jpg',
+        caption='Woke up like this',
+        description='The duration of a sunset varies depending on the time of year and geographical location, creating unique experiences.',
+        created_at=fake.date_between(start_date='-1y', end_date='today'),
+    )
+    sunset7 = Photo(
+        author_id=2,
+        aws_url='https://highrme-pics.s3.us-east-2.amazonaws.com/sunset7.jpg',
+        caption='Deep Run Sun',
+        description='Sunsets evoke a sense of tranquility, inviting us to pause, reflect, and appreciate the beauty of the natural world.',
         created_at=fake.date_between(start_date='-1y', end_date='today'),
     )
 
