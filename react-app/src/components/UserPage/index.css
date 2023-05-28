@@ -431,6 +431,7 @@ padding-top: 0;
 .photo-show-card{
     width: fit-content;
     margin: 0;
+    height: 300px;
 }
 .photo-show-container{
     width: 95%;
