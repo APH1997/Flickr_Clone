@@ -30,6 +30,12 @@ function PhotosTab(){
                 </div>
             }
 
+            {pageOwner.id !== user.id &&
+                <h2>
+                    {!pageOwner.photos.length ? `${pageOwner.first_name} doesn't have any photos to show off.` : ''}
+                </h2>
+            }
+
             {!photos.length && user.id === pageOwner.id &&
                 <NoPhotos />
             }

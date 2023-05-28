@@ -81,7 +81,7 @@
     display: flex;
     flex-flow: column wrap;
     align-content: center;
-    height: 300px;
+    height: fit-content;
     width: 250px;
     padding: 25px;
     gap: 10px;
@@ -305,6 +305,8 @@ justify-content: center;
 padding-top: 0;
 }
 
+
+
 .no-photos-comp-container{
     display: flex;
     flex-flow: column wrap;
@@ -346,6 +348,11 @@ padding-top: 0;
     background-color: #8000FF;
     transition: background-color .2s;
     font-weight: bold;
+}
+
+.no-albums-container{
+    display: flex;
+    justify-content: center;
 }
 .no-albums-comp-container{
     display: flex;
@@ -424,7 +431,24 @@ padding-top: 0;
 .photo-show-card{
     width: fit-content;
     margin: 0;
+    height: 300px;
 }
+.hover-mask-div{
+    /* position: absolute; */
+    height: 300px;
+    width: fit-content;
+    transition: background-color .3s;
+}
+.hover-mask-div:hover{
+    cursor: pointer;
+    transition: background-color .3s;
+    background-color: rgba(0, 0, 0, 0.411);
+}
+.hover-mask-div>img{
+    z-index: -1;
+    position: relative;
+}
+
 .photo-show-container{
     width: 95%;
     display: flex;

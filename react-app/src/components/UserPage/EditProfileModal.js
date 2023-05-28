@@ -139,7 +139,7 @@ function ProfileModal({user}){
                 onChange={(e) => setUsername(e.target.value)}
                 />
             </label>
-            {errors.lastName && <p className="errors">{errors.lastName}</p>}
+            {errors.username && <p className="errors">{errors.username}</p>}
             <button>Submit</button>
         </form>
     )
