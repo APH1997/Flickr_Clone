@@ -212,7 +212,7 @@ input[type="checkbox"]{
 }
 .album-photo-card{
     width: fit-content;
-    height: fit-content;
+    height: 200px;
 }
 .album-photo-card img{
     height: 200px;
