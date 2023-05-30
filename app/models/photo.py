@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from .album_photo import album_photos
+from .likes import likes
 from datetime import datetime
 
 class Photo(db.Model):
@@ -40,6 +41,12 @@ class Photo(db.Model):
         "Album",
         secondary=album_photos,
         back_populates="album_photos"
+    )
+
+    user_likes = db.relationship(
+        "User",
+        secondar=likes,
+        back_populations="photo_likes"
     )
 
     def to_dict(self):
