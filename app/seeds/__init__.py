@@ -26,7 +26,7 @@ def seed():
         undo_photos()
         undo_users()
     all_users = seed_users()
-    all_pics = seed_photos()
+    all_pics = seed_photos(all_users)
     seed_albums(all_pics)
     all_comments = seed_comments(all_users, all_pics)
     seed_replies(all_comments, all_users)
