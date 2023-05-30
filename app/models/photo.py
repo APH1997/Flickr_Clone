@@ -45,7 +45,7 @@ class Photo(db.Model):
 
     user_likes = db.relationship(
         "User",
-        secondar=likes,
+        secondary=likes,
         back_populations="photo_likes"
     )
 
