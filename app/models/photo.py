@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from .album_photo import album_photos
-from .likes import likes
+from .like import likes
 from datetime import datetime
 
 class Photo(db.Model):
