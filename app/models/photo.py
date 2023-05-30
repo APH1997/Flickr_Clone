@@ -46,7 +46,7 @@ class Photo(db.Model):
     user_likes = db.relationship(
         "User",
         secondary=likes,
-        back_populations="photo_likes"
+        back_populates="photo_likes"
     )
 
     def to_dict(self):
