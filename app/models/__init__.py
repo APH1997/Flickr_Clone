@@ -6,3 +6,4 @@ from .comment import Comment
 from .reply import Reply
 from .album import Album
 from .album_photo import album_photos
+from .likes import likes
