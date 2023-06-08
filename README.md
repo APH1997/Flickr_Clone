@@ -142,8 +142,6 @@ Body:
         ...
     ]
 }
-
-
 ```
 
 ------------------------------------------------------------------------------------------------------------------------------
@@ -173,7 +171,6 @@ Body:
     "cover_photo_url": "https://example.com/cover.jpg",
     "profile_image_url": "https://example.com/profile.jpg"
 }
-
 ```
 
 ------------------------------------------------------------------------------------------------------------------------------
@@ -218,8 +215,6 @@ Body:
     "cover_photo_url": "https://example.com/new_cover.jpg",
     "profile_image_url": "https://example.com/new_profile.jpg"
 }
-
-
 ```
 
 ------------------------------------------------------------------------------------------------------------------------------
@@ -245,7 +240,6 @@ Body:
 {
     "bio": "New bio"
 }
-
 ```
 
 #### Response
@@ -264,25 +258,181 @@ Body:
     "profile_image_url": "https://example.com/profile.jpg",
     "bio": "New bio"
 }
-
 ```
 
 
 
+## Authentication Routes
+
+### Route: /api/auth [GET]
+#### Description
+Authenticates a user.
+
+#### Request
+
+Method: GET
+<br>
+URL: /api/auth
+<br>
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "id": 1,
+    "username": "john_doe",
+    "first_name": "John",
+    "last_name": "Doe",
+    "cover_photo_url": "https://example.com/cover.jpg",
+    "profile_image_url": "https://example.com/profile.jpg"
+}
+```
+
 ------------------------------------------------------------------------------------------------------------------------------
 
 
+### Route: /api/auth/login [POST]
+
+#### Description
+
+Logs a user in.
+
+#### Request
+
+Method: POST
+<br>
+URL: /api/auth/login
+<br>
+Headers:
+<br>
+Content-Type: application/json
+<br>
+Body:
+
+```
+{
+    "email": "user@example.com",
+    "password": "password"
+}
+```
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "id": 1,
+    "username": "john_doe",
+    "first_name": "John",
+    "last_name": "Doe",
+    "cover_photo_url": "https://example.com/cover.jpg",
+    "profile_image_url": "https://example.com/profile.jpg"
+}
+```
+
 ------------------------------------------------------------------------------------------------------------------------------
 
+### Route: /api/auth/logout [GET]
+
+#### Description
+
+Logs a user out.
+
+#### Request
+
+Method: GET
+<br>
+URL: /api/auth/logout
+<br>
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "message": "User logged out"
+}
+```
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+### Route: /api/auth/signup [POST]
+#### Description
+Creates a new user and logs them in.
+
+#### Request
+
+Method: POST
+<br>
+URL: /api/auth/signup
+<br>
+Headers:
+<br>
+Content-Type: application/json
+<br>
+Body:
+
+```
+{
+    "username": "john_doe",
+    "email": "user@example.com",
+    "password": "password",
+    "first_name": "John",
+    "last_name": "Doe"
+}
+```
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "id": 1,
+    "username": "john_doe",
+    "email": "user@example.com",
+    "first_name": "John",
+    "last_name": "Doe"
+}
+```
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+### Route: /api/auth/unauthorized [GET]
 
-------------------------------------------------------------------------------------------------------------------------------
+#### Description
 
+Returns unauthorized JSON when Flask-Login authentication fails.
+
+#### Request
+
+Method: GET
+<br>
+URL: /api/auth/unauthorized
+
+#### Response
+
+Status: 401 Unauthorized
+<br>
+Body:
+
+```
+{
+    "errors": ["Unauthorized"]
+}
+```
 
 ------------------------------------------------------------------------------------------------------------------------------
 
