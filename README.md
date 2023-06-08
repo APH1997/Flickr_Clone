@@ -108,4 +108,208 @@ HighrMe is a loose clone of Flickr, where sky enthusiasts come to share their fa
 #### Comment threads
 * users can reply to comments on photos
 
+------------------------------------------------------------------------------------------------------------------------------
+# API ROUTES
+
+## User Routes
+### Route: /api/users [GET]
+#### Description
+Query for all users and returns them in a list of user dictionaries.
+
+#### Request
+
+Method: GET
+<br>
+URL: /api/users
+<br>
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "john_doe",
+            "first_name": "John",
+            "last_name": "Doe",
+            "cover_photo_url": "https://example.com/cover.jpg",
+            "profile_image_url": "https://example.com/profile.jpg"
+        },
+        ...
+    ]
+}
+
+
+```
+
+------------------------------------------------------------------------------------------------------------------------------
+
+### Route: /api/users/int:id [GET]
+#### Description
+Query for a user by id and returns that user in a dictionary.
+
+#### Request
+
+Method: GET
+<br>
+URL: /api/users/<int:id>
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "id": 1,
+    "username": "john_doe",
+    "first_name": "John",
+    "last_name": "Doe",
+    "cover_photo_url": "https://example.com/cover.jpg",
+    "profile_image_url": "https://example.com/profile.jpg"
+}
+
+```
+
+------------------------------------------------------------------------------------------------------------------------------
+
+### Route: /api/users/int:id/edit [PUT]
+#### Description
+Queries for user by id, instantiates flask form, checks for new cover photo or new profile picture, and updates applicable properties with form data.
+
+#### Request
+
+Method: PUT
+<br>
+URL: /api/users/<int:id>/edit
+<br>
+Headers:
+<br>
+Content-Type: multipart/form-data
+<br>
+Body:
+
+```
+{
+      "username": [string]
+      "first_name": [string]
+      "last_name": [string]
+      "cover_photo": [file]
+      "profile_pic": [file]
+}
+```
+
+#### Response
+
+Status: 200 OK
+Body:
+
+```
+{
+    "id": 1,
+    "username": "john_doe",
+    "first_name": "John",
+    "last_name": "Doe",
+    "cover_photo_url": "https://example.com/new_cover.jpg",
+    "profile_image_url": "https://example.com/new_profile.jpg"
+}
+
+
+```
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+### Route: /api/users/int:id/bio/edit [PUT]
+#### Description
+Queries for user by id, instantiates flask form, and updates the user's bio with the provided data.
+
+#### Request
+
+Method: PUT
+<br>
+URL: /api/users/<int:id>/bio/edit
+<br>
+Headers:
+<br>
+Content-Type: application/json
+<br>
+Body:
+
+```
+{
+    "bio": "New bio"
+}
+
+```
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "id": 1,
+    "username": "john_doe",
+    "first_name": "John",
+    "last_name": "Doe",
+    "cover_photo_url": "https://example.com/cover.jpg",
+    "profile_image_url": "https://example.com/profile.jpg",
+    "bio": "New bio"
+}
+
+```
+
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 
