@@ -434,26 +434,471 @@ Body:
 }
 ```
 
+## PHOTO ROUTES
+
+### Route: /photos/all [GET]
+#### Description
+Query for all photos and returns them in a list of dictionaries with authors, comments, and albums. This route populates the home feed.
+
+#### Request
+
+Method: GET
+<br>
+URL: /photos/all
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+[
+    {
+        "id": 1,
+        "author": {
+            "id": 1,
+            "username": "john_doe",
+            "first_name": "John",
+            "last_name": "Doe"
+        },
+        "comments": [
+            {
+                "id": 1,
+                "author": {
+                    "id": 2,
+                    "username": "jane_smith",
+                    "first_name": "Jane",
+                    "last_name": "Smith"
+                },
+                "content": "Beautiful photo!"
+            }
+        ],
+        "albums": [
+            {
+                "id": 1,
+                "title": "Vacation",
+                "cover_photo_url": "https://example.com/vacation.jpg"
+            }
+        ]
+    },
+    ...
+]
+
+```
+
 ------------------------------------------------------------------------------------------------------------------------------
 
+### Route: /photos/user/{userId} [GET]
+#### Description
+Query for all photos where author_id == userId. This route populates a user page's photo stream tab.
+
+#### Request
+
+Method: GET
+<br>
+URL: /photos/user/{userId}
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+[
+    {
+        "id": 1,
+        "author": {
+            "id": 1,
+            "username": "john_doe",
+            "first_name": "John",
+            "last_name": "Doe"
+        },
+        "comments": [],
+        "albums": []
+    },
+    ...
+]
+```
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+### Route: /photos/{photoId} [GET]
+#### Description
+Query for one photo by its ID. Return in a dictionary with comments, albums, and author.
+
+#### Request
+
+Method: GET
+<br>
+URL: /photos/{photoId}
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "id": 1,
+    "author": {
+        "id": 1,
+        "username": "john_doe",
+        "first_name": "John",
+        "last_name": "Doe"
+    },
+    "comments": [],
+    "albums": []
+}
+```
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+### Route: /photos/new [POST]
+#### Description
+Takes form data, validates against FlaskForm. If successful, uploads to AWS and returns the new photo.
+
+#### Request
+
+Method: POST
+<br>
+URL: /photos/new
+<br>
+Headers:
+<br>
+Content-Type: application/json
+<br>
+Body:
+
+```
+{
+    "photo": "<file>",
+    "author_id": <integer>,
+    "caption": "<string>",
+    "description": "<string>"
+}
+```
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "id": 1,
+    "author": {
+        "id": 1,
+        "username": "john_doe",
+        "first_name": "John",
+        "last_name": "Doe"
+    },
+    "caption": "Beautiful sunset",
+    "description": "This photo was taken during my vacation.",
+    "url": "https://example.com/photo.jpg"
+}
+```
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+### Route: /photos/{photoId}/edit [PUT]
+#### Description
+Takes form data, validates against FlaskForm. Queries for photo and updates attributes. If there is a photo submitted with the edit form, removes the current photo from the bucket and uploads the given photo.
+
+#### Request
+
+Method: PUT
+<br>
+URL: /photos/{photoId}/edit
+<br>
+Headers:
+<br>
+Content-Type: application/json
+<br>
+Body:
+
+```
+{
+    "photo": "<file>",
+    "caption": "<string>",
+    "description": "<string>"
+}
+```
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "id": 1,
+    "author": {
+        "id": 1,
+        "username": "john_doe",
+        "first_name": "John",
+        "last_name": "Doe"
+    },
+    "caption": "Updated caption",
+    "description": "Updated description",
+    "url": "https://example.com/updated_photo.jpg"
+}
+
+```
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+### Route: /photos/{photoId}/delete [DELETE]
+#### Description
+Queries for photo by ID and deletes it. If it is the last photo in an album, the album is also deleted. Removes the file from the bucket.
+
+#### Request
+
+Method: DELETE
+<br>
+URL: /photos/{photoId}/delete
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "message": "Photo Deleted"
+}
+```
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+### Route: /photos/album/new [POST]
+#### Description
+Creates an album from author_id and title. Queries for all photo IDs from the form field and sets album_photos to a list of photos. If the cover photo is not chosen, it defaults to the first photo in the album.
+
+#### Request
+
+Method: POST
+<br>
+URL: /photos/album/new
+<br>
+Headers:
+<br>
+Content-Type: application/json
+<br>
+Body:
+
+```
+{
+    "author_id": <integer>,
+    "title": "<string>",
+    "description": "<string>",
+    "photos": "<comma-separated list of photo IDs>"
+}
+```
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "newAlbumId": 1
+}
+```
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+### Route: /photos/albums/all [GET]
+#### Description
+Queries for all albums.
+
+#### Request
+
+Method: GET
+<br>
+URL: /photos/albums/all
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+[
+    {
+        "id": 1,
+        "author": {
+            "id": 1,
+            "username": "john_doe",
+            "first_name": "John",
+            "last_name": "Doe"
+        },
+        "title": "Vacation",
+        "cover_photo_url": "https://example.com/vacation.jpg"
+    },
+    ...
+]
+```
+
+------------------------------------------------------------------------------------------------------------------------------
+
+### Route: /photos/albums/{albumId}/edit [PUT]
+#### Description
+Instantiates EditAlbum Flask form, queries for the album by ID, and updates the title, description, and/or photos.
+
+#### Request
+
+Method: PUT
+<br>
+URL: /photos/albums/{albumId}/edit
+<br>
+Headers:
+<br>
+Content-Type: application/json
+<br>
+Body:
+
+```
+{
+    "title": "<string>",
+    "description": "<string>",
+    "photos": "<comma-separated list of photo IDs>"
+}
+```
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "id": 1,
+    "author": {
+        "id": 1,
+        "username": "john_doe",
+        "first_name": "John",
+        "last_name": "Doe"
+    },
+    "title": "Updated Album",
+    "description": "Updated description",
+    "cover_photo_url": "https://example.com/updated_album.jpg"
+}
+```
+
+------------------------------------------------------------------------------------------------------------------------------
+
+### Route: /photos/albums/{albumId}/delete [DELETE]
+#### Description
+Queries for the album by ID and deletes it. The photos within the album are not deleted.
+
+#### Request
+
+Method: DELETE
+<br>
+URL: /photos/albums/{albumId}/delete
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "message": "Album Deleted"
+}
+```
+
+------------------------------------------------------------------------------------------------------------------------------
+
+### Route: /photos/{photoId}/comments/new [POST]
+#### Description
+Queries for the photo by ID, constructs a comment with form data after validation, and adds it to the photo.
+
+#### Request
+
+Method: POST
+<br>
+URL: /photos/{photoId}/comments/new
+<br>
+Headers:
+<br>
+Content-Type: application/json
+<br>
+Body:
+
+```
+{
+    "content": "<string>"
+}
+```
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "id": 1,
+    "author": {
+        "id": 1,
+        "username": "john_doe",
+        "first_name": "John",
+        "last_name": "Doe"
+    },
+    "photo": {
+        "id": 1,
+        "url": "https://example.com/photo.jpg"
+    },
+    "content": "Great photo!",
+    "created_at": "2023-06-08T12:00:00Z"
+}
+```
+
+------------------------------------------------------------------------------------------------------------------------------
+
+### Route: /photos/{photoId}/comments/{commentId}/delete [DELETE]
+#### Description
+Queries for the photo by ID and removes the comment with the specified comment ID.
+
+#### Request
+
+Method: DELETE
+<br>
+URL: /photos/{photoId}/comments/{commentId}/delete
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "id": 1,
+    "author": {
+        "id": 1,
+        "username": "john_doe",
+        "first_name": "John",
+        "last_name": "Doe"
+    },
+    "photo": {
+        "id": 1,
+        "url": "https://example.com/photo.jpg"
+    },
+    "content": "Great photo!",
+    "created_at": "2023-06-08T12:00:00Z"
+}
+```
 
 ------------------------------------------------------------------------------------------------------------------------------
 
