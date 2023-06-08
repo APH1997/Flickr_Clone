@@ -15,15 +15,27 @@ HighrMe is a loose clone of Flickr, where sky enthusiasts come to share their fa
 
 ## Splash
 
+<img width="1024" alt="splash" src="https://github.com/APH1997/HighrMe/assets/118479307/384283f7-4fec-42c6-988f-e27af418e010">
+
 ## Content Feed
+
+![contentfeed](https://github.com/APH1997/HighrMe/assets/118479307/b4d427b0-d198-4309-9a87-3005f6f31416)
 
 ## User Page - Photos
 
+<img width="1329" alt="userpagephotos" src="https://github.com/APH1997/HighrMe/assets/118479307/04047bf8-7a5a-4095-adc4-9ec671ba1146">
+
 ## User Page - Albums
 
-## Photo By Id
+<img width="1234" alt="userpagealbums" src="https://github.com/APH1997/HighrMe/assets/118479307/144ca443-d2da-4fc3-8c7e-3ccedcfb10c5">
+
+## Photo By Id and Comments
+
+![photoandcomms](https://github.com/APH1997/HighrMe/assets/118479307/f0218be8-661c-4891-ac42-f4b88a24c175)
 
 ## Album By Id
+
+<img width="1252" alt="albumbyid" src="https://github.com/APH1997/HighrMe/assets/118479307/6bd73196-3cde-42fb-b963-bf81c0d73999">
 
 ## Getting started
 1. Clone this repository (only this branch)
