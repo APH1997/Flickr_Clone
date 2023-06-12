@@ -119,7 +119,6 @@ const updateProfileAction = (user) => ({
 })
 
 export const updateBioThunk = (bio, userId) => async (dispatch) => {
-	console.log("ENTERED THE THUNK")
 	const response = await fetch(`/api/users/${userId}/bio/edit`,{
 		method: "PUT",
 		headers: {"Content-Type": "application/json"},
@@ -127,7 +126,6 @@ export const updateBioThunk = (bio, userId) => async (dispatch) => {
 	})
 	if (response.ok){
 		const user = await response.json()
-		console.log("THUNK FETCH RESPONSE:", user)
 		await dispatch(updateProfileAction(user))
 	}
 }
