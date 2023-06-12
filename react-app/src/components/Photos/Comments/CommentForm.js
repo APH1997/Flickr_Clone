@@ -60,7 +60,7 @@ function CommentForm(){
                 )}
                 <div>{comment.length}/200</div>
             </div>
-            <button>Add Comment</button>
+            <button disabled={!comment.length} className={!comment.length ? "disabled-btn" : "create-comment"}>Add Comment</button>
         </form>
     )
 }

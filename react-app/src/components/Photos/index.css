@@ -72,6 +72,22 @@
 }
 
 /* DELETE POST MODAL */
+
+.post-comment-form .disabled-btn{
+    background-color: grey;
+}
+
+.post-comment-form .disabled-btn:hover{
+    font-family: 'Quicksand', sans-serif;
+    background-color: grey;
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+    border: 0.5px solid grey;
+    transition: background-color .2s;
+    cursor: default;
+    font-weight: normal;
+}
 .delete-modal-content-container{
     padding: 10px;
     display: flex;
