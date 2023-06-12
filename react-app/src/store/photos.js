@@ -1,4 +1,4 @@
-//constants
+//photo constants
 const GET_ALL_PHOTOS = "photos/GET_ALL"
 const GET_USER_PHOTOS = "userPhotos/GET_ALL"
 const GET_ONE_PHOTO = "photos/GET_ONE"
@@ -8,7 +8,7 @@ const DELETE_PHOTO = "photos/DELETE"
 //comment constants
 const CREATE_COMMENT = "photos/comments/CREATE"
 const DELETE_COMMENT = "photos/comments/DELETE"
-
+const UPDATE_COMMENT = "photos/comments/UPDATE"
 
 
 //GET ALL PHOTOS
@@ -183,7 +183,7 @@ const deleteCommentAction = (photo) => {
 }
 
 export const deleteCommentThunk = (photoId, commentId) => async (dispatch) => {
-    const response = await fetch (`/photos/${photoId}/comments/${commentId}/delete`, {
+    const response = await fetch(`/photos/${photoId}/comments/${commentId}/delete`, {
         method: "DELETE"
     });
     if (response.ok){
@@ -192,6 +192,29 @@ export const deleteCommentThunk = (photoId, commentId) => async (dispatch) => {
         return commentPhoto
     } else {
         return response
+    }
+}
+
+//UPDATE COMMENT
+const updateCommentAction = (photo) => {
+    return {
+        type: UPDATE_COMMENT,
+        payload: photo
+    }
+}
+
+export const updateCommentThunk = (commentId, content) => async (dispatch) => {
+    const response = await fetch(`/photos/comments/${commentId}/edit`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(content)
+    })
+    const data = await response.json()
+    if (response.ok){
+        await dispatch(updateCommentAction(data))
+        return data
+    } else {
+        return data
     }
 }
 
@@ -276,6 +299,17 @@ export default function reducer(state = initialState, action) {
         }
 
         case CREATE_COMMENT: {
+            const newState = {
+                allPhotos: {...state.allPhotos},
+                userPhotos: {...state.userPhotos},
+                singlePhoto: {...state.singlePhoto}
+            }
+            newState.allPhotos[action.payload.id] = action.payload
+
+            return newState
+        }
+
+        case UPDATE_COMMENT:{
             const newState = {
                 allPhotos: {...state.allPhotos},
                 userPhotos: {...state.userPhotos},

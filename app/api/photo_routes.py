@@ -275,11 +275,11 @@ def update_comment(commentId):
         comment = Comment.query.get(commentId)
         comment.content = form.data["content"]
         db.session.commit()
-        
+
         photo = Photo.query.get(comment.photo_id)
         return photo.to_dict()
     else:
-        return form.errors
+        return form.errors, 400
 
 
 
