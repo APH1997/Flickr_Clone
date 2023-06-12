@@ -1,15 +1,12 @@
-import { useState } from "react"
-import { usePhoto } from "../../../context/Photo"
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { createCommentThunk } from "../../../store/photos"
-function CommentForm(){
-    const dispatch = useDispatch()
+import { updateCommentThunk } from "../../../store/photos"
 
-    const {photo} = usePhoto()
-    const [errors, setErrors] = useState({})
-    const [comment, setComment] = useState('')
+function EditComment({content, setIsEditing}){
+    const dispatch = useDispatch()
+    const [comment, setComment] = useState(content.content)
     const [hasSubmitted, setHasSubmitted] = useState(false)
+    const [errors, setErrors] = useState({})
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -20,8 +17,8 @@ function CommentForm(){
         const commentData = {
             content: comment,
         }
-        await dispatch(createCommentThunk(commentData, photo.id))
-        setComment('')
+        await dispatch(updateCommentThunk(content.id, commentData))
+        setIsEditing(false)
     }
 
     function handleComment(e){
@@ -47,23 +44,21 @@ function CommentForm(){
 
     }, [comment])
 
-
     return (
-        <form className="post-comment-form" onSubmit={(e) => handleSubmit(e)}>
-            <div>
-                <textarea
-                placeholder={`Let ${photo.author.first_name} know how much you love this photo!`}
+        <span>
+            <form onSubmit={(e) => handleSubmit(e)} style={{width: "100%"}}>
+                <textarea style={{width: "300px"}}
                 value={comment}
-                onChange={(e) => handleComment(e)}
-                />
+                onChange={(e) => handleComment(e)}/>
                 {hasSubmitted && Object.values(errors).length && Object.values(errors).map(error =>
                     <p className="errors">{error}</p>
                 )}
-                <div>{comment.length}/200</div>
+            <div>
+                <button>Submit</button>
             </div>
-            <button disabled={!comment.length} className={!comment.length ? "disabled-btn" : "create-comment"}>Add Comment</button>
-        </form>
+            </form>
+        </span>
     )
 }
 
-export default CommentForm
+export default EditComment
