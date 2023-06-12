@@ -60,6 +60,12 @@ function AlbumFormModal({album}){
         if (!title){
             errObj.title = "Albums must have a title"
         }
+        if (title && title.length > 100){
+            errObj.title = "Album titles cannot exceed 100 characters"
+        }
+        if (!title.trim()){
+            errObj.title = "Albums must have a title"
+        }
         if (description && description.length > 500){
             errObj.description = "Description cannot exceed 500 characters."
         }
