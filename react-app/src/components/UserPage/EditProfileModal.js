@@ -76,18 +76,25 @@ function ProfileModal({user}){
         if (!firstName){
             errObj.firstName = "First name is required"
         }
-
+        if (!firstName.trim()){
+            errObj.firstName = "First name is required"
+        }
         if (lastName && lastName.length > 50){
             errObj.lastName = "Last name cannot exceed 50 characters"
         }
         if (!lastName){
             errObj.lastName = "Last name is required"
         }
-
+        if (!lastName.trim()){
+            errObj.lastName = "Last name is required"
+        }
         if (username && username.length > 40){
             errObj.username = "Username cannot exceed 40 characters"
         }
         if (!username){
+            errObj.username = "Username is required"
+        }
+        if (!username.trim()){
             errObj.username = "Username is required"
         }
 
