@@ -8,11 +8,12 @@ function CommentForm(){
 
     const {photo} = usePhoto()
     const [errors, setErrors] = useState({})
-
     const [comment, setComment] = useState('')
+    const [hasSubmitted, setHasSubmitted] = useState(false)
 
     async function handleSubmit(e){
         e.preventDefault()
+        setHasSubmitted(true)
         if (Object.values(errors).length) return;
 
         const commentData = {
@@ -24,13 +25,20 @@ function CommentForm(){
 
     function handleComment(e){
         if (e.target.value.length > 200 ) return;
+        setHasSubmitted(false)
         setComment(e.target.value)
     }
 
     useEffect(() => {
         const errObj = {}
         if (!comment){
-            errObj.noComment = true
+            errObj.noComment = "Comments cannot be empty!"
+        }
+        if (!comment.trim()){
+            errObj.noComment = "Comments cannot be empty!"
+        }
+        if (comment.length > 250){
+            errObj.commentLength = "Comments cannot exceed 250 characters"
         }
         if (Object.values(errObj).length){
             setErrors(errObj)
@@ -47,6 +55,9 @@ function CommentForm(){
                 value={comment}
                 onChange={(e) => handleComment(e)}
                 />
+                {hasSubmitted && Object.values(errors).length && Object.values(errors).map(error =>
+                    <p className="errors">{error}</p>
+                )}
                 <div>{comment.length}/200</div>
             </div>
             <button>Add Comment</button>
