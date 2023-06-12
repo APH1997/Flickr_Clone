@@ -27,9 +27,10 @@ function PostForm({ type }) {
 
     useEffect(() => {
         const errObj = {}
-        if (!caption) {
+        if (!caption || !caption.trim()) {
             errObj.caption = "Please caption your photo."
         }
+
         if (caption.length > 100) {
             errObj.caption = "Caption must be less than 100 characters."
         }
@@ -57,7 +58,7 @@ function PostForm({ type }) {
             formData.append("author_id", user.id);
             photo && formData.append("photo", photo);
             formData.append("caption", caption);
-            formData.append("description", description)
+            formData.append("description", description.trim())
 
             setIsUploading(true);
             await dispatch(updatePhotoThunk(photoId, formData))
