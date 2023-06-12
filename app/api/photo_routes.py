@@ -261,6 +261,27 @@ def create_comment(photoId):
     else:
         return form.errors
 
+@photo_routes.route("/comments/<int:commentId>/edit", methods=["PUT"])
+@login_required
+def update_comment(commentId):
+    """
+    Queries for comment by id
+    sets comment.content = content from formdata
+    Queries for updated photo and return to_dict()
+    """
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        comment = Comment.query.get(commentId)
+        comment.content = form.data["content"]
+        db.session.commit()
+
+        photo = Photo.query.get(comment.photo_id)
+        return photo.to_dict()
+    else:
+        return form.errors, 400
+
+
 
 
 @photo_routes.route('/<int:photoId>/comments/<int:commentId>/delete', methods=["DELETE"])

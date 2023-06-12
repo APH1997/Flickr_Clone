@@ -83,11 +83,9 @@ def edit_user(id):
 @user_routes.route('/<int:id>/bio/edit', methods=["PUT"])
 @login_required
 def set_bio(id):
-    print('ENTERED THE ROUT------------')
     form = UserBioForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print('FORM VALIDATED-----------------')
         user = User.query.get(id)
         user.bio = form.data["bio"]
         db.session.commit()

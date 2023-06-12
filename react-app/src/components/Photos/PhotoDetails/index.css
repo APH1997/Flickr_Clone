@@ -145,6 +145,11 @@
     font-weight: bold;
 }
 
+.delete-comment-modal-button{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+}
 .delete-comment-modal-button button{
     background-color: transparent;
     color: transparent;

@@ -166,7 +166,7 @@
 }
 
 .edit-bio-field textarea:focus{
-    height: 240px;
+    height: 175px;
     transition: height 1s;
 }
 
