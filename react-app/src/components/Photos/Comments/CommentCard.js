@@ -5,6 +5,7 @@ import { useSelector } from "react-redux"
 import { usePhoto } from "../../../context/Photo"
 
 
+
 function CommentCard({ comment }) {
     const user = useSelector((state) => state.session.user)
     const { photo } = usePhoto()
