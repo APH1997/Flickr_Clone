@@ -32,15 +32,19 @@ function SignupFormPage() {
     }
     if (last_name && last_name.length > 20) {
       errObj.last_name = "Last name cannot exceed 20 characters"
-
     }
     if (username && username.length > 20) {
       errObj.username = "Username cannot exceed 20 characters"
     }
 
-    if (password !== confirmPassword) {
-      errObj.password = "Confirm Password field has to match Password field"
+    if (password.length < 6){
+      errObj.password = "Password must contain at least 6 characters"
     }
+
+    if (password !== confirmPassword) {
+      errObj.passwordMatch = "Confirm Password field has to match Password field"
+    }
+
 
     if (Object.values(errObj).length) {
       setErrors(errObj)
