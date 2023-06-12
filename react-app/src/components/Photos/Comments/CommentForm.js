@@ -15,6 +15,7 @@ function CommentForm(){
         e.preventDefault()
         setHasSubmitted(true)
         if (Object.values(errors).length) return;
+        setHasSubmitted(false)
 
         const commentData = {
             content: comment,
