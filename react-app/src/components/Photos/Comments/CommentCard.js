@@ -5,10 +5,10 @@ import { useSelector } from "react-redux"
 import { usePhoto } from "../../../context/Photo"
 
 
-function CommentCard({comment}){
+function CommentCard({ comment }) {
     const user = useSelector((state) => state.session.user)
-    const {photo} = usePhoto()
-    return(
+    const { photo } = usePhoto()
+    return (
         <div className="comment-card-container">
             <div className="comment-card-content-container">
                 <div>
@@ -22,19 +22,22 @@ function CommentCard({comment}){
                     </div>
                 </div>
             </div>
-            <div className="delete-comment-modal-button">
-                { user.id === comment.author.id &&
+            {user.id === comment.author.id &&
+                <div className="delete-comment-modal-button">
+                    <button>
+                        <i className="fas fa-edit"></i>
+                    </button>
                     <OpenModalButton
-                    buttonText={<i className="fas fa-trash-alt"></i>}
-                    modalComponent={
-                        <DeleteComment
-                            commentId={comment.id}
-                            photoId={photo.id}
-                        />
-                    }
+                        buttonText={<i className="fas fa-trash-alt"></i>}
+                        modalComponent={
+                            <DeleteComment
+                                commentId={comment.id}
+                                photoId={photo.id}
+                            />
+                        }
                     />
-                }
-            </div>
+                </div>
+            }
         </div>
     )
 }
