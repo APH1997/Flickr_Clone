@@ -867,6 +867,54 @@ Body:
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+### Route: /photos/{photoId}/comments/new [PUT]
+#### Description
+Queries for comment by id, sets comment.content = content from formdata, Queries for updated photo and return to_dict()
+
+#### Request
+
+Method: PUT
+<br>
+URL: /photos/comments/<int:commentId>/new
+<br>
+Headers:
+<br>
+Content-Type: application/json
+<br>
+Body:
+
+```
+{
+    "content": "<string>"
+}
+```
+
+#### Response
+
+Status: 200 OK
+<br>
+Body:
+
+```
+{
+    "id": 1,
+    "author": {
+        "id": 1,
+        "username": "john_doe",
+        "first_name": "John",
+        "last_name": "Doe"
+    },
+    "photo": {
+        "id": 1,
+        "url": "https://example.com/photo.jpg"
+    },
+    "content": "Great photo!",
+    "created_at": "2023-06-08T12:00:00Z"
+}
+```
+
+------------------------------------------------------------------------------------------------------------------------------
+
 ### Route: /photos/{photoId}/comments/{commentId}/delete [DELETE]
 #### Description
 Queries for the photo by ID and removes the comment with the specified comment ID.
