@@ -15,6 +15,7 @@ function EditBioForm({user}) {
         if (e.target.value.length > 1000) return;
 
         setBio(e.target.value)
+        setErrors({})
     }
 
     async function handleBioUpdate(e){
