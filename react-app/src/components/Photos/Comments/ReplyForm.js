@@ -1,14 +1,33 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux"
 
 function ReplyForm() {
     const user = useSelector(state => state.session.user)
     const [reply, setReply] = useState("")
+    const [errors, setErrors] = useState({})
+    const [hasSubmitted, setHasSubmitted] = useState(false)
+
+    useEffect(() => {
+        const errObj = {}
+        if (!reply || !reply.trim()) errObj.reply = "Cannot submit an empty reply"
+        if (Object.values(errObj).length){
+            setErrors(errObj)
+        } else {
+            setErrors({})
+        }
+
+    }, [reply])
 
     function handleSubmit(e){
         e.preventDefault()
+        setHasSubmitted(true)
+        if (Object.values(errors).length) return;
+
+        setHasSubmitted(false)
         console.log('NEED VALIDATIONS, THUNKS.')
     }
+
     if (!user) return null;
     return (
         <div className="comment-card-container reply-container">
@@ -23,7 +42,13 @@ function ReplyForm() {
                         placeholder="Give em' a piece of your mind!"
                         value={reply}
                         onChange={(e) => setReply(e.target.value)}/>
-                        <button>Submit</button>
+                        <div>
+                            <button>Submit</button>
+                            <span>
+                                {hasSubmitted && Object.values(errors).length &&
+                                <p className="errors">{errors.reply}</p>}
+                            </span>
+                        </div>
                     </form>
                 </div>
             </div>
