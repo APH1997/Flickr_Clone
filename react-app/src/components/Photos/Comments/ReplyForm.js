@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { useSelector } from "react-redux"
 
 function ReplyForm() {
     const user = useSelector(state => state.session.user)
+    const [reply, setReply] = useState("")
+
+
     if (!user) return null;
     return (
         <div className="comment-card-container reply-container">
@@ -12,7 +16,10 @@ function ReplyForm() {
                 <div className="comment-card-content">
                     <div>{user.first_name} {user.last_name}</div>
                     <form>
-                        <textarea></textarea>
+                        <textarea
+                        placeholder="Give em' a piece of your mind!"
+                        value={reply}
+                        onChange={(e) => setReply(e.target.value)}/>
                     </form>
                 </div>
             </div>
