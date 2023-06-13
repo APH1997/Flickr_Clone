@@ -60,7 +60,7 @@ function CommentCard({ comment }) {
                 }
             </div>
             {replying &&
-            <ReplyForm setReplying={setReplying} parentId={comment.id}/>
+            <ReplyForm setReplying={setReplying} parentId={comment.id} setShowReplies={setShowReplies}/>
             }
 
             {showReplies &&

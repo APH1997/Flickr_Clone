@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { createReplyThunk } from "../../../store/photos";
 
-function ReplyForm({setReplying, parentId}) {
+function ReplyForm({setReplying, parentId, setShowReplies}) {
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const [reply, setReply] = useState("")
@@ -30,6 +30,7 @@ function ReplyForm({setReplying, parentId}) {
         const replyData = {
             content: reply
         }
+        setShowReplies(true)
         dispatch(createReplyThunk(parentId, replyData))
         setReplying(false)
     }
