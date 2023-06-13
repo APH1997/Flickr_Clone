@@ -60,10 +60,13 @@ function CommentCard({ comment }) {
                 }
             </div>
             {replying &&
-            <ReplyForm />}
+            <ReplyForm setReplying={setReplying}/>
+            }
+
             {showReplies &&
                 comment.replies.map((reply) =>
-                    <ReplyCard reply={reply} />)}
+                    <ReplyCard reply={reply} />)
+            }
         </>
     )
 }

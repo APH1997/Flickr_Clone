@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux"
 
-function ReplyForm() {
+function ReplyForm({setReplying}) {
     const user = useSelector(state => state.session.user)
     const [reply, setReply] = useState("")
     const [errors, setErrors] = useState({})
@@ -23,8 +23,8 @@ function ReplyForm() {
         e.preventDefault()
         setHasSubmitted(true)
         if (Object.values(errors).length) return;
-
         setHasSubmitted(false)
+        setReplying(false)
         console.log('NEED VALIDATIONS, THUNKS.')
     }
 
@@ -45,7 +45,7 @@ function ReplyForm() {
                         <div>
                             <button>Submit</button>
                             <span>
-                                {hasSubmitted && Object.values(errors).length &&
+                                {hasSubmitted && Object.values(errors).length > 0 &&
                                 <p className="errors">{errors.reply}</p>}
                             </span>
                         </div>
