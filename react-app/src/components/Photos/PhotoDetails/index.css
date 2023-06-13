@@ -148,21 +148,21 @@
     font-weight: bold;
 }
 
-.delete-comment-modal-button{
+.comment-reply-author-btns-container{
     display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
 }
-.delete-comment-modal-button button{
+.comment-reply-author-btns-container button{
     background-color: transparent;
     color: transparent;
     border: 0;
 }
-.comment-card-container:hover .delete-comment-modal-button button:hover{
+.comment-card-container:hover .comment-reply-author-btns-container button:hover{
     cursor: pointer;
     color: red;
 }
-.comment-card-container:hover .delete-comment-modal-button button{
+.comment-card-container:hover .comment-reply-author-btns-container button{
     background-color: transparent;
     color: black;
     border: 0;

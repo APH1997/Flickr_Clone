@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { updateCommentThunk } from "../../../store/photos"
+import { updateCommentThunk, updateReplyThunk } from "../../../store/photos"
 
-function EditComment({content, setIsEditing}){
+function EditComment({content, setIsEditing, reply}){
     const dispatch = useDispatch()
     const [comment, setComment] = useState(content.content)
     const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -17,27 +17,46 @@ function EditComment({content, setIsEditing}){
         const commentData = {
             content: comment,
         }
-        await dispatch(updateCommentThunk(content.id, commentData))
-        setIsEditing(false)
+        if (!reply){
+            await dispatch(updateCommentThunk(content.id, commentData))
+            setIsEditing(false)
+        } else {
+            await dispatch(updateReplyThunk(content.id, commentData))
+            setIsEditing(false)
+        }
     }
 
     function handleComment(e){
         if (e.target.value.length > 200 ) return;
+        if (reply && e.target.value.length > 100) return;
         setHasSubmitted(false)
         setComment(e.target.value)
     }
 
     useEffect(() => {
         const errObj = {}
-        if (!comment){
-            errObj.noComment = "Comments cannot be empty!"
+        if (!reply){
+            if (!comment){
+                errObj.noComment = "Comments cannot be empty!"
+            }
+            if (!comment.trim()){
+                errObj.noComment = "Comments cannot be empty!"
+            }
+            if (comment.length > 250){
+                errObj.commentLength = "Comments cannot exceed 250 characters"
+            }
+        } else {
+            if (!comment){
+                errObj.noComment = "Replies cannot be empty!"
+            }
+            if (!comment.trim()){
+                errObj.noComment = "Replies cannot be empty!"
+            }
+            if (comment.length > 100){
+                errObj.commentLength = "Replies cannot exceed 100 characters"
+            }
         }
-        if (!comment.trim()){
-            errObj.noComment = "Comments cannot be empty!"
-        }
-        if (comment.length > 250){
-            errObj.commentLength = "Comments cannot exceed 250 characters"
-        }
+
         if (Object.values(errObj).length){
             setErrors(errObj)
         } else setErrors({})

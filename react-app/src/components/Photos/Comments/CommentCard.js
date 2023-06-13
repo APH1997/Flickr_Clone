@@ -41,7 +41,7 @@ function CommentCard({ comment }) {
                     </div>
                 </div>
                 {user.id === comment.author.id &&
-                    <div className="delete-comment-modal-button">
+                    <div className="comment-reply-author-btns-container">
                         <div>
                             <button>
                                 <i className="fas fa-edit" onClick={() => setIsEditing(!isEditing)}></i>
