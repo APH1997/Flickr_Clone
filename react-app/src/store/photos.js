@@ -234,6 +234,35 @@ export const createReplyThunk = (commentId, content) => async (dispatch) => {
     }
 }
 
+//UPDATE REPLY
+export const updateReplyThunk = (replyId, content) => async (dispatch) => {
+    const response = await fetch(`/photos/comments/replies/${replyId}/edit`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(content)
+    })
+    const data = await response.json()
+    if (response.ok){
+        await dispatch(updateCommentAction(data))
+        return data
+    } else {
+        return data
+    }
+}
+//DELETE REPLY
+export const deleteReplyThunk = (replyId) => async (dispatch) => {
+    const response = await fetch(`/comments/replies/${replyId}/delete`, {
+        method: "DELETE"
+    })
+    const data = await response.json()
+    if (response.ok){
+        await dispatch(deleteCommentAction(data))
+        return data
+    } else {
+        return data
+    }
+}
+
 const initialState = {allPhotos: null, userPhotos: null, singlePhoto: null}
 
 export default function reducer(state = initialState, action) {
