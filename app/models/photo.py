@@ -50,6 +50,7 @@ class Photo(db.Model):
             'caption': self.caption,
             'description': self.description,
             'comments': [comment.to_dict_no_photo() for comment in self.comments],
+            'num_replies': sum([len(comment.replies) for comment in self.comments]),
             'albums' : [album.to_dict_no_pics_no_author() for album in self.photo_albums],
             'created_at': self.created_at
         }
