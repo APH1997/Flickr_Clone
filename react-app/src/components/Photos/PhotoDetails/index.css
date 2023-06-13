@@ -178,6 +178,11 @@
     font-family: 'Quicksand', sans-serif;
 }
 
+/* REPLIES */
+.reply-container{
+    margin-left: 5%;
+}
+
 /* MODAL STYLING */
 #modal-content>.photo-form-container{
     align-items: flex-start;
