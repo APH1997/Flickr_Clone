@@ -352,7 +352,7 @@ def edit_reply(replyId):
         return form.errors, 400
 
 
-@photo_routes.route('comments/replys/<int:replyId>/delete', methods=["DELETE"])
+@photo_routes.route('comments/replies/<int:replyId>/delete', methods=["DELETE"])
 @login_required
 def delete_reply(replyId):
     """
