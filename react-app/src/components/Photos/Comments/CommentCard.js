@@ -5,14 +5,18 @@ import { useSelector } from "react-redux"
 import { usePhoto } from "../../../context/Photo"
 import { useState } from "react"
 import EditComment from "./EditCommentForm"
+import ReplyCard from "./ReplyCard"
 
 
 
 function CommentCard({ comment }) {
     const user = useSelector((state) => state.session.user)
+    const [showReplies, setShowReplies] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
     const { photo } = usePhoto()
+
     return (
+        <>
         <div className="comment-card-container">
             <div className="comment-card-content-container">
                 <div>
@@ -25,10 +29,9 @@ function CommentCard({ comment }) {
                         {!isEditing && comment.content}
                         {isEditing && <EditComment content={comment} setIsEditing={setIsEditing}/>}
                     </div>
-                    <div>
+                    <div onClick={() => setShowReplies(!showReplies)}>
                         {comment.replies.length} <i className="far fa-comments"></i>
                     </div>
-
                 </div>
             </div>
             {user.id === comment.author.id &&
@@ -50,6 +53,10 @@ function CommentCard({ comment }) {
                 </div>
             }
         </div>
+        {showReplies &&
+                comment.replies.map((reply) =>
+                    <ReplyCard />)}
+        </>
     )
 }
 
