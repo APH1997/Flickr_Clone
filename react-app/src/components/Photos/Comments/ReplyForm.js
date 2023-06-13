@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { createReplyThunk } from "../../../store/photos";
 
-function ReplyForm({setReplying}) {
+function ReplyForm({setReplying, parentId}) {
     const user = useSelector(state => state.session.user)
+    const dispatch = useDispatch()
     const [reply, setReply] = useState("")
     const [errors, setErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -24,8 +26,12 @@ function ReplyForm({setReplying}) {
         setHasSubmitted(true)
         if (Object.values(errors).length) return;
         setHasSubmitted(false)
+
+        const replyData = {
+            content: reply
+        }
+        dispatch(createReplyThunk(parentId, replyData))
         setReplying(false)
-        console.log('NEED VALIDATIONS, THUNKS.')
     }
 
     if (!user) return null;

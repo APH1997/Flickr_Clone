@@ -9,7 +9,7 @@ const DELETE_PHOTO = "photos/DELETE"
 const CREATE_COMMENT = "photos/comments/CREATE"
 const DELETE_COMMENT = "photos/comments/DELETE"
 const UPDATE_COMMENT = "photos/comments/UPDATE"
-
+//reply constatns
 
 //GET ALL PHOTOS
 const getAllPhotosAction = (photos) => {
@@ -212,6 +212,22 @@ export const updateCommentThunk = (commentId, content) => async (dispatch) => {
     const data = await response.json()
     if (response.ok){
         await dispatch(updateCommentAction(data))
+        return data
+    } else {
+        return data
+    }
+}
+
+//CREATE REPLY - REUSE COMMENT ACTIONS
+export const createReplyThunk = (commentId, content) => async (dispatch) => {
+    const response = await fetch(`/photos/comments/${commentId}/new`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(content)
+    })
+    const data = await response.json()
+    if (response.ok){
+        await dispatch(createCommentAction(data))
         return data
     } else {
         return data
