@@ -6,6 +6,7 @@ import { usePhoto } from "../../../context/Photo"
 import { useState } from "react"
 import EditComment from "./EditCommentForm"
 import ReplyCard from "./ReplyCard"
+import ReplyForm from "./ReplyForm"
 
 function CommentCard({ comment }) {
     const user = useSelector((state) => state.session.user)
@@ -59,7 +60,7 @@ function CommentCard({ comment }) {
                 }
             </div>
             {replying &&
-            <div>I'm replying!</div>}
+            <ReplyForm />}
             {showReplies &&
                 comment.replies.map((reply) =>
                     <ReplyCard reply={reply} />)}
