@@ -1,15 +1,20 @@
 import { useModal } from "../../../context/Modal"
 import { useDispatch } from "react-redux"
-import { deleteCommentThunk } from "../../../store/photos"
+import { deleteCommentThunk, deleteReplyThunk } from "../../../store/photos"
 
 
-function DeleteComment({commentId, photoId}){
+function DeleteComment({commentId, photoId, reply}){
     const dispatch = useDispatch()
     const {closeModal} = useModal()
 
     async function handleYes(){
-        await dispatch(deleteCommentThunk(photoId, commentId))
-        closeModal()
+        if (!reply){
+            await dispatch(deleteCommentThunk(photoId, commentId))
+            closeModal()
+        } else {
+            await dispatch(deleteReplyThunk(commentId))
+            closeModal()
+        }
     }
     function handleNo(){
         closeModal()
@@ -17,7 +22,7 @@ function DeleteComment({commentId, photoId}){
 
     return (
         <div className="delete-comment-modal-form">
-            <h2>Delete comment?</h2>
+            <h2>Delete {reply ? "Reply" : "Comment"}?</h2>
             <div className="delete-comment-buttons-container">
                 <button onClick={handleYes}>Yes</button>
                 <button onClick={handleNo}>No</button>

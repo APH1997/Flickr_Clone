@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import EditComment from "./EditCommentForm"
+import DeleteComment from "./DeleteCommentModal"
+import OpenModalButton from "../../OpenModalButton"
 
 function ReplyCard({ reply }) {
     const [isEditing, setIsEditing] = useState(false)
@@ -14,7 +16,7 @@ function ReplyCard({ reply }) {
                     <NavLink to={`/users/${reply.author.id}`}>{reply.author.first_name} {reply.author.last_name}</NavLink>
                     <div className="comment-reply-content-container">
                         {!isEditing && reply.content}
-                        {isEditing && <EditComment content={reply} setIsEditing={setIsEditing} reply={true}/>}
+                        {isEditing && <EditComment content={reply} setIsEditing={setIsEditing} reply={true} />}
                     </div>
                 </div>
             </div>
@@ -23,8 +25,15 @@ function ReplyCard({ reply }) {
                     <button>
                         <i className="fas fa-edit" onClick={() => setIsEditing(!isEditing)}></i>
                     </button>
-
-
+                    <OpenModalButton
+                        buttonText={<i className="fas fa-trash-alt"></i>}
+                        modalComponent={
+                            <DeleteComment
+                                commentId={reply.id}
+                                reply={true}
+                            />
+                        }
+                    />
                 </div>
             </div>
         </div>

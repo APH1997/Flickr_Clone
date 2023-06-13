@@ -251,7 +251,7 @@ export const updateReplyThunk = (replyId, content) => async (dispatch) => {
 }
 //DELETE REPLY
 export const deleteReplyThunk = (replyId) => async (dispatch) => {
-    const response = await fetch(`/comments/replies/${replyId}/delete`, {
+    const response = await fetch(`/photos/comments/replies/${replyId}/delete`, {
         method: "DELETE"
     })
     const data = await response.json()
