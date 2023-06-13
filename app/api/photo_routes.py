@@ -339,6 +339,17 @@ def edit_reply(replyId):
     Queries for reply by id and overwrites content with form data
     Queries for photo and returns in a dictionary with updated comments/replies
     """
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        target_reply = Reply.query.get(replyId)
+        target_reply.content = form.data["content"]
+        db.session.commit()
+
+        photo = Photo.query.get(target_reply.parent.photo.id)
+        return photo.to_dict()
+    else:
+        return form.errors, 400
 
 
 @photo_routes.route('comments/replys/<int:replyId>/delete', methods=["DELETE"])
@@ -349,3 +360,12 @@ def delete_reply(replyId):
     Queries for parent photo and returns in a dictionary
     to update store
     """
+    target = Reply.query.get(replyId)
+    photoId = target.parent.photo.id
+
+    db.session.delete(target)
+    db.session.commit()
+
+    photo = Photo.query.get(photoId)
+
+    return photo.to_dict()
