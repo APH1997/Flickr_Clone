@@ -9,7 +9,7 @@ function ReplyCard({ reply }) {
                 </div>
                 <div className="comment-card-content">
                     <NavLink to={`/users/${reply.author.id}`}>{reply.author.first_name} {reply.author.last_name}</NavLink>
-                    <div>
+                    <div className="comment-reply-content-container">
                         {reply.content}
                     </div>
                 </div>

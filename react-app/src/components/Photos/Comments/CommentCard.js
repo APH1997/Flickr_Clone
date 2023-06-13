@@ -25,7 +25,7 @@ function CommentCard({ comment }) {
                     </div>
                     <div className="comment-card-content">
                         <NavLink to={`/users/${comment.author.id}`}>{comment.author.first_name} {comment.author.last_name}</NavLink>
-                        <div>
+                        <div className="comment-reply-content-container">
                             {!isEditing && comment.content}
                             {isEditing && <EditComment content={comment} setIsEditing={setIsEditing} />}
                         </div>

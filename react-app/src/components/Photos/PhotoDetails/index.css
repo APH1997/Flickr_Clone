@@ -81,8 +81,11 @@
 
 .comment-card-content-container{
     display: flex;
-
 }
+.comment-reply-content-container{
+    word-break: break-all;
+}
+
 .comment-card-container:hover{
     background-color: white;
     transition: background-color .25s;
