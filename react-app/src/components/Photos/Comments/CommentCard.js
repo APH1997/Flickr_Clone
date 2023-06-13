@@ -25,22 +25,28 @@ function CommentCard({ comment }) {
                         {!isEditing && comment.content}
                         {isEditing && <EditComment content={comment} setIsEditing={setIsEditing}/>}
                     </div>
+                    <div>
+                        {comment.replies.length} <i className="far fa-comments"></i>
+                    </div>
+
                 </div>
             </div>
             {user.id === comment.author.id &&
                 <div className="delete-comment-modal-button">
-                    <button>
-                        <i className="fas fa-edit" onClick={() => setIsEditing(!isEditing)}></i>
-                    </button>
-                    <OpenModalButton
-                        buttonText={<i className="fas fa-trash-alt"></i>}
-                        modalComponent={
-                            <DeleteComment
-                                commentId={comment.id}
-                                photoId={photo.id}
-                            />
-                        }
-                    />
+                    <div>
+                        <button>
+                            <i className="fas fa-edit" onClick={() => setIsEditing(!isEditing)}></i>
+                        </button>
+                        <OpenModalButton
+                            buttonText={<i className="fas fa-trash-alt"></i>}
+                            modalComponent={
+                                <DeleteComment
+                                    commentId={comment.id}
+                                    photoId={photo.id}
+                                />
+                            }
+                        />
+                    </div>
                 </div>
             }
         </div>
