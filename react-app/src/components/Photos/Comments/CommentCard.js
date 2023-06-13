@@ -11,6 +11,8 @@ function CommentCard({ comment }) {
     const user = useSelector((state) => state.session.user)
     const [showReplies, setShowReplies] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
+    const [replying, setReplying] = useState(false)
+
     const { photo } = usePhoto()
 
     return (
@@ -19,7 +21,6 @@ function CommentCard({ comment }) {
                 <div className="comment-card-content-container">
                     <div>
                         <img id="comment-card-pro-pic" src={comment.author.profile_picture_url}></img>
-
                     </div>
                     <div className="comment-card-content">
                         <NavLink to={`/users/${comment.author.id}`}>{comment.author.first_name} {comment.author.last_name}</NavLink>
@@ -27,8 +28,14 @@ function CommentCard({ comment }) {
                             {!isEditing && comment.content}
                             {isEditing && <EditComment content={comment} setIsEditing={setIsEditing} />}
                         </div>
-                        <div onClick={() => setShowReplies(!showReplies)}>
-                            {comment.replies.length} <i className="far fa-comments"></i>
+                        <div className="reply-show-and-create">
+                            <div id="num-replies" onClick={() => setShowReplies(!showReplies)}>
+                                {(showReplies && <span>Collapse</span>) ||
+                                <span>{comment.replies.length} <i className="far fa-comments"></i></span>
+                                }
+                            </div>
+                            ·
+                            <span id="post-reply-btn" onClick={(e) => setReplying(!replying)}>Reply</span>
                         </div>
                     </div>
                 </div>
@@ -51,6 +58,8 @@ function CommentCard({ comment }) {
                     </div>
                 }
             </div>
+            {replying &&
+            <div>I'm replying!</div>}
             {showReplies &&
                 comment.replies.map((reply) =>
                     <ReplyCard reply={reply} />)}

@@ -14,8 +14,6 @@ function ReplyCard({ reply }) {
                     </div>
                 </div>
             </div>
-
-
         </div>
     )
 }

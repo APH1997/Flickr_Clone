@@ -183,6 +183,22 @@
     margin-left: 5%;
 }
 
+.reply-show-and-create{
+    display: flex;
+    gap: 10px;
+    padding-top: 5px;
+}
+
+#num-replies:hover{
+    cursor: pointer;
+    color: rgb(16, 107, 199);
+}
+
+#post-reply-btn:hover{
+    cursor: pointer;
+    color: rgb(16, 107, 199);
+}
+
 /* MODAL STYLING */
 #modal-content>.photo-form-container{
     align-items: flex-start;
