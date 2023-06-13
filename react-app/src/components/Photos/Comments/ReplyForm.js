@@ -13,6 +13,7 @@ function ReplyForm({setReplying, parentId, setShowReplies}) {
     useEffect(() => {
         const errObj = {}
         if (!reply || !reply.trim()) errObj.reply = "Cannot submit an empty reply"
+        if (reply && reply.length > 100) errObj.reply = "Replies cannot exceed 100 characters"
         if (Object.values(errObj).length){
             setErrors(errObj)
         } else {
@@ -20,6 +21,11 @@ function ReplyForm({setReplying, parentId, setShowReplies}) {
         }
 
     }, [reply])
+
+    function handleReply(e){
+        if (e.target.value.length > 100) return
+        setReply(e.target.value)
+    }
 
     function handleSubmit(e){
         e.preventDefault()
@@ -48,7 +54,7 @@ function ReplyForm({setReplying, parentId, setShowReplies}) {
                         <textarea
                         placeholder="Give em' a piece of your mind!"
                         value={reply}
-                        onChange={(e) => setReply(e.target.value)}/>
+                        onChange={(e) => handleReply(e)}/>
                         <div>
                             <button>Submit</button>
                             <span>
