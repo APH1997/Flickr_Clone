@@ -199,6 +199,23 @@
     color: rgb(16, 107, 199);
 }
 
+.reply-form-container{
+    width: 100%;
+}
+.reply-form{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    gap: 5px;
+}
+.reply-form>textarea{
+    width: 90%;
+}
+
+.reply-form>button{
+    width: 25%;
+}
+
 /* MODAL STYLING */
 #modal-content>.photo-form-container{
     align-items: flex-start;
