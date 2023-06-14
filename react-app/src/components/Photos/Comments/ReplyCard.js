@@ -3,9 +3,14 @@ import { NavLink } from "react-router-dom"
 import EditComment from "./EditCommentForm"
 import DeleteComment from "./DeleteCommentModal"
 import OpenModalButton from "../../OpenModalButton"
+import { useSelector } from "react-redux"
 
 function ReplyCard({ reply }) {
     const [isEditing, setIsEditing] = useState(false)
+    console.log(reply)
+    const user = useSelector(state => state.session.user)
+
+    if (!user) return null
     return (
         <div className="comment-card-container reply-container">
             <div className="comment-card-content-container">
@@ -20,22 +25,24 @@ function ReplyCard({ reply }) {
                     </div>
                 </div>
             </div>
-            <div className="comment-reply-author-btns-container">
-                <div>
-                    <button>
-                        <i className="fas fa-edit" onClick={() => setIsEditing(!isEditing)}></i>
-                    </button>
-                    <OpenModalButton
-                        buttonText={<i className="fas fa-trash-alt"></i>}
-                        modalComponent={
-                            <DeleteComment
-                                commentId={reply.id}
-                                reply={true}
-                            />
-                        }
-                    />
+            {user.id === reply.author.id &&
+                <div className="comment-reply-author-btns-container">
+                    <div>
+                        <button>
+                            <i className="fas fa-edit" onClick={() => setIsEditing(!isEditing)}></i>
+                        </button>
+                        <OpenModalButton
+                            buttonText={<i className="fas fa-trash-alt"></i>}
+                            modalComponent={
+                                <DeleteComment
+                                    commentId={reply.id}
+                                    reply={true}
+                                />
+                            }
+                        />
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     )
 }
