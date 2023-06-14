@@ -55,9 +55,8 @@ function AlbumShow() {
                                 pathname: `/photos/${photo.id}`,
                                 state: { from: 'ALBUM' }
                             })}>
-                            <div className="hover-mask-div" style={{height: "200px"}}>
-                                <img alt="" src={photo.url} />
-                            </div>
+                            <img alt="" src={photo.url} />
+
                         </div>
 
                     )}
