@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { createReplyThunk } from "../../../store/photos";
+import Loader from "../../Loader";
 
 function ReplyForm({setReplying, parentId, setShowReplies}) {
     const user = useSelector(state => state.session.user)
@@ -41,7 +42,7 @@ function ReplyForm({setReplying, parentId, setShowReplies}) {
         setReplying(false)
     }
 
-    if (!user) return null;
+    if (!user) return <Loader />;
     return (
         <div className="comment-card-container reply-container">
             <div className="comment-card-content-container reply-form-container">

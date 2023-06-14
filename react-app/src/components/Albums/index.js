@@ -5,6 +5,7 @@ import { getAllAlbumsThunk } from "../../store/albums"
 import "./index.css"
 import EditAlbum from "./EditAlbumModalButton"
 import DeleteAlbum from "./DeleteAlbumModalButton"
+import Loader from "../Loader"
 
 function AlbumShow() {
     const history = useHistory()
@@ -17,11 +18,11 @@ function AlbumShow() {
         dispatch(getAllAlbumsThunk())
     }, [dispatch])
 
-    if (!allAlbums) return null
+    if (!allAlbums) return <Loader />
 
 
     const singleAlbum = allAlbums[albumId]
-    if (!singleAlbum) return null;
+    if (!singleAlbum) return <Loader />;
 
     return (
         <>

@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import EditAlbum from "../Albums/EditAlbumModalButton";
 import DeleteAlbum from "../Albums/DeleteAlbumModalButton";
 import { useState } from "react";
+import Loader from "../Loader";
 
 
 function AlbumCard({album}){
@@ -11,7 +12,7 @@ function AlbumCard({album}){
     const history = useHistory()
     const user = useSelector(state => state.session.user)
 
-    if (!album || !user || !pageOwner) return null;
+    if (!album || !user || !pageOwner) return <Loader/>;
 
     return (
 

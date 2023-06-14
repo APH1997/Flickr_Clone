@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { createAlbumThunk, getAllPhotosThunk } from "../../store/photos";
 import { updateAlbumThunk } from "../../store/albums";
 import NoPhotos from "../UserPage/ProfileNav/NoPhotos";
+import Loader from "../Loader";
 
 function AlbumFormModal({album}){
     // if album is defined, then it is an edit form
@@ -114,7 +115,7 @@ function AlbumFormModal({album}){
     }
     if (!allPhotos){
         dispatch(getAllPhotosThunk())
-        return null;
+        return <Loader />
     }
     const userPhotos = Object.values(allPhotos).filter((pic) => pic.author.id === user.id)
     return(

@@ -4,6 +4,7 @@ import { getProfileThunk } from "../../store/session"
 import { useParams } from "react-router-dom"
 import OpenModalButton from "../OpenModalButton"
 import ProfileModal from "./EditProfileModal"
+import Loader from "../Loader"
 
 
 function UserPageBanner(){
@@ -17,7 +18,7 @@ function UserPageBanner(){
         dispatch(getProfileThunk(userId))
     }, [dispatch])
 
-    if (!pageOwner) return null;
+    if (!pageOwner) return <Loader/>;
 
     return (
         <div className="user-page-banner-container">

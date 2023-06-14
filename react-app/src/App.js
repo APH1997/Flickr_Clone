@@ -15,7 +15,7 @@ import { PhotoContextProvider } from "./context/Photo";
 import AlbumFormModal from "./components/Albums/AlbumFormModal";
 import Footer from "./components/Footer";
 import UpdatePostForm from "./components/Photos/UpdatePostPage";
-import Loader from "./components/Loader";
+
 
 
 
@@ -73,9 +73,6 @@ function App() {
           </Route>
           <Route exact path="/signup">
               <SignupFormPage />
-          </Route>
-          <Route exact path="/loader">
-            <Loader />
           </Route>
           <Route>
             <h1>404: Page not found</h1>

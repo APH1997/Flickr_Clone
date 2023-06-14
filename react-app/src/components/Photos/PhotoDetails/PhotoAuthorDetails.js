@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { usePhoto } from "../../../context/Photo";
+import Loader from "../../Loader";
 
 
 function PhotoAuthorDetails(){
     const {photo} = usePhoto()
-    if (!photo) return null;
-    
+    if (!photo) return <Loader/>;
+
     return (
         <div className="photo-author-details-card">
             <div style={{height:"100%"}}>

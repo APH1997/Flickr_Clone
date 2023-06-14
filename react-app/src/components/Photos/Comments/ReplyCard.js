@@ -4,13 +4,14 @@ import EditComment from "./EditCommentForm"
 import DeleteComment from "./DeleteCommentModal"
 import OpenModalButton from "../../OpenModalButton"
 import { useSelector } from "react-redux"
+import Loader from "../../Loader"
 
 function ReplyCard({ reply }) {
     const [isEditing, setIsEditing] = useState(false)
     console.log(reply)
     const user = useSelector(state => state.session.user)
 
-    if (!user) return null
+    if (!user) return <Loader/>
     return (
         <div className="comment-card-container reply-container">
             <div className="comment-card-content-container">

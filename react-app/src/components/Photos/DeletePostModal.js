@@ -3,6 +3,7 @@ import { useModal } from "../../context/Modal"
 import { deletePhotoThunk } from "../../store/photos"
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
+import Loader from "../Loader"
 
 
 
@@ -21,7 +22,7 @@ function DeletePostModal({photo}){
         closeModal()
     }
 
-    if (!photo) return null;
+    if (!photo) return <Loader />;
 
     return (
         <div className="delete-modal-content-container">

@@ -3,6 +3,7 @@ import OpenModalButton from "../OpenModalButton";
 import DeletePostModal from "../Photos/DeletePostModal";
 import { NavLink, useHistory } from "react-router-dom";
 import UpdatePostForm from "../Photos/UpdatePostPage";
+import Loader from "../Loader";
 
 function AuthorControls({photo}){
     const [showMenu, setShowMenu] = useState(false);
@@ -30,7 +31,7 @@ function AuthorControls({photo}){
 
     const ulClassName = "author-controls-dropdown" + (showMenu ? "" : " hidden");
     const closeMenu = () => setShowMenu(false)
-    if (!photo) return null;
+    if (!photo) return <Loader />
     return(
         <div onClick={(e) => e.stopPropagation()}>
             <button id="open-author-controls-btn" className={showMenu ? "menu-is-open" : ""}onClick={() => setShowMenu(!showMenu)}>
