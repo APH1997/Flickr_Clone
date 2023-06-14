@@ -26,7 +26,7 @@ function AlbumShow() {
     return (
         <>
             <div className="album-photos-container">
-                <div>
+                <div className="cover-photo-container">
                     <div className="album-by-id-author-controls-container">
                         {user.id === singleAlbum.author.id &&
                             <EditAlbum album={singleAlbum} show={true} />}
