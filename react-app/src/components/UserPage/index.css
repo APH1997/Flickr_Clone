@@ -118,7 +118,7 @@
 .about-tab-main-container{
     display: flex;
     justify-content: center;
-
+    height: 100vh;
 }
 #userpage-bio-box{
     display: flex;
@@ -128,6 +128,7 @@
     margin-top: 50px;
     padding: 10px;
     border-radius: 7px;
+    height: fit-content
 }
 #about-me-h3{
     padding-left: 40px;
@@ -162,6 +163,7 @@
     height: 20px;
     transition: height 2s;
     font-size: 16px;
+    resize: none;
 
 }
 
@@ -188,6 +190,7 @@
 .album-card-container-container{
     display: flex;
     justify-content: center;
+    height: 100vh;
 }
 
 .album-card-container{
