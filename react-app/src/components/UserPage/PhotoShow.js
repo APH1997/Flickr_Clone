@@ -13,9 +13,9 @@ function PhotoShow({photo}){
                 }
             })}
         >
-            <div className="hover-mask-div">
-                <img alt="" src={photo.url}></img>
-            </div>
+
+        <img alt="" src={photo.url}></img>
+
         </div>
     )
 }

@@ -20,7 +20,7 @@ const getAllPhotosAction = (photos) => {
 }
 
 export const getAllPhotosThunk = () => async (dispatch) => {
-    const response = await fetch("/photos/all")
+    const response = await fetch("/api/photos/all")
     if (response.ok){
         const data = await response.json();
         await dispatch(getAllPhotosAction(data));
@@ -37,7 +37,7 @@ const getUserPhotosAction = (photos) => {
 }
 
 export const getUserPhotosThunk = (userId) => async (dispatch) => {
-    const response = await fetch(`/photos/user/${userId}`)
+    const response = await fetch(`/api/photos/user/${userId}`)
     if (response.ok){
         const data = await response.json()
         await dispatch(getUserPhotosAction(data))
@@ -57,7 +57,7 @@ const getOnePhotoAction = (photo) => {
 }
 
 export const getOnePhotoThunk = (photoId) => async (dispatch) => {
-    const response = await fetch(`/photos/${photoId}`)
+    const response = await fetch(`/api/photos/${photoId}`)
     if (response.ok){
         const data = await response.json();
         await dispatch(getOnePhotoAction(data));
@@ -77,7 +77,7 @@ const createPhotoAction = (photo) => {
 }
 
 export const createPhotoThunk = (photoData) => async (dispatch) => {
-    const response = await fetch('/photos/new', {
+    const response = await fetch('/api/photos/new', {
         method: 'POST',
         body: photoData,
     });
@@ -99,7 +99,7 @@ const updatePhotoAction = (photo) => {
 }
 
 export const updatePhotoThunk = (photoId, photoData) => async (dispatch) => {
-    const response = await fetch(`/photos/${photoId}/edit`, {
+    const response = await fetch(`/api/photos/${photoId}/edit`, {
         method: 'PUT',
         body: photoData,
     });
@@ -121,7 +121,7 @@ const deletePhotoAction = (photoId) => {
 }
 
 export const deletePhotoThunk = (photoId) => async (dispatch) => {
-    const response = await fetch(`/photos/${photoId}/delete`, {
+    const response = await fetch(`/api/photos/${photoId}/delete`, {
         method: 'DELETE',
     })
     if (response.ok){
@@ -136,7 +136,7 @@ export const deletePhotoThunk = (photoId) => async (dispatch) => {
 
 //CREATE ALBUM - NO ACTION/REDUCER NEEDED
 export const createAlbumThunk = (albumData) => async (dispatch) => {
-    const response = await fetch('/photos/album/new', {
+    const response = await fetch('/api/photos/album/new', {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(albumData),
@@ -159,7 +159,7 @@ const createCommentAction = (photo) => {
 }
 
 export const createCommentThunk = (commentData, photoId) => async (dispatch) => {
-    const response = await fetch(`/photos/${photoId}/comments/new`, {
+    const response = await fetch(`/api/photos/${photoId}/comments/new`, {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(commentData)
@@ -183,7 +183,7 @@ const deleteCommentAction = (photo) => {
 }
 
 export const deleteCommentThunk = (photoId, commentId) => async (dispatch) => {
-    const response = await fetch(`/photos/${photoId}/comments/${commentId}/delete`, {
+    const response = await fetch(`/api/photos/${photoId}/comments/${commentId}/delete`, {
         method: "DELETE"
     });
     if (response.ok){
@@ -204,7 +204,7 @@ const updateCommentAction = (photo) => {
 }
 
 export const updateCommentThunk = (commentId, content) => async (dispatch) => {
-    const response = await fetch(`/photos/comments/${commentId}/edit`, {
+    const response = await fetch(`/api/photos/comments/${commentId}/edit`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(content)
@@ -220,7 +220,7 @@ export const updateCommentThunk = (commentId, content) => async (dispatch) => {
 
 //CREATE REPLY - REUSE COMMENT ACTIONS
 export const createReplyThunk = (commentId, content) => async (dispatch) => {
-    const response = await fetch(`/photos/comments/${commentId}/new`, {
+    const response = await fetch(`/api/photos/comments/${commentId}/new`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(content)
@@ -236,7 +236,7 @@ export const createReplyThunk = (commentId, content) => async (dispatch) => {
 
 //UPDATE REPLY
 export const updateReplyThunk = (replyId, content) => async (dispatch) => {
-    const response = await fetch(`/photos/comments/replies/${replyId}/edit`, {
+    const response = await fetch(`/api/photos/comments/replies/${replyId}/edit`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(content)
@@ -251,7 +251,7 @@ export const updateReplyThunk = (replyId, content) => async (dispatch) => {
 }
 //DELETE REPLY
 export const deleteReplyThunk = (replyId) => async (dispatch) => {
-    const response = await fetch(`/photos/comments/replies/${replyId}/delete`, {
+    const response = await fetch(`/api/photos/comments/replies/${replyId}/delete`, {
         method: "DELETE"
     })
     const data = await response.json()

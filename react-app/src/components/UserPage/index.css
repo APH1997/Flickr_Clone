@@ -436,6 +436,12 @@ padding-top: 0;
     margin: 0;
     height: 300px;
 }
+
+.photo-show-card img{
+    width: 100%;
+    object-fit: cover;
+}
+
 .hover-mask-div{
     /* position: absolute; */
     height: 300px;
@@ -452,7 +458,7 @@ padding-top: 0;
     position: relative;
 }
 
-.photo-show-container{
+/* .photo-show-container{
     width: 95%;
     display: flex;
     flex-flow: wrap;
@@ -460,4 +466,11 @@ padding-top: 0;
     justify-content: center;
     height: 100%;
     padding-bottom: 50px;
+} */
+
+.photo-show-container{
+    display: grid;
+    grid-template-rows: 300px;
+    grid-template-columns: 300px 400px 300px;
+    grid-auto-rows: 300px;
 }
