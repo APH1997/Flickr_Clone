@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import ContentCard from "./FeedContentCard"
 import "./index.css"
 import { getAllPhotosThunk } from "../../store/photos"
+import Loader from "../Loader"
 
 function Feed(){
     /*
@@ -11,20 +12,20 @@ function Feed(){
     */
     const dispatch = useDispatch()
     const allPhotos = useSelector(state => state.photos.allPhotos)
-    
+
     useEffect(() => {
         dispatch(getAllPhotosThunk())
     }, [dispatch])
 
     let sortedPhotos;
     if (!allPhotos){
-        return null
+        return <Loader />
     } else{
         sortedPhotos = Object.values(allPhotos)
         .sort((a,b) =>  new Date(b.created_at) - new Date(a.created_at))
     }
 
-    if (!sortedPhotos) return null
+    if (!sortedPhotos) return <Loader />
 
     return (
             <div className="feed-main-container">

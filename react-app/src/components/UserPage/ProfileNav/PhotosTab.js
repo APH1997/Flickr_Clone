@@ -3,6 +3,7 @@ import PhotoShow from "../PhotoShow";
 import PostForm from "../../Photos/CreatePostPage";
 import OpenModalButton from "../../OpenModalButton";
 import NoPhotos from "./NoPhotos";
+import Loader from "../../Loader";
 
 function PhotosTab(){
     const pageOwner = useSelector(state => state.session.profilePageUser)
@@ -31,9 +32,11 @@ function PhotosTab(){
             }
 
             {pageOwner.id !== user.id &&
-                <h2>
-                    {!pageOwner.photos.length ? `${pageOwner.first_name} doesn't have any photos to show off.` : ''}
-                </h2>
+                <div style={{height: "100vh"}}>
+                    <h2>
+                        {!pageOwner.photos.length ? `${pageOwner.first_name} doesn't have any photos to show off.` : ''}
+                    </h2>
+                </div>
             }
 
             {!photos.length && user.id === pageOwner.id &&

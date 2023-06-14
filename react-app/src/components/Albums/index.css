@@ -126,14 +126,12 @@ input[type="checkbox"]{
     display: flex;
     flex-flow: column;
     justify-content: center;
-    top: 0;
     padding-top: 0px;
-    margin-top: 50px;
-    padding-bottom: 100px;
+    padding-bottom: 100vh;
     width: 80%;
     padding-left: 10%;
     padding-right: 10%;
-    gap: 5px;
+    gap: 3px;
     height: 100vh;
 }
 
@@ -168,6 +166,9 @@ input[type="checkbox"]{
     width: 100%;
     height: 250px;
     object-fit: cover;
+}
+.cover-photo-container{
+    margin-top: 350px;
 }
 #cover-photo-mask{
     display: flex;
@@ -205,22 +206,20 @@ input[type="checkbox"]{
 
 }
 .non-cover-photos{
-    display: flex;
-    flex-flow: wrap;
-    column-count: 4;
-    gap: 5px;
+    padding-bottom: 80px;
+    display: grid;
+    grid-template-rows: 200px;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-auto-rows: 200px;
+    gap: 5px 5px;
+    justify-content: center;
 }
 .album-photo-card{
-    width: fit-content;
-    height: 200px;
+    width: 100%;
+    height: 100%
 }
 .album-photo-card img{
     height: 200px;
-    z-index: -1;
-}
-.album-show-card-ghost-div {
-    border: red 1px solid;
-    height: 200px;
-    position: absolute;
     width: 100%;
+    object-fit: cover;
 }

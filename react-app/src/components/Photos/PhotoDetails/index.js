@@ -7,6 +7,7 @@ import AuthorControls from "../../Dashboard/AuthorControls"
 import CommentSection from "../Comments"
 import { usePhoto } from "../../../context/Photo"
 import PhotoAuthorDetails from "./PhotoAuthorDetails"
+import Loader from "../../Loader"
 
 function PhotoDetails(){
     //history has location.state based on
@@ -27,7 +28,7 @@ function PhotoDetails(){
         dispatch(getAllPhotosThunk())
     },[dispatch])
 
-    if (!allPhotos) return null;
+    if (!allPhotos) return <Loader/>;
     const photo = allPhotos[photoId];
     //SET PHOTO CONTEXT HERE
     setPhoto(photo)
@@ -59,7 +60,7 @@ function PhotoDetails(){
             history.goBack()
         }
     }
-    if (!photo) return null;
+    if (!photo) return <Loader/>;
     return (
         <div>
             <div className="big-black-background-div">

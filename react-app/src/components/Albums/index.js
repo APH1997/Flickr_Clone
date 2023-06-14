@@ -5,6 +5,7 @@ import { getAllAlbumsThunk } from "../../store/albums"
 import "./index.css"
 import EditAlbum from "./EditAlbumModalButton"
 import DeleteAlbum from "./DeleteAlbumModalButton"
+import Loader from "../Loader"
 
 function AlbumShow() {
     const history = useHistory()
@@ -17,16 +18,16 @@ function AlbumShow() {
         dispatch(getAllAlbumsThunk())
     }, [dispatch])
 
-    if (!allAlbums) return null
+    if (!allAlbums) return <Loader />
 
 
     const singleAlbum = allAlbums[albumId]
-    if (!singleAlbum) return null;
+    if (!singleAlbum) return <Loader />;
 
     return (
         <>
             <div className="album-photos-container">
-                <div>
+                <div className="cover-photo-container">
                     <div className="album-by-id-author-controls-container">
                         {user.id === singleAlbum.author.id &&
                             <EditAlbum album={singleAlbum} show={true} />}
@@ -55,9 +56,8 @@ function AlbumShow() {
                                 pathname: `/photos/${photo.id}`,
                                 state: { from: 'ALBUM' }
                             })}>
-                            <div className="hover-mask-div" style={{height: "200px"}}>
-                                <img alt="" src={photo.url} />
-                            </div>
+                            <img alt="" src={photo.url} />
+
                         </div>
 
                     )}

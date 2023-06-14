@@ -118,7 +118,7 @@
 .about-tab-main-container{
     display: flex;
     justify-content: center;
-
+    height: 100vh;
 }
 #userpage-bio-box{
     display: flex;
@@ -128,6 +128,7 @@
     margin-top: 50px;
     padding: 10px;
     border-radius: 7px;
+    height: fit-content
 }
 #about-me-h3{
     padding-left: 40px;
@@ -162,6 +163,7 @@
     height: 20px;
     transition: height 2s;
     font-size: 16px;
+    resize: none;
 
 }
 
@@ -188,6 +190,7 @@
 .album-card-container-container{
     display: flex;
     justify-content: center;
+    height: 100vh;
 }
 
 .album-card-container{
@@ -292,9 +295,6 @@
     justify-content: end;
 }
 
-.delete-album-icon-container button{
-/* TODO: styling */
-}
 
 /* Photo Tab */
 .user-page-photo-container{
@@ -432,29 +432,27 @@ padding-top: 0;
     width: fit-content;
     margin: 0;
     height: 300px;
-}
-.hover-mask-div{
-    /* position: absolute; */
-    height: 300px;
-    width: fit-content;
-    transition: background-color .3s;
-}
-.hover-mask-div:hover{
-    cursor: pointer;
-    transition: background-color .3s;
-    background-color: rgba(0, 0, 0, 0.411);
-}
-.hover-mask-div>img{
-    z-index: -1;
-    position: relative;
+    width: 100%;
 }
 
+.photo-show-card img{
+    width: 100%;
+    object-fit: cover;
+    transition: filter .25s;
+}
+.photo-show-card img:hover{
+    cursor: pointer;
+    filter: brightness(.5);
+    transition: filter .25s;
+}
+
+
 .photo-show-container{
-    width: 95%;
-    display: flex;
-    flex-flow: wrap;
-    gap: 5px;
-    justify-content: center;
-    height: 100%;
-    padding-bottom: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: grid;
+    grid-template-rows: 300px;
+    grid-template-columns: 300px 400px 300px;
+    grid-auto-rows: 300px;
+    gap: 5px 5px;
 }

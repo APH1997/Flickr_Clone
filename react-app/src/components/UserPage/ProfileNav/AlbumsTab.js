@@ -5,13 +5,14 @@ import OpenModalButton from "../../OpenModalButton";
 import NoPhotos from "./NoPhotos";
 import NoAlbums from "./NoAlbums";
 import { useEffect } from "react";
+import Loader from "../../Loader";
 
 
 function AlbumsTab(){
     const pageOwner = useSelector(state => state.session.profilePageUser)
     const sessionUser = useSelector(state => state.session.user)
 
-    if (!pageOwner) return null;
+    if (!pageOwner) return <Loader/>;
     return (
         <div style={{marginTop: "5px"}}>
             {pageOwner.id === sessionUser.id && (

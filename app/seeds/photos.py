@@ -183,14 +183,6 @@ def seed_photos():
         description="Towering and majestic, they can reach great heights, producing thunderstorms and lightning.",
         created_at=fake.date_between(start_date='-1y', end_date='today'),
     )
-
-    moon1 = Photo(
-        author_id=4,
-        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/moon_and_venus.jpg",
-        caption="Moon and Venus",
-        description="On the evening of April 23, 2023, in Yuzhno-Morskoy (Primorsky Krai), I photographed the conjunction of the crescent Moon and Venus. I used my camera Canon EOS 60D (with 135mm lens).",
-        created_at=fake.date_between(start_date='-1y', end_date='today'),
-    )
     moon2 = Photo(
         author_id=4,
         aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/34waxinggibbous.jpg",
@@ -198,13 +190,7 @@ def seed_photos():
         description="Tonight's 34 percent illuminated waxing gibbous moon",
         created_at=fake.date_between(start_date='-1y', end_date='today'),
     )
-    moon3 = Photo(
-        author_id=4,
-        aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/spookymoon.jpg",
-        caption="Spooky Mood in the Forest",
-        description="full moon between the branches",
-        created_at=fake.date_between(start_date='-1y', end_date='today'),
-    )
+
     moon4 = Photo(
         author_id=4,
         aws_url="https://highrme-pics.s3.us-east-2.amazonaws.com/moonandpliades.jpg",
@@ -225,7 +211,7 @@ def seed_photos():
                 sunset5, sunset6, sunset7,
                 cloud1, cloud2, cloud3, cloud4,
                 cloud5, cloud6, cloud7,
-                moon1, moon2, moon3, moon4, moon5,
+                moon2, moon4, moon5,
                 space1, space2, space3, space4,
                 space5, space6, space7, space8,
                 space9, space10, space11]

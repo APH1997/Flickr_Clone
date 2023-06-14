@@ -41,8 +41,11 @@ function ContentCard({photo}){
                 <p>{photo.description}</p>
             </div>
             <div id="comments-button">
+
                 <i className="far fa-comment"></i>
-                <span>{photo.comments.length}</span>
+                    <span>{photo.comments.length}</span>
+                <i className="far fa-comments"></i>
+                    <span>{photo.num_replies}</span>
             </div>
 
         </div>

@@ -12,7 +12,7 @@ const getAllAlbumsAction = (albums) => {
 }
 
 export const getAllAlbumsThunk = () => async (dispatch) => {
-    const response = await fetch("/photos/albums/all")
+    const response = await fetch("/api/photos/albums/all")
     if (response.ok){
         const data = await response.json()
         await dispatch(getAllAlbumsAction(data))
@@ -32,7 +32,7 @@ const updateAlbumAction = (album) => {
 }
 
 export const updateAlbumThunk = (albumId, albumData) => async (dispatch) => {
-    const response = await fetch(`/photos/albums/${albumId}/edit`, {
+    const response = await fetch(`/api/photos/albums/${albumId}/edit`, {
         method: 'PUT',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(albumData),
@@ -56,7 +56,7 @@ const deleteAlbumAction = (albumId) => {
 }
 
 export const deleteAlbumThunk = (albumId) => async (dispatch) => {
-    const response = await fetch(`/photos/albums/${albumId}/delete`, {
+    const response = await fetch(`/api/photos/albums/${albumId}/delete`, {
         method: 'DELETE',
     })
     if (response.ok){

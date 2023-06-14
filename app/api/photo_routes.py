@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Photo, User, Album, Comment
+from app.models import db, Photo, User, Album, Comment, Reply
 from app.forms import PhotoForm, EditPhotoForm, CreateAlbumForm, EditAlbumForm, CommentForm
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
@@ -299,3 +299,73 @@ def delete_comment(photoId, commentId):
 
     target_photo = Photo.query.get(photoId)
     return target_photo.to_dict()
+
+
+# COMMENT REPLIES
+@photo_routes.route('comments/<int:commentId>/new', methods=["POST"])
+@login_required
+def reply_to_comment(commentId):
+    """
+    Takes form data containing reply content,
+    Queries for parent comment by id,
+    creates new reply using comment as parent
+    and current user as author.
+    Queries for photo and returns it to update store
+    """
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        parent_comment = Comment.query.get(commentId)
+        new_reply = Reply(
+                    author = current_user,
+                    parent = parent_comment,
+                    content = form.data["content"]
+                    )
+        db.session.add(new_reply)
+        db.session.commit()
+
+        photo = Photo.query.get(parent_comment.photo.id)
+        return photo.to_dict()
+    else:
+        return form.errors, 400
+
+
+
+@photo_routes.route('comments/replies/<int:replyId>/edit', methods=["PUT"])
+@login_required
+def edit_reply(replyId):
+    """
+    Takes form data containing new content
+    Queries for reply by id and overwrites content with form data
+    Queries for photo and returns in a dictionary with updated comments/replies
+    """
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        target_reply = Reply.query.get(replyId)
+        target_reply.content = form.data["content"]
+        db.session.commit()
+
+        photo = Photo.query.get(target_reply.parent.photo.id)
+        return photo.to_dict()
+    else:
+        return form.errors, 400
+
+
+@photo_routes.route('comments/replies/<int:replyId>/delete', methods=["DELETE"])
+@login_required
+def delete_reply(replyId):
+    """
+    Queries for reply by id and deletes it.
+    Queries for parent photo and returns in a dictionary
+    to update store
+    """
+    target = Reply.query.get(replyId)
+    photoId = target.parent.photo.id
+
+    db.session.delete(target)
+    db.session.commit()
+
+    photo = Photo.query.get(photoId)
+
+    return photo.to_dict()
