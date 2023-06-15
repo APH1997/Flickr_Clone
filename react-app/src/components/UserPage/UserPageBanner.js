@@ -23,7 +23,7 @@ function UserPageBanner(){
     return (
         <div className="user-page-banner-container">
             <div className="banner-left-user-info">
-                <div><img id="banner-profile-bubble"src={`${pageOwner.profile_picture_url}`}></img></div>
+                <div className="profile-bubble-container"><img id="banner-profile-bubble"src={`${pageOwner.profile_picture_url}`}></img></div>
                 <div id="user-names">
                     <div className="owner-name-and-controls">
                         <h3>{pageOwner.first_name} {pageOwner.last_name}</h3>
