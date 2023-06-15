@@ -24,7 +24,7 @@ function PhotoDetails(){
       }, [])
 
     useEffect(() => {
-        dispatch(getAllPhotosThunk())
+        dispatch(getAllPhotosThunk(allPhotos))
     },[dispatch])
 
     if (!allPhotos) return <Loader/>;
