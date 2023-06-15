@@ -950,8 +950,70 @@ Body:
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+### Route: /comments/int:commentId/new
 
+Method: POST
+Description: Creates a new reply to a comment.
+Required Parameters: commentId (integer)
+Response Format: JSON
 
+#### Request:
+
+Endpoint: /comments/int:commentId/new
+Method: POST
+Body:
+content (string): The content of the reply.
+
+#### Success Response:
+
+Status Code: 200
+Response Body: JSON object representing the updated photo.
+Error Response:
+
+Status Code: 400
+Response Body: JSON object containing form errors.
+
+------------------------------------------------------------------------------------------------------------------------------
+
+### Route: /comments/replies/int:replyId/edit
+
+Method: PUT
+Description: Edits an existing reply.
+Required Parameters: replyId (integer)
+Response Format: JSON
+
+#### Request:
+
+Endpoint: /comments/replies/int:replyId/edit
+Method: PUT
+Body:
+content (string): The updated content of the reply.
+Success Response:
+
+Status Code: 200
+Response Body: JSON object representing the updated photo.
+Error Response:
+
+Status Code: 400
+Response Body: JSON object containing form errors.
+
+------------------------------------------------------------------------------------------------------------------------------
+
+### Route: /comments/replies/int:replyId/delete
+
+Method: DELETE
+Description: Deletes a reply.
+Required Parameters: replyId (integer)
+Response Format: JSON
+
+#### Request:
+
+Endpoint: /comments/replies/int:replyId/delete
+Method: DELETE
+Success Response:
+
+Status Code: 200
+Response Body: JSON object representing the updated photo.
 
 
 
