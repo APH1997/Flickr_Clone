@@ -6,7 +6,7 @@
     gap: 20px;
     align-items: center;
     background-color: rgba(21,21,23,.95);
-    width: 100%;
+    width: 100vw;
     height: 50px;
     z-index: 3;
     color: rgba(255, 255, 255, 0.567);
@@ -56,4 +56,13 @@
     margin-left: 80%;
     gap: 20px;
     align-items: center;
+    opacity: 1;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 1000px) {
+    #contact-links{
+        display: none;
+    }
 }
