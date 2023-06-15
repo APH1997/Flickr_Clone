@@ -27,7 +27,6 @@ export const getAllPhotosThunk = (allPhotos) => async (dispatch) => {
     const response = await fetch("/api/photos/all")
     if (response.ok){
         const data = await response.json();
-        console.log("Dispatching action to update store")
         await dispatch(getAllPhotosAction(data));
         return data;
     }
