@@ -4,9 +4,7 @@ import { updateBioThunk } from "../../../store/session";
 import { useTab } from "../../../context/UserPageTab";
 
 
-function EditBioForm({user}) {
-    const {setIsEditing} = useTab()
-
+function EditBioForm({user, setIsEditing}) {
     const [bio, setBio] = useState(user.bio || "")
     const [errors, setErrors] = useState({})
 

@@ -4,8 +4,7 @@ import EditBioForm from "./EditBioForm"
 import { useTab } from "../../../context/UserPageTab"
 
 function AboutTab(){
-    const {isEditing, setIsEditing} = useTab()
-
+    const [isEditing, setIsEditing] = useState(false)
     const pageOwner = useSelector(state => state.session.profilePageUser)
     const user = useSelector(state => state.session.user)
     return (
@@ -24,7 +23,7 @@ function AboutTab(){
                 <p id="bio-text">{pageOwner.bio || `It looks like ${pageOwner.first_name} is a little shy. Check back later to see if they update their information!`}</p>
             }
             {isEditing &&
-                <EditBioForm user={pageOwner}/>
+                <EditBioForm user={pageOwner} setIsEditing={setIsEditing}/>
             }
         </div>
     )

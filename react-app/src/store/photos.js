@@ -19,7 +19,11 @@ const getAllPhotosAction = (photos) => {
     }
 }
 
-export const getAllPhotosThunk = () => async (dispatch) => {
+export const getAllPhotosThunk = (allPhotos) => async (dispatch) => {
+    // If all Photos is defined, we don't have to get all photos again
+    if (allPhotos) {
+        return;
+    }
     const response = await fetch("/api/photos/all")
     if (response.ok){
         const data = await response.json();

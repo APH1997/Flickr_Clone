@@ -19,13 +19,12 @@ function PhotoDetails(){
     const allPhotos = useSelector((state) => state.photos.allPhotos)
     const user = useSelector((state) => state.session.user)
 
-
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
 
     useEffect(() => {
-        dispatch(getAllPhotosThunk())
+        dispatch(getAllPhotosThunk(allPhotos))
     },[dispatch])
 
     if (!allPhotos) return <Loader/>;
