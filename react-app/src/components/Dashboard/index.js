@@ -14,7 +14,7 @@ function Feed(){
     const allPhotos = useSelector(state => state.photos.allPhotos)
 
     useEffect(() => {
-        dispatch(getAllPhotosThunk())
+        dispatch(getAllPhotosThunk(allPhotos))
     }, [dispatch])
 
     let sortedPhotos;
