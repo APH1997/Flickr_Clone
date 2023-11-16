@@ -4,7 +4,6 @@ from random import choice
 
 
 def seed_comments(users, pics):
-
     generic_comments = [
         'Oh YEAH!!',
         'Hey did Flickr get rid of ads?',
