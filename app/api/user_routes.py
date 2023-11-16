@@ -24,7 +24,11 @@ def user(id):
     Query for a user by id and returns that user in a dictionary
     """
     user = User.query.get(id)
-    return user.to_dict_with_pics()
+    if user is not None:
+        print(user, '-----------------++++++++++++++')
+        return user.to_dict_with_pics()
+    else:
+        return {"error": f"user with id {id} not found"}, 404
 
 @user_routes.route('/<int:id>/edit', methods=["PUT"])
 @login_required
