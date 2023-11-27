@@ -15,7 +15,7 @@ import { PhotoContextProvider } from "./context/Photo";
 import AlbumFormModal from "./components/Albums/AlbumFormModal";
 import Footer from "./components/Footer";
 import UpdatePostForm from "./components/Photos/UpdatePostPage";
-
+import NotFound from "./components/404";
 
 function App() {
   const dispatch = useDispatch();
@@ -73,7 +73,7 @@ function App() {
               <SignupFormPage />
           </Route>
           <Route>
-            <h1>404: Page not found</h1>
+            <NotFound />
           </Route>
         </Switch>
       )}
