@@ -1,0 +1,13 @@
+.four-oh-four-container{
+    display: flex;
+    flex-flow: column;
+    width: 100dvw;
+    height: 100dvh;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    font-size: 50px;
+}
