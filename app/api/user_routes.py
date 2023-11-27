@@ -25,7 +25,6 @@ def user(id):
     """
     user = User.query.get(id)
     if user is not None:
-        print(user, '-----------------++++++++++++++')
         return user.to_dict_with_pics()
     else:
         return {"error": f"user with id {id} not found"}, 404
