@@ -11,3 +11,4 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         'DATABASE_URL').replace('postgres://', 'postgresql://')
     SQLALCHEMY_ECHO = True
+    LOGIN_DISABLED = os.environ.get('LOGIN_DISABLED') is not None
